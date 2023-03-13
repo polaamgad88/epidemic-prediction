@@ -8,14 +8,26 @@ import Navbar from "./components/Navbar";
 import Admin from "./components/Admin";
 import Add_rec from "./components/Add_rec";
 import Add_doc from "./components/Add_doc";
-
+import {Routes,Route} from 'react-router'
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const App = () => {
   return (
-    <div class="bg-blue-500 ">
+    <body class=" bg-blue-500">
     <Navbar/>
-    <Landing/>
-    </div>
+        <Router>
+            <Routes >
+                <Route path='/Main' element={<Main/>} />
+                <Route path='/Login' element={<Login/>}/>
+                <Route path='/Dashboard' element={<Dashboard/>} />
+                <Route path='/Alerts' element={<Alerts/>} />
+                <Route path='/Add_rec' element={<Add_rec/>} />
+                <Route path='/Add_doc' element={<Add_doc/>} />
+                <Route path='/Admin' element={<Admin/>} />
+                <Route path='/Landing' element={<Landing/>} />
+            </Routes>
+            </Router>
+            </body>
   );
 };
 

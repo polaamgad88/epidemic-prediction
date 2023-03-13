@@ -3,7 +3,7 @@ import React from "react";
 const Add_doc = () => {
   return (
     <div class="bg-blue-500 h-screen">
-    <div class="ml-9 flex items-center justify-center  mb-4 mt-0">
+    <div class="ml-9 flex items-center justify-center   mb-4 mt-0">
     <div class="">
         <h2 class=" text-white text-4xl font-bold ">New Doctor account</h2>
         <hr class="h-px my-2 bg-gray-200 border-0 opacity-20 white:bg-gray-700" />
@@ -11,8 +11,8 @@ const Add_doc = () => {
     </div>
 
     
-    <div class="bg-blue-500">
-<div class=" ml-96 mt-6 bg-blue-500">
+    <div class="bg-blue-500 md:flex md:justify-center mt-6">
+<div class=" ">
     <form class="w-full max-w-lg bg-blue-500">
   <div class="flex flex-wrap -mx-3 mb-2">
     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">

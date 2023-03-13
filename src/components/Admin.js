@@ -7,7 +7,8 @@ const Admin= () => {
     <div class="h-screen bg-blue-500">
     
     <body class=" bg-blue-500 "> 
-    <div class="p-10 ml-44 mr-16  grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-28">
+    <div class="p-10 md:flex md:justify-center mx-auto grid grid-cols-1 sm:grid-cols-1
+     md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-14">
 
       <div class=" rounded overflow-hidden shadow-none mt-20">
       <button>
