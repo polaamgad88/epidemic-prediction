@@ -8,8 +8,7 @@ import Navbar from "./components/Navbar";
 import Admin from "./components/Admin";
 import Add_rec from "./components/Add_rec";
 import Add_doc from "./components/Add_doc";
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import { ReactDOM } from 'react';
+
 
 const App = () => {
   return (
