@@ -1,11 +1,14 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import Navbar from "./Navbar";
 function Login() {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  useEffect(() => {
+    // check here for broken access
+    console.log("page loaded")
+  })
   const onLogin = async (e) => {
     e.preventDefault();
     console.log(email);
@@ -21,6 +24,7 @@ function Login() {
     });
     console.log(res)
     console.log(res.status)
+    localStorage.setItem("access", "yes")
     if (res.status === 200)
       navigate("/Main")
     else {
