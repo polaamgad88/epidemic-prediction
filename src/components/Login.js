@@ -11,21 +11,29 @@ function Login() {
   })
   const onLogin = async (e) => {
     e.preventDefault();
-    console.log(email);
-    console.log(password);
+    var status = false;
     const data = { email, password }; // get from form data 
-    let res = await fetch('http://localhost:4000/login', {
+    await fetch('http://localhost:4000/login', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json"
       },
       body: JSON.stringify(data)
-    });
-    console.log(res)
-    console.log(res.status)
-    localStorage.setItem("access", "yes")
-    if (res.status === 200)
+    })
+      .then(
+        (response) => response.json()
+      )
+      .then(
+        (responseJson) => {
+          localStorage.setItem("token", responseJson.token)
+          status = responseJson.success
+        })
+      .catch(
+        (error) => {
+          console.error(error);
+        });
+    if (status)
       navigate("/Main")
     else {
       console.log("wrong password")

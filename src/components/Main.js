@@ -6,13 +6,7 @@ const Main = () => {
   const navigate = useNavigate();
   useEffect(() => {
     // example of access control
-    if (localStorage.getItem("aceess") != "yes") { // dummy to check from the back if he have the acces or not .. using of local storeg is just a test
-      navigate('/login')
-      console.log("page not loaded ")
-    }
-    else {
-      console.log("page loaded")
-    }
+    //localStorage.getItem("token")
   })
   return (
     <div class="h-screen bg-blue-500">
