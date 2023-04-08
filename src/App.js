@@ -15,6 +15,7 @@ import NotFound from "./components/NotFound";
 import ResetPass from "./components/ResetPass";
 import ForgetpPass from "./components/ForgetpPass";
 import CheckMail from "./components/CheckMail";
+import Unauthorized from "./components/Unauthorized";
 class App extends Component {
   render() {
     return (
