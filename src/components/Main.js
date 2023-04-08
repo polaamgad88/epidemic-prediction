@@ -4,10 +4,41 @@ import Navbar from "./Navbar";
 
 const Main = () => {
   const navigate = useNavigate();
+  const [checked, setChecked] = useState(false);
   useEffect(() => {
-    // example of access control
-    //localStorage.getItem("token")
+    var status = false;
+    console.log('Bearer ' + localStorage.getItem('token'))
+    fetch('http://192.168.1.31:4000/main', {
+      method: 'get',
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": 'Bearer ' + localStorage.getItem('token')
+      },
+    })
+      .then(
+        (response) => {
+          return response.json()
+        }
+      )
+      .then(
+        (responseJson) => {
+          status = responseJson.success
+          if (status) {
+            setChecked(true)
+            console.log("access gained")
+          }
+          else {
+            console.log("no access to open this page")
+            navigate("/Login")
+          }
+        })
+      .catch(
+        (error) => {
+          console.log(error);
+        });
   })
+  if (!checked) return null;
   return (
     <div class="h-screen bg-blue-500">
 

@@ -5,15 +5,11 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  useEffect(() => {
-    // check here for broken access
-    console.log("page loaded")
-  })
   const onLogin = async (e) => {
     e.preventDefault();
     var status = false;
     const data = { email, password }; // get from form data 
-    await fetch('http://localhost:4000/login', {
+    await fetch('http://192.168.1.31:4000/login', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -26,12 +22,12 @@ function Login() {
       )
       .then(
         (responseJson) => {
-          localStorage.setItem("token", responseJson.token)
+          localStorage.setItem('token', responseJson.token)
           status = responseJson.success
         })
       .catch(
         (error) => {
-          console.error(error);
+          console.log(error);
         });
     if (status)
       navigate("/Main")
