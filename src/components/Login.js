@@ -8,6 +8,7 @@ function Login() {
   const onLogin = async (e) => {
     e.preventDefault();
     var status = false;
+    var code;
     const data = { email, password }; // get from form data 
     await fetch('http://192.168.1.31:4000/login', {
       method: 'POST',
@@ -18,12 +19,17 @@ function Login() {
       body: JSON.stringify(data)
     })
       .then(
-        (response) => response.json()
+        (response) => {
+          code = response.status
+          return response.json()
+        }
       )
       .then(
         (responseJson) => {
           localStorage.setItem('token', responseJson.token)
           status = responseJson.success
+          code = responseJson.code
+          console.log(responseJson)
         })
       .catch(
         (error) => {
@@ -32,7 +38,10 @@ function Login() {
     if (status)
       navigate("/Main")
     else {
-      console.log("wrong password")
+      if (code === 429)
+        navigate("/toomanyrequests")
+      else
+        console.log("wrong password")
     }
   };
   return (

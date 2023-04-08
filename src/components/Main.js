@@ -1,9 +1,9 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import Navbar from "./Navbar";
 
 const Main = () => {
-  {/*variables for account level should get this values at login stage */ }
+  /*variables for account level should get this values at login stage */
   //BACK FARKHA 
   //------------------------
   const navigate = useNavigate();
@@ -14,6 +14,7 @@ const Main = () => {
   const [Admin, setAdmin] = useState(false);
   useEffect(() => {
     var status = false;
+    var code;
     console.log('Bearer ' + localStorage.getItem('token'))
     fetch('http://192.168.1.31:4000/main', {
       method: 'get',
@@ -31,6 +32,7 @@ const Main = () => {
       .then(
         (responseJson) => {
           status = responseJson.success
+          code = responseJson.code
           setresearcher(responseJson.researcher)
           setdoctor(responseJson.doctor)
           setobserver(responseJson.observer)
@@ -44,13 +46,21 @@ const Main = () => {
             console.log("access gained")
           }
           else {
-            console.log("no access to open this page")
-            navigate("/Login")
+            if (code === 401) {
+              console.log("no access to open this page")
+              console.log("unauthorized")
+              navigate("/unauthorized")
+            }
+            else {
+              console.log("server error")
+              navigate("/Login")
+            }
           }
         })
       .catch(
         (error) => {
-          console.log(error);
+          console.log("unauthorized" + error)
+          navigate("/unauthorized")
         });
   })
   if (!checked) return null;
