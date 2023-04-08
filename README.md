@@ -7,7 +7,7 @@ In the project directory, you can run:
 ### `Deployment test version`
 
 Runs the app in the development mode.\
-Open [Epidemic Prediction](https://epidemic-prediction-kf3q.vercel.app/) to view it in your browser.
+Open [Epidemic Prediction]([https://epidemic-prediction-kf3q.vercel.app/](https://epidemic-prediction.vercel.app/)) to view it in your browser.
 
 ### `npm start`
 
