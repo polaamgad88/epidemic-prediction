@@ -3,9 +3,9 @@ import Navbar from './Navbar';
 
 const HeroMain = () => {
   return (
-
+    
     <div class="bg-blue-500">
-
+    <Navbar/>
       <body class=" bg-blue-500 h-screen">
         <div className="text-center pb-12 md:pb-16 mt-10 ">
           <h1 className="text-white text-2xl md:text-6xl font-extrabold leading-tighter

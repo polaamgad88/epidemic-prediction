@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 const Dashboard = () => {
    return (
       <div class="h-screen bg-blue-500">
-
+      <Navbar/>
 
          <h2 class="text-3xl font-bold leading-tighter
     tracking-tighter text-white flex justify-center items-center mb-8 mt-8">Dashboard</h2>

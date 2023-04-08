@@ -5,7 +5,7 @@ import Navbar from './Navbar';
 const Admin = () => {
   return (
     <div class="h-screen bg-blue-500">
-
+    <Navbar/>
       <body class=" bg-blue-500 ">
         <div class="p-10 md:flex md:justify-center mx-auto grid grid-cols-1 sm:grid-cols-1
      md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-14">

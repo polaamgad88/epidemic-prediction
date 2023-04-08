@@ -41,6 +41,7 @@ const Main = () => {
   if (!checked) return null;
   return (
     <div class="h-screen bg-blue-500">
+    <Navbar/>
 
       <body class="mt-28 bg-blue-500 ">
         <div class="md:flex md:justify-center p-10  grid grid-cols-1 sm:grid-cols-1 

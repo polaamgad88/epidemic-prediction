@@ -68,8 +68,8 @@ function Login() {
 
       <div class="max-w-md h-max w-96 mx-auto inline-block ml-0">
         <div class="bg-white shadow-md rounded-3xl px-8 pt-6 pb-8 mb-4">
-          <h2 class="text-3xl font-bold mb-4 text-center text-blue-500">
-            Log in
+          <h2 class="text-3xl font-bold mb-6 mt-14 text-center text-blue-500">
+            Login
           </h2>
           <h2 class="text-xs font-normal mb-20 text-center text-gray-400">
             Welcome Back dear user, <br />

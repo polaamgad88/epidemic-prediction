@@ -1,8 +1,9 @@
 import React from "react";
-
+import Navbar from "./Navbar";
 const Add_doc = () => {
   return (
     <div class="bg-blue-500 h-screen">
+    <Navbar/>
       <div class="ml-9 flex items-center justify-center   mb-4 mt-0">
         <div class="">
           <h2 class=" text-white text-4xl font-bold ">New Doctor account</h2>
