@@ -22,15 +22,17 @@ class App extends Component {
       <div class=" bg-blue-500">
         <Router>
           <Routes >
-            <Route exact path="/" element={<Login />} />
+            <Route exact path="/" element={<Landing />} />
             <Route path='/main' element={<Main />} />
+            <Route path='/forgetpassword' element={<ForgetpPass />} />
+            <Route path='/ResetPass' element={<ResetPass />} />
+            <Route path='/CheckMail' element={<CheckMail />} />
             <Route path='/login' element={<Login />} />
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/alerts' element={<Alerts />} />
             <Route path='/add_rec' element={<Add_rec />} />
             <Route path='/add_doc' element={<Add_doc />} />
             <Route path='/admin' element={<Admin />} />
-            <Route path='/landing' element={<Landing />} />
             <Route path='/toomanyrequests' element={<TooManyRequests />} />
             <Route path='/unauthorized' element={<Unauthorized />} />
             <Route path='*' element={<NotFound />} />

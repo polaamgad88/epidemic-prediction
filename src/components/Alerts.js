@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 const Alerts = () => {
   return (
     <div class="bg-blue-500">
-    <Navbar/>
+      <Navbar />
       <body class="h-screen bg-blue-500">
         <div class="ml-9 mt-6">
           <div class="flex justify-between mb-2">

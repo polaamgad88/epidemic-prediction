@@ -39,7 +39,7 @@ const Navbar = () => (
         </li>
 
         <li class="font-mono text-sm font-semibold text-slate-800 hover:text-white ">
-          <a href="/Landing">
+          <a href="/">
             <button
               class="hover:animate-pulse"
               type="button">

@@ -26,7 +26,7 @@ function Login() {
       )
       .then(
         (responseJson) => {
-          localStorage.setItem('token', responseJson.token)
+          localStorage.setItem('Atoken', responseJson.Atoken)
           status = responseJson.success
           code = responseJson.code
           console.log(responseJson)
@@ -111,7 +111,7 @@ function Login() {
             <a
               class=" ml-48 mb-28 font-bold text-xs text-decoration-line: underline
            text-gray-400 hover:text-black"
-              href="#">
+              href="/forgetpassword">
               Forgot Password?
             </a>
             <div class="flex items-center justify-center">
