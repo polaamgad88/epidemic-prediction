@@ -9,7 +9,7 @@ function Navbar() {
   return (
 
     <nav class="flex justify-between px-10 py-2 items-center bg-blue-500" >
-      <a href="/Landing">
+      <a href="/">
         <img class="w-14 h-14" src={require('./imgs/logo.png')} alt="logo" />
       </a>
       <div class="flex items-center">
