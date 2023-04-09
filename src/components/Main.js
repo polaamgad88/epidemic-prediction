@@ -15,7 +15,6 @@ const Main = () => {
   useEffect(() => {
     var status = false;
     var code;
-    console.log('Bearer ' + localStorage.getItem('token'))
     fetch('http://192.168.1.31:4000/main', {
       method: 'get',
       headers: {
@@ -37,10 +36,6 @@ const Main = () => {
           setdoctor(responseJson.doctor)
           setobserver(responseJson.observer)
           setAdmin(responseJson.admin)
-          console.log(researcher)
-          console.log(doctor)
-          console.log(observer)
-          console.log(Admin)
           if (status) {
             setChecked(true)
             console.log("access gained")

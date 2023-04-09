@@ -9,7 +9,6 @@ import Add_rec from "./components/Add_rec";
 import Add_doc from "./components/Add_doc";
 import { Routes, Route } from 'react-router'
 import { BrowserRouter as Router } from 'react-router-dom';
-import { useHistory } from "react-router-dom";
 import React, { Component, useEffect } from "react";
 import NotFound from "./components/NotFound";
 import ResetPass from "./components/ResetPass";

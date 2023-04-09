@@ -4,11 +4,15 @@ import Navbar from "./Navbar";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(" ");
+
   const navigate = useNavigate();
   const onLogin = async (e) => {
     e.preventDefault();
+
     var status = false;
     var code;
+    var token;
     const data = { email, password }; // get from form data 
     await fetch('http://192.168.1.31:4000/login', {
       method: 'POST',
@@ -26,22 +30,26 @@ function Login() {
       )
       .then(
         (responseJson) => {
-          localStorage.setItem('Atoken', responseJson.Atoken)
+          token = responseJson.Atoken
           status = responseJson.success
           code = responseJson.code
-          console.log(responseJson)
+          return responseJson
         })
       .catch(
         (error) => {
           console.log(error);
         });
-    if (status)
+    if (status) {
+      localStorage.setItem('Atoken', token)
       navigate("/Main")
+    }
     else {
       if (code === 429)
         navigate("/toomanyrequests")
-      else
+      else {
+        setErrorMessage("wrong password")
         console.log("wrong password")
+      }
     }
   };
   return (
@@ -80,10 +88,12 @@ function Login() {
           <h2 class="text-3xl font-bold mb-6 mt-14 text-center text-blue-500">
             Login
           </h2>
-          <h2 class="text-xs font-normal mb-20 text-center text-gray-400">
+          <h2 class="text-xs font-normal mb-6 text-center text-gray-400">
             Welcome Back dear user, <br />
           </h2>
-
+          {errorMessage && <h2 class="text-l font-normal mb-6 mt-14 text-center text-red-500">
+            {errorMessage}
+          </h2>}
           <form onSubmit={onLogin}
           >
             <div class="mb-8">
