@@ -1,5 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
+import axios from "axios";
+
 const CheckMail = () => {
   const [number, setNumber] = useState("");
   const navigate = useNavigate();
@@ -8,25 +10,25 @@ const CheckMail = () => {
     var status = false;
     var code;
     const data = { number }; // get from form data 
-    await fetch('http://192.168.1.31:4000/ConfirmCode', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": 'Bearer ' + localStorage.getItem('Rtoken')
-      },
-      body: JSON.stringify(data)
-    })
-      .then(
-        (response) => {
-          console.log(response)
-          return response.json()
+    await axios
+      .post(
+        "http://192.168.1.31:4000/ConfirmCode",
+        {
+          number: number,
+        },
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": 'Bearer ' + localStorage.getItem('Rtoken')
+          }
         }
       )
       .then(
         (responseJson) => {
-          status = responseJson.success
-          code = responseJson.code
+          status = responseJson.data.success
+          code = responseJson.data.code
           console.log(responseJson)
         })
       .catch(

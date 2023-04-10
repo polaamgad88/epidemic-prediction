@@ -1,5 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
+import axios from "axios";
 const ForgetpPass = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
@@ -7,26 +8,25 @@ const ForgetpPass = () => {
     e.preventDefault();
     var status = false;
     var code;
-    const data = { email }; // get from form data 
-    await fetch('http://192.168.1.31:4000/ResetPassword', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-      .then(
-        (response) => {
-          console.log(response)
-          return response.json()
+    await axios
+      .post(
+        "http://192.168.1.31:4000/ResetPassword",
+        {
+          email: email,
+        },
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+          }
         }
       )
       .then(
         (responseJson) => {
-          status = responseJson.success
-          code = responseJson.code
-          localStorage.setItem('Rtoken', responseJson.Rtoken)
+          status = responseJson.data.success
+          code = responseJson.data.code
+          localStorage.setItem('Rtoken', responseJson.data.Rtoken)
           console.log(responseJson)
         })
       .catch(

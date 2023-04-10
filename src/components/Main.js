@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import Navbar from "./Navbar";
+import axios from "axios";
 
 const Main = () => {
   /*variables for account level should get this values at login stage */
@@ -15,27 +16,26 @@ const Main = () => {
   useEffect(() => {
     var status = false;
     var code;
-    fetch('http://192.168.1.31:4000/main', {
-      method: 'get',
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": 'Bearer ' + localStorage.getItem('Atoken')
-      },
-    })
-      .then(
-        (response) => {
-          return response.json()
+     axios
+      .get(
+        "http://192.168.1.31:4000/main",
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": 'Bearer ' + localStorage.getItem('Atoken')
+          }
         }
       )
       .then(
         (responseJson) => {
-          status = responseJson.success
-          code = responseJson.code
-          setresearcher(responseJson.researcher)
-          setdoctor(responseJson.doctor)
-          setobserver(responseJson.observer)
-          setAdmin(responseJson.admin)
+          status = responseJson.data.success
+          code = responseJson.data.code
+          setresearcher(responseJson.data.researcher)
+          setdoctor(responseJson.data.doctor)
+          setobserver(responseJson.data.observer)
+          setAdmin(responseJson.data.admin)
           if (status) {
             setChecked(true)
             console.log("access gained")

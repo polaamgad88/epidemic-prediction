@@ -32,29 +32,23 @@ function Login() {
       )
       .then(
         (responseJson) => {
-          console.log(responseJson)
           token = responseJson.data.Atoken
           localStorage.setItem("Atoken", token)
           status = responseJson.data.success
-          code = responseJson.data.code
-          console.log(status)
+          if (status)
+            navigate("/Main")
+          else
+            throw new Error()
         })
       .catch(
         (error) => {
-          console.log(error);
+          if (error.response.status === 429)
+            navigate("/toomanyrequests")
+          else {
+            setErrorMessage("wrong password")
+            console.log("wrong password")
+          }
         });
-
-    if (status) {
-      navigate("/Main")
-    }
-    else {
-      if (code === 429)
-        navigate("/toomanyrequests")
-      else {
-        setErrorMessage("wrong password")
-        console.log("wrong password")
-      }
-    }
   };
   return (
     <div class="sm:flex sm:justify-center  min-h-screen  items-center  bg-gradient-to-t from-blue-500 to-cyan-900">
