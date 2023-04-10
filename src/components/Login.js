@@ -17,7 +17,7 @@ function Login() {
     const data = { email, password }; // get from form data 
     await axios
       .post(
-        "http://localhost:4000/login",
+        "http://192.168.1.31:4000/login",
         {
           email: email,
           password: password,
