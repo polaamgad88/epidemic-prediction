@@ -32,21 +32,16 @@ const ResetPass = () => {
             status = responseJson.data.success
             code = responseJson.data.code
             localStorage.removeItem('Rtoken')
+            navigate("/login")
+            console.log("changed")
             console.log(responseJson)
           })
         .catch(
           (error) => {
             console.log(error);
+            console.log("unauthorized")
+            navigate("/unauthorized")
           });
-      if (status) {
-        navigate("/login")
-        console.log("changed")
-      }
-      else {
-        console.log("unauthorized")
-
-        navigate("/unauthorized")
-      }
     }
     else {
       console.log("no match")

@@ -4,6 +4,7 @@ import axios from "axios";
 
 const CheckMail = () => {
   const [number, setNumber] = useState("");
+  const [errorMessage, setErrorMessage] = useState(" ");
   const navigate = useNavigate();
   const onCheck = async (e) => {
     e.preventDefault();
@@ -27,24 +28,29 @@ const CheckMail = () => {
       )
       .then(
         (responseJson) => {
-          status = responseJson.data.success
-          code = responseJson.data.code
           console.log(responseJson)
+          console.log("sent")
+          navigate("/ResetPass")
         })
       .catch(
         (error) => {
+          code = error.response.status
           console.log(error);
+          if (code === 429)
+            navigate("/toomanyrequests")
+          else if (code === 403) {
+            console.log("wrong code")
+            setErrorMessage("wrong password")
+          }
+          else
+            navigate("/unauthorized")
         });
 
     if (status) {
-      navigate("/ResetPass")
-      console.log("sent")
+
     }
     else {
-      if (code === 429)
-        navigate("/toomanyrequests")
-      else
-        navigate("/unauthorized")
+
     }
   };
   return (
