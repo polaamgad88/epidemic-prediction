@@ -1,5 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
+import axios from "axios";
 import Navbar from "./Navbar";
 function Login() {
   const [email, setEmail] = useState("");
@@ -14,33 +15,36 @@ function Login() {
     var code;
     var token;
     const data = { email, password }; // get from form data 
-    await fetch('http://192.168.1.31:4000/login', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-      .then(
-        (response) => {
-          code = response.status
-          return response.json()
+    await axios
+      .post(
+        "http://localhost:4000/login",
+        {
+          email: email,
+          password: password,
+        },
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+          }
         }
       )
       .then(
         (responseJson) => {
-          token = responseJson.Atoken
-          status = responseJson.success
-          code = responseJson.code
-          return responseJson
+          console.log(responseJson)
+          token = responseJson.data.Atoken
+          localStorage.setItem("Atoken", token)
+          status = responseJson.data.success
+          code = responseJson.data.code
+          console.log(status)
         })
       .catch(
         (error) => {
           console.log(error);
         });
+
     if (status) {
-      localStorage.setItem('Atoken', token)
       navigate("/Main")
     }
     else {
