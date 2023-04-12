@@ -33,10 +33,15 @@ function Login() {
       .then(
         (responseJson) => {
           token = responseJson.data.Atoken
+          var admin = responseJson.data.admin
           localStorage.setItem("Atoken", token)
           status = responseJson.data.success
-          if (status)
-            navigate("/Main")
+          if (status) {
+            if (admin)
+              navigate("/admin")
+            else
+              navigate("/Main")
+          }
           else
             throw new Error()
         })

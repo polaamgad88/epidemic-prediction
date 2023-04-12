@@ -34,7 +34,7 @@ function Navbar() {
               <button
                 class="hover:animate-pulse"
                 type="button">
-                My profile
+                Admin page
               </button>
             </a>
           </li>

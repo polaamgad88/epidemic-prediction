@@ -12,7 +12,6 @@ const Main = () => {
   const [researcher, setresearcher] = useState(false);
   const [doctor, setdoctor] = useState(false);
   const [observer, setobserver] = useState(false);
-  const [Admin, setAdmin] = useState(false);
   useEffect(() => {
     var status = false;
     var code;
@@ -35,7 +34,6 @@ const Main = () => {
           setresearcher(responseJson.data.researcher)
           setdoctor(responseJson.data.doctor)
           setobserver(responseJson.data.observer)
-          setAdmin(responseJson.data.admin)
           if (status) {
             setChecked(true)
             console.log("access gained")

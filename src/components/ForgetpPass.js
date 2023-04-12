@@ -24,22 +24,16 @@ const ForgetpPass = () => {
       )
       .then(
         (responseJson) => {
-          status = responseJson.data.success
-          code = responseJson.data.code
           localStorage.setItem('Rtoken', responseJson.data.Rtoken)
           console.log(responseJson)
+          navigate("/CheckMail")
+          console.log("sent")
         })
       .catch(
         (error) => {
           console.log(error);
+          console.log("email not found ")
         });
-    if (status) {
-      navigate("/CheckMail")
-      console.log("sent")
-    }
-    else {
-      console.log("email not found ")
-    }
   };
   return (
     <div class=" ">

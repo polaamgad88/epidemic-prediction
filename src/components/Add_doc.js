@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom'
 import Navbar from "./Navbar";
-import { useState } from "react";
+import axios from "axios";
 const Add_doc = () => {
   const [Nid, SetNid] = useState('');
   const [Fname, SetFname] = useState('');
@@ -11,10 +12,84 @@ const Add_doc = () => {
   const [gender, setgender] = useState('');
   const [Hosbital, Sethosbital] = useState('');
   const [city, Setcity] = useState('');
+  const navigate = useNavigate();
+  const [checked, setChecked] = useState(false);
+  useEffect(() => {
 
-  const onChangehandler = (e) => {
+    var status = false;
+    var code;
+    axios
+      .get(
+        "http://192.168.1.31:4000/admin",
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": 'Bearer ' + localStorage.getItem('Atoken')
+          }
+        }
+      )
+      .then(
+        (responseJson) => {
+          status = responseJson.data.success
+          code = responseJson.data.code
+          if (status) {
+            setChecked(true)
+            console.log("access gained")
+          }
+          else {
+            if (code === 401) {
+              console.log("no access to open this page")
+              console.log("unauthorized")
+              navigate("/unauthorized")
+            }
+            else {
+              console.log("server error")
+              navigate("/Login")
+            }
+          }
+        })
+      .catch(
+        (error) => {
+          console.log("unauthorized" + error)
+          navigate("/unauthorized")
+        });
+  })
+  const onChangehandler = async (e) => {
     e.preventDefault();
+    await axios
+      .post(
+        "http://192.168.1.31:4000/addDoctor",
+        {
+          Fname: Fname,
+          Lname: Lname,
+          birth: birth,
+          address: address,
+          gender: gender,
+          Hosbital: Hosbital,
+          city: city,
+          Nid: Nid,
+        },
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+          }
+        }
+      )
+      .then(
+        (responseJson) => {
+          console.log(responseJson)
+        })
+      .catch(
+        (error) => {
+          console.log(error);
+        });
   }
+  if (!checked) return null;
+
   return (
     <div class="bg-blue-500 h-screen">
       <Navbar />
