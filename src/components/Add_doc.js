@@ -1,6 +1,36 @@
 import React from "react";
 import Navbar from "./Navbar";
+import { useState } from "react";
 const Add_doc = () => {
+  const [Nid, SetNid]=useState('');
+  const [Fname,SetFname]=useState('');
+  const [Lname, SetLname]=useState('');
+
+  const [birth, Setbirth]=useState('');
+  const [address, Setaddress]=useState('');
+  const [gender, setgender] = useState('');
+ const [Hosbital, Sethosbital]=useState('');
+  const [city, Setcity] = useState('');
+
+ function handleRadio(e) {
+  
+     setgender(e.target.value);
+   
+ }
+ const onChangehanler = (e) => {
+  console.log("....");
+  console.log(gender);
+  console.log(Fname);
+  console.log(Lname);
+ console.log(birth);
+ console.log(Hosbital)
+  console.log(address);
+  console.log(city);
+
+
+    e.preventDefault();
+
+ }
   return (
     <div class="bg-blue-500 h-screen">
       <Navbar />
@@ -20,13 +50,16 @@ const Add_doc = () => {
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                   First Name
                 </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Jane" />
+                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="D_Fname" type="text" placeholder="Jane"  onChange={(e)=>SetFname(e.target.value)}
+              value={Fname} />
               </div>
               <div class="w-full md:w-1/2 px-3">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                   Last Name
                 </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Doe" />
+                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="D_Lname" type="text" placeholder="Doe" onChange={(e) => SetLname(e.target.value)}
+             
+              value={Lname}/>
               </div>
             </div>
 
@@ -39,7 +72,9 @@ const Add_doc = () => {
                   National id
                 </label>
                 <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 
-      leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="text" placeholder="ex. 3010888888204" />
+      leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="text" placeholder="ex. 3010888888204" id="d_id"
+      onChange={(e) => SetNid(e.target.value)}
+      value={Nid} />
               </div>
             </div>
 
@@ -54,7 +89,8 @@ const Add_doc = () => {
                 </label>
                 <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 
     leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="address" type="text"
-                  placeholder="ex. 67 Muharram Bey St." />
+                  placeholder="ex. 67 Muharram Bey St."    onChange={(e) => Setaddress(e.target.value)}
+                  value={address}/>
               </div>
             </div>
 
@@ -68,7 +104,8 @@ const Add_doc = () => {
                 </label>
                 <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight 
       focus:outline-none focus:bg-white
-       focus:border-gray-500" id="grid-city" type="text" placeholder="ex. Alexandria" />
+       focus:border-gray-500" id="grid-city" type="text" placeholder="ex. Alexandria"  onChange={(e) => Setcity(e.target.value)}
+       value={city} />
               </div>
 
               <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -77,12 +114,12 @@ const Add_doc = () => {
                 </label>
                 <div class="relative">
                   <div class="flex items-center mb-4">
-                    <input id="default-radio-1" type="radio" value="" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
+                    <input  type="radio" value="male" onChange={handleRadio} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-black-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                     <label for="default-radio-1" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Male</label>
                   </div>
                   <div class="flex items-center">
-                    <input checked id="default-radio-2" type="radio" value="" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
+                    <input  type="radio" value="Female" onChange={handleRadio} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                     <label for="default-radio-2" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Female</label>
                   </div>
@@ -95,7 +132,8 @@ const Add_doc = () => {
                 </label>
                 <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 
       rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-zip" type="text" placeholder="ex. 28/8/1995" />
+                  id="Did" type="text" placeholder="ex. 28/8/1995"   onChange={(e) => Setbirth(e.target.value)}
+                  value={birth} />
 
               </div>
             </div>
@@ -108,7 +146,8 @@ const Add_doc = () => {
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip">
                     Hosbital
                   </label>
-                  <select id="hosbital" class="bg-gray-300  w-96 text-gray-900 text-md rounded-none">
+                  <select  onChange={(e) => Sethosbital(e.target.value)}
+                  value={Hosbital} id="hosbital" class="bg-gray-300  w-96 text-gray-900 text-md rounded-none">
                     <option >   </option>
                     <option >Kasr El Aini Teaching Hospita</option>
                     <option >El Safa Hospital        </option>
@@ -129,7 +168,7 @@ const Add_doc = () => {
             <div class="ml-48 mx-3 mb-28 mt-14">
               <div class="w-full ">
                 <a href="/Admin">
-                  <button type="button" class="focus:outline-none text-white 
+                  <button onClick={onChangehanler} type="button" class="focus:outline-none text-white 
      bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300
       font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-12 dark:bg-green-600
        dark:hover:bg-green-700 dark:focus:ring-green-800">Submit</button>
