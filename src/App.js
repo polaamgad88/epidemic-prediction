@@ -14,6 +14,9 @@ import NotFound from "./components/NotFound";
 import ResetPass from "./components/ResetPass";
 import ForgetpPass from "./components/ForgetpPass";
 import CheckMail from "./components/CheckMail";
+import Search from './components/Search';
+import Myprofile from './components/Myprofile';
+import Edit_doc from './components/Edit_doc';
 import Unauthorized from "./components/Unauthorized";
 class App extends Component {
   render() {
@@ -32,6 +35,8 @@ class App extends Component {
             <Route path='/add_rec' element={<Add_rec />} />
             <Route path='/add_doc' element={<Add_doc />} />
             <Route path='/admin' element={<Admin />} />
+            <Route path='/Search' element={<Search/>} />
+            <Route path='/editdoc' element={<Edit_doc/>} />
             <Route path='/toomanyrequests' element={<TooManyRequests />} />
             <Route path='/unauthorized' element={<Unauthorized />} />
             <Route path='*' element={<NotFound />} />
