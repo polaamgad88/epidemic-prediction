@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./pages/Navbar";
+import Navbar from "./Navbar";
 import { useState } from "react";
 const Search = () => {
   const [Nid, SetNid]=useState('');

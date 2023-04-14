@@ -13,7 +13,7 @@ const Add_doc = () => {
   const [Hosbital, Sethosbital] = useState('');
   const [city, Setcity] = useState('');
   const navigate = useNavigate();
-    const [Type, SetType] = useState('');
+  const [Type, SetType] = useState('');
   const [checked, setChecked] = useState(false);
   useEffect(() => {
 
@@ -186,30 +186,30 @@ const Add_doc = () => {
 
                 </div>
               </div>
-             <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+              <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
                   Type
                 </label>
                 <div class="relative">
                   <div class="flex items-center ">
-                    <input  type="radio" value="researcher" onChange={(e)=> SetType(e.target.value)} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
+                    <input type="radio" value="researcher" onChange={(e) => SetType(e.target.value)} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-black-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                     <label for="default-radio-1" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Researcher</label>
                   </div>
                   <div class="flex items-center">
-                    <input  type="radio" value="doctor" onChange={(e)=> SetType(e.target.value)} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
+                    <input type="radio" value="doctor" onChange={(e) => SetType(e.target.value)} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                     <label for="default-radio-2" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Doctor</label>
                   </div>
                   <div class="flex items-center">
-                    <input  type="radio" value="representative" onChange={(e)=> SetType(e.target.value)} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
+                    <input type="radio" value="representative" onChange={(e) => SetType(e.target.value)} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                     <label for="default-radio-3" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Representative</label>
                   </div>
 
 
                 </div>
-                
+
               </div>
               <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip">
@@ -223,33 +223,33 @@ const Add_doc = () => {
               </div>
             </div>
 
- {Type==='doctor' ? (
-            <div class="flex flex-wrap -mx-3 mb-2">
-            <div class="w-full px-3">
-       
-       
-              <div class="w-1/2 h-7">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip">
-                  Hosbital
-                </label>
-                <select  onChange={(e) => Sethosbital(e.target.value)}
-                value={Hosbital} id="hosbital" class="bg-gray-300  w-96 text-gray-900 text-md rounded-none">
-                  <option >   </option>
-                  <option >Kasr El Aini Teaching Hospita</option>
-                  <option >El Safa Hospital        </option>
-                  <option >Cleopatra Hospital</option>
-                  <option >Dar El Fouad Hospital (Nasr City, Cairo)</option>
-                  <option >Dar El Fouad Hospital (6th of October City, Cairo)</option>
-                  <option >Andalusia Hospital Smouha</option>
-                </select>
+            {Type === 'doctor' ? (
+              <div class="flex flex-wrap -mx-3 mb-2">
+                <div class="w-full px-3">
+
+
+                  <div class="w-1/2 h-7">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip">
+                      Hosbital
+                    </label>
+                    <select onChange={(e) => Sethosbital(e.target.value)}
+                      value={Hosbital} id="hosbital" class="bg-gray-300  w-96 text-gray-900 text-md rounded-none">
+                      <option >   </option>
+                      <option >Kasr El Aini Teaching Hospita</option>
+                      <option >El Safa Hospital        </option>
+                      <option >Cleopatra Hospital</option>
+                      <option >Dar El Fouad Hospital (Nasr City, Cairo)</option>
+                      <option >Dar El Fouad Hospital (6th of October City, Cairo)</option>
+                      <option >Andalusia Hospital Smouha</option>
+                    </select>
+                  </div>
+
+
+                </div>
               </div>
-       
-       
-            </div>
-          </div> 
-      ) : (
-        <></>
-      )}
+            ) : (
+              <></>
+            )}
 
 
             <div class="ml-48 mx-3 mb-28 mt-14">

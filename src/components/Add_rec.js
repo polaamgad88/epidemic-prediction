@@ -17,7 +17,7 @@ const Add_rec = () => {
   useEffect(() => {
     var status = false;
     var code;
-     axios
+    axios
       .get(
         "http://192.168.1.31:4000/main",
         {
@@ -56,7 +56,7 @@ const Add_rec = () => {
           navigate("/unauthorized")
         });
   })
-  const onChangehanler = async(e) => {
+  const onChangehanler = async (e) => {
     e.preventDefault();
     await axios
       .post(

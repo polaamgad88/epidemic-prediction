@@ -15,7 +15,7 @@ const Main = () => {
   useEffect(() => {
     var status = false;
     var code;
-     axios
+    axios
       .get(
         "http://192.168.1.31:4000/main",
         {
