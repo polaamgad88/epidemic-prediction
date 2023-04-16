@@ -1,41 +1,102 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom'
 import Navbar from "./Navbar";
-import { useState } from "react";
+import axios from "axios";
 const Edit_doc = () => {
+  const navigate = useNavigate();
+  const [checked, setChecked] = useState(false);
   const [Nid, SetNid] = useState('');
   const [Fname, SetFname] = useState('');
   const [Lname, SetLname] = useState('');
-
   const [birth, Setbirth] = useState('');
   const [address, Setaddress] = useState('');
   const [gender, setgender] = useState('');
   const [Hosbital, Sethosbital] = useState('');
   const [city, Setcity] = useState('');
-  const [Type, SetType] = useState('');
-  function handleRadio(e) {
-
-    setgender(e.target.value);
-
-  }
-  function handleType(e) {
-
-    SetType(e.target.value);
-
-  }
-  const onChangehanler = (e) => {
-    console.log("....");
-    console.log(gender);
-    console.log(Fname);
-    console.log(Lname);
-    console.log(birth);
-    console.log(Hosbital)
-    console.log(address);
-    console.log(city);
-
-
+  const [representative, SetReprResentative] = useState(false);
+  const [doctor, SetDoctor] = useState(false);
+  const [researcher, SetResearcher] = useState(false);
+  const onChangehandler = async (e) => {
     e.preventDefault();
-
+    await axios
+      .post(
+        "http://192.168.1.31:4000/editDoctor",
+        {
+          Fname: Fname,
+          Lname: Lname,
+          birth: birth,
+          address: address,
+          gender: gender,
+          Hosbital: Hosbital,
+          city: city,
+          Nid: Nid,
+          representative: representative,
+          doctor: doctor,
+          researcher: researcher,
+        },
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": 'Bearer ' + localStorage.getItem('Atoken')
+          }
+        }
+      )
+      .then(
+        (responseJson) => {
+          console.log(responseJson)
+          console.log("added")
+        })
+      .catch(
+        (error) => {
+          console.log(error);
+          console.log("unauthorized")
+          navigate("/unauthorized")
+        });
   }
+  useEffect(() => {
+    var status = false;
+    var code;
+    axios
+      .get(
+        "http://192.168.1.31:4000/admin",
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": 'Bearer ' + localStorage.getItem('Atoken')
+          }
+        }
+      )
+      .then(
+        (responseJson) => {
+          status = responseJson.data.success
+          code = responseJson.data.code
+          if (status) {
+            setChecked(true)
+            console.log("access gained")
+          }
+          else {
+            if (code === 401) {
+              console.log("no access to open this page")
+              console.log("unauthorized")
+              navigate("/unauthorized")
+            }
+            else {
+              console.log("server error")
+              navigate("/Login")
+            }
+          }
+        })
+      .catch(
+        (error) => {
+          console.log("unauthorized" + error)
+          navigate("/unauthorized")
+        });
+  })
+  if (!checked) return null;
   return (
     <div class="bg-blue-500 h-screen">
       <Navbar />
@@ -49,7 +110,7 @@ const Edit_doc = () => {
 
       <div class="bg-blue-500 md:flex md:justify-center mt-6">
         <div class=" ">
-          <form class="w-full max-w-lg bg-blue-500">
+          <form class="w-full max-w-lg bg-blue-500" onSubmit={onChangehandler}>
             <div class="flex flex-wrap -mx-3 mb-2">
               <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
@@ -121,12 +182,12 @@ const Edit_doc = () => {
                 </label>
                 <div class="relative">
                   <div class="flex items-center mb-4">
-                    <input type="radio" value="male" onChange={handleRadio} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
+                    <input type="radio" value="male" onChange={(e) => setgender(e.target.value)} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-black-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                     <label for="default-radio-1" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Male</label>
                   </div>
                   <div class="flex items-center">
-                    <input type="radio" value="Female" onChange={handleRadio} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
+                    <input type="radio" value="Female" onChange={(e) => setgender(e.target.value)} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                     <label for="default-radio-2" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Female</label>
                   </div>
@@ -139,17 +200,17 @@ const Edit_doc = () => {
                 </label>
                 <div class="relative">
                   <div class="flex items-center ">
-                    <input type="radio" value="researcher" onChange={handleType} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
+                    <input type="checkbox" value="researcher" onChange={(e) => SetResearcher((researcher? false: true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-black-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                     <label for="default-radio-1" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Researcher</label>
                   </div>
                   <div class="flex items-center">
-                    <input type="radio" value="doctor" onChange={handleType} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
+                    <input type="checkbox" value="doctor" onChange={(e) => SetDoctor((doctor? false: true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                     <label for="default-radio-2" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Doctor</label>
                   </div>
                   <div class="flex items-center">
-                    <input type="radio" value="representative" onChange={handleType} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
+                    <input type="checkbox" value="representative" onChange={(e) => SetReprResentative((representative? false: true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                     <label for="default-radio-3" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Representative</label>
                   </div>
@@ -169,7 +230,7 @@ const Edit_doc = () => {
 
               </div>
             </div>
-            {Type === 'doctor' ? (
+            {doctor === true ? (
               <div class="flex flex-wrap -mx-3 mb-2">
                 <div class="w-full px-3">
 
@@ -202,12 +263,10 @@ const Edit_doc = () => {
 
             <div class="ml-48 mx-3 mb-28 mt-14">
               <div class="w-full ">
-                <a href="/Admin">
-                  <button onClick={onChangehanler} type="button" class="focus:outline-none text-white 
+                <button onClick={onChangehandler} type="submit" class="focus:outline-none text-white 
      bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300
       font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-12 dark:bg-green-600
        dark:hover:bg-green-700 dark:focus:ring-green-800">Submit</button>
-                </a>
 
 
               </div>

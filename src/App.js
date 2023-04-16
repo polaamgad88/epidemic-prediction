@@ -9,7 +9,7 @@ import Add_rec from "./components/Add_rec";
 import Add_doc from "./components/Add_doc";
 import { Routes, Route } from 'react-router'
 import { BrowserRouter as Router } from 'react-router-dom';
-import React, { Component, useEffect } from "react";
+import React, { Component } from "react";
 import NotFound from "./components/NotFound";
 import ResetPass from "./components/ResetPass";
 import ForgetpPass from "./components/ForgetpPass";
@@ -36,7 +36,8 @@ class App extends Component {
             <Route path='/add_doc' element={<Add_doc />} />
             <Route path='/admin' element={<Admin />} />
             <Route path='/Search' element={<Search/>} />
-            <Route path='/editdoc' element={<Edit_doc/>} />
+            <Route path='/edit_doc' element={<Edit_doc/>} />
+            <Route path='/Myprofile' element={<Myprofile/>} />
             <Route path='/toomanyrequests' element={<TooManyRequests />} />
             <Route path='/unauthorized' element={<Unauthorized />} />
             <Route path='*' element={<NotFound />} />

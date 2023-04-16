@@ -1,7 +1,53 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom'
 import Navbar from "./Navbar";
-
+import axios from "axios";
 const Alerts = () => {
+  const navigate = useNavigate();
+  const [checked, setChecked] = useState(false)
+  useEffect(() => {
+    var status = false;
+    var code;
+    axios
+      .get(
+        "http://192.168.1.31:4000/main",
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": 'Bearer ' + localStorage.getItem('Atoken')
+          }
+        }
+      )
+      .then(
+        (responseJson) => {
+          status = responseJson.data.success
+          code = responseJson.data.code
+          var observer = responseJson.data.observer
+          if (status && observer) {
+            setChecked(true)
+            console.log("access gained")
+          }
+          else {
+            if (code === 401) {
+              console.log("no access to open this page")
+              console.log("unauthorized")
+              navigate("/unauthorized")
+            }
+            else {
+              console.log("server error")
+              navigate("/Login")
+            }
+          }
+        })
+      .catch(
+        (error) => {
+          console.log("unauthorized" + error)
+          navigate("/unauthorized")
+        });
+  })
+  if (!checked) return null;
   return (
     <div class="bg-blue-500">
       <Navbar />
