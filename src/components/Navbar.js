@@ -1,9 +1,31 @@
 import React from "react";
+import axios from "axios";
+import { useNavigate } from 'react-router-dom'
 function Navbar() {
+  const navigate = useNavigate();
   const onLogOut = () => {
     localStorage.removeItem("Rtoken")
     localStorage.removeItem("Atoken")
-    //TODO: create endpoint to invalidate this tokens even if it is not expired 
+    axios
+      .get(
+        "http://192.168.1.31:4000/logOut",
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+          }
+        }
+      )
+      .then(
+        (responseJson) => {
+          console.log(responseJson)
+          navigate("/")
+        })
+      .catch(
+        (error) => {
+          console.log(error)
+        });
   };
 
   return (
@@ -40,14 +62,12 @@ function Navbar() {
           </li>
 
           <li class="font-mono text-sm font-semibold text-slate-800 hover:text-white ">
-            <a href="/">
-              <button
-                class="hover:animate-pulse"
-                type="button"
-                onClick={onLogOut}>
-                Logout
-              </button>
-            </a>
+            <button
+              class="hover:animate-pulse"
+              type="button"
+              onClick={onLogOut}>
+              Logout
+            </button>
           </li>
         </ul>
       </div>

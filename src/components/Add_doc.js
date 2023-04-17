@@ -6,7 +6,6 @@ const Add_doc = () => {
   const [Nid, SetNid] = useState('');
   const [Fname, SetFname] = useState('');
   const [Lname, SetLname] = useState('');
-
   const [birth, Setbirth] = useState('');
   const [address, Setaddress] = useState('');
   const [gender, setgender] = useState('');
@@ -198,17 +197,17 @@ const Add_doc = () => {
                 </label>
                 <div class="relative">
                   <div class="flex items-center ">
-                    <input type="checkbox" value="researcher"onChange={(e) => SetResearcher((researcher? false: true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
+                    <input type="checkbox" value="researcher" onChange={(e) => SetResearcher((researcher ? false : true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-black-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                     <label for="default-radio-1" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Researcher</label>
                   </div>
                   <div class="flex items-center">
-                    <input type="checkbox" value="doctor" onChange={(e) => SetDoctor((doctor? false: true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
+                    <input type="checkbox" value="doctor" onChange={(e) => SetDoctor((doctor ? false : true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                     <label for="default-radio-2" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Doctor</label>
                   </div>
                   <div class="flex items-center">
-                    <input type="checkbox" value="representative" onChange={(e) => SetReprResentative((representative? false: true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
+                    <input type="checkbox" value="representative" onChange={(e) => SetReprResentative((representative ? false : true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                     <label for="default-radio-3" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Representative</label>
                   </div>
