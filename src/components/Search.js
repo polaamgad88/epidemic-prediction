@@ -46,7 +46,7 @@ const Search = () => {
           console.log("unauthorized" + error)
           navigate("/unauthorized")
         });
-  })
+  }, [])
   const onChangehandler = async (e) => {
     e.preventDefault();
     await axios
