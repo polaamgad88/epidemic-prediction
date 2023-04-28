@@ -11,7 +11,7 @@ const Main = () => {
   const [checked, setChecked] = useState(false);
   const [researcher, setresearcher] = useState(false);
   const [doctor, setdoctor] = useState(false);
-  const [observer, setobserver] = useState(false);
+  const [observer, SetObserver] = useState(false);
   useEffect(() => {
     var status = false;
     var code;
@@ -33,7 +33,7 @@ const Main = () => {
           code = responseJson.data.code
           setresearcher(responseJson.data.researcher)
           setdoctor(responseJson.data.doctor)
-          setobserver(responseJson.data.observer)
+          SetObserver(responseJson.data.observer)
           if (status) {
             setChecked(true)
             console.log("access gained")
@@ -90,7 +90,7 @@ const Main = () => {
 
 
 
-          {/* researcher OR representative of ministry have access to view alerts */}
+          {/* researcher OR Observer of ministry have access to view alerts */}
           <div class=" rounded overflow-hidden shadow-none"
             className={`${researcher || observer ? 'block' : 'hidden'}`}>
             <a href="/Dashboard">
@@ -106,7 +106,7 @@ const Main = () => {
           </div>
 
 
-          {/* doctor and representative of ministry are only have access to view alerts */}
+          {/* doctor and Observer of ministry are only have access to view alerts */}
           <div class=" rounded overflow-hidden shadow-none"
             className={`${observer ? 'block' : 'hidden'}`}>
             <a href="/Alerts" >
