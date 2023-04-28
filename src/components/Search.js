@@ -45,7 +45,7 @@ const Search = () => {
           console.log("unauthorized" + error)
           navigate("/unauthorized")
         });
-  }, [])
+  }, [navigate])
   const onChangehandler = async (e) => {
     e.preventDefault();
     await axios
@@ -67,14 +67,18 @@ const Search = () => {
         (responseJson) => {
           console.log(responseJson)
           if (responseJson.data.success) {
-            navigate("/edit_doc")
+            navigate(`/edit_doc/${Nid}`)
           }
         })
       .catch(
         (error) => {
-          console.log(error);
-          console.log("unauthorized")
-          navigate("/unauthorized")
+          console.log(error.response.status);
+          if (error.response.status === 404)
+            console.log("not found")
+          else {
+            console.log("unauthorized")
+            navigate("/unauthorized")
+          }
         });
   }
   if (!checked) return (

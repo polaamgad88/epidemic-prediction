@@ -1,8 +1,10 @@
-import React, { Component, useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from "react";
+import { useNavigate , useParams  } from 'react-router-dom'
+
 import axios from "axios";
 
 const CheckMail = () => {
+  const params = useParams();
   const [number, setNumber] = useState("");
   const [errorMessage, setErrorMessage] = useState(" ");
   const navigate = useNavigate();
@@ -10,7 +12,6 @@ const CheckMail = () => {
     e.preventDefault();
     var status = false;
     var code;
-    const data = { number }; // get from form data 
     await axios
       .post(
         "http://192.168.1.31:4000/ConfirmCode",
@@ -61,13 +62,13 @@ const CheckMail = () => {
 
           <div class="w-full p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-gray-800 dark:border-gray-700 sm:p-8">
             <h2 class="mb-2 text-2xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              We sent a code to your email
+              We sent a code to your email 
 
             </h2>
 
             <h4 class="mb-12 text-md text-center font-normal leading-tight tracking-tight
              text-gray-900 md:text-md dark:text-white opacity-50">
-              Enter the 6-digit verification code sent to p*****@gmail.com.
+              Enter the 6-digit verification code sent to {params.email}.
 
             </h4>
             <form class="mt-4 space-y-4 lg:mt-5 md:space-y-5" onSubmit={onCheck}>

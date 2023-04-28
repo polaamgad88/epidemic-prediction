@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Navbar from "./Navbar";
 import axios from "axios";
 const Edit_doc = () => {
+  const params = useParams();
   const navigate = useNavigate();
   const [checked, setChecked] = useState(false);
   const [Nid, SetNid] = useState('');
@@ -60,7 +61,7 @@ const Edit_doc = () => {
     var code;
     axios
       .get(
-        "http://192.168.1.31:4000/admin",
+        "http://192.168.1.31:4000/loadDoctorData" + params.Nid,
         {
           withCredentials: true,
           headers: {
@@ -74,6 +75,7 @@ const Edit_doc = () => {
         (responseJson) => {
           status = responseJson.data.success
           code = responseJson.data.code
+          console.log(responseJson)
           if (status) {
             setChecked(true)
             console.log("access gained")
@@ -81,7 +83,6 @@ const Edit_doc = () => {
           else {
             if (code === 401) {
               console.log("no access to open this page")
-              console.log("unauthorized")
               navigate("/unauthorized")
             }
             else {
@@ -92,7 +93,7 @@ const Edit_doc = () => {
         })
       .catch(
         (error) => {
-          console.log("unauthorized" + error)
+          console.log("unauthorized")
           navigate("/unauthorized")
         });
   })

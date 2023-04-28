@@ -47,7 +47,7 @@ const Dashboard = () => {
                console.log("unauthorized" + error)
                navigate("/unauthorized")
             });
-   },[])
+   },[navigate])
    if (!checked) return (
       <div className="h-screen flex justify-center items-center bg-blue-600">
          <div className="p-10 bg-blue-800 rounded-lg shadow-xl">

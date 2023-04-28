@@ -28,7 +28,7 @@ class App extends Component {
             <Route path='/main' element={<Main />} />
             <Route path='/forgetpassword' element={<ForgetpPass />} />
             <Route path='/ResetPass' element={<ResetPass />} />
-            <Route path='/CheckMail' element={<CheckMail />} />
+            <Route path='/CheckMail/:email' element={<CheckMail />} />
             <Route path='/login' element={<Login />} />
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/alerts' element={<Alerts />} />
@@ -36,7 +36,7 @@ class App extends Component {
             <Route path='/add_doc' element={<Add_doc />} />
             <Route path='/admin' element={<Admin />} />
             <Route path='/Search' element={<Search/>} />
-            <Route path='/edit_doc' element={<Edit_doc/>} />
+            <Route path='/edit_doc/:Nid' element={<Edit_doc/>} />
             <Route path='/Myprofile' element={<Myprofile/>} />
             <Route path='/toomanyrequests' element={<TooManyRequests />} />
             <Route path='/unauthorized' element={<Unauthorized />} />

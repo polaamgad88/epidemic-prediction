@@ -56,7 +56,7 @@ const Add_doc = () => {
           console.log("unauthorized" + error)
           navigate("/unauthorized")
         });
-  }, [])
+  }, [navigate])
   const onChangehandler = async (e) => {
     e.preventDefault();
     await axios

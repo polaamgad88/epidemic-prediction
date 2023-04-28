@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import axios from "axios";
 const ForgetpPass = () => {
@@ -6,8 +6,6 @@ const ForgetpPass = () => {
   const navigate = useNavigate();
   const onReset = async (e) => {
     e.preventDefault();
-    var status = false;
-    var code;
     await axios
       .post(
         "http://192.168.1.31:4000/ResetPassword",
@@ -26,7 +24,7 @@ const ForgetpPass = () => {
         (responseJson) => {
           localStorage.setItem('Rtoken', responseJson.data.Rtoken)
           console.log(responseJson)
-          navigate("/CheckMail")
+          navigate(`/CheckMail/${email}`);
           console.log("sent")
         })
       .catch(
