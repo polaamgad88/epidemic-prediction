@@ -42,7 +42,6 @@ const Add_rec = () => {
           else {
             if (code === 401) {
               console.log("no access to open this page")
-              console.log("unauthorized")
               navigate("/unauthorized")
             }
             else {
