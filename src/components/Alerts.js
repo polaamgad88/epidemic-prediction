@@ -10,7 +10,7 @@ const Alerts = () => {
     var code;
     axios
       .get(
-        "http://192.168.1.31:4000/main",
+        "http://192.168.1.31:4000/alerts",
         {
           withCredentials: true,
           headers: {
@@ -24,10 +24,12 @@ const Alerts = () => {
         (responseJson) => {
           status = responseJson.data.success
           code = responseJson.data.code
+          console.log(responseJson)
           var observer = responseJson.data.observer
           if (status && observer) {
             setChecked(true)
             console.log("access gained")
+            
           }
           else {
             if (code === 401) {
