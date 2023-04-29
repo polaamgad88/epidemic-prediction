@@ -8,7 +8,7 @@ function Navbar() {
     localStorage.removeItem("Atoken")
     axios
       .get(
-        "http://192.168.1.31:4000/logOut",
+        process.env.REACT_APP_URL + ":4000/logOut",
         {
           withCredentials: true,
           headers: {

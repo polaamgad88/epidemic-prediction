@@ -14,7 +14,7 @@ const CheckMail = () => {
     var code;
     await axios
       .post(
-        "http://192.168.1.31:4000/ConfirmCode",
+        process.env.REACT_APP_URL + ":4000/ConfirmCode",
         {
           number: number,
         },

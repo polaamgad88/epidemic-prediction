@@ -24,7 +24,7 @@ const Add_doc = () => {
     var code;
     axios
       .get(
-        "http://192.168.1.31:4000/admin",
+        process.env.REACT_APP_URL + ":4000/admin",
         {
           withCredentials: true,
           headers: {
@@ -63,7 +63,7 @@ const Add_doc = () => {
     e.preventDefault();
     await axios
       .post(
-        "http://192.168.1.31:4000/addDoctor",
+        process.env.REACT_APP_URL + ":4000/addDoctor",
         {
           Fname: Fname,
           Lname: Lname,

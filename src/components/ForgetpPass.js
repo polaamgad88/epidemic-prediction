@@ -8,7 +8,7 @@ const ForgetpPass = () => {
     e.preventDefault();
     await axios
       .post(
-        "http://192.168.1.31:4000/ResetPassword",
+        process.env.REACT_APP_URL + ":4000/ResetPassword",
         {
           email: email,
         },

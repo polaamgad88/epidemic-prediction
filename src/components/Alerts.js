@@ -10,7 +10,7 @@ const Alerts = () => {
     var code;
     axios
       .get(
-        "http://192.168.1.31:4000/alerts",
+        process.env.REACT_APP_URL + ":4000/alerts",
         {
           withCredentials: true,
           headers: {

@@ -11,7 +11,7 @@ const Search = () => {
     var code;
     axios
       .get(
-        "http://192.168.1.31:4000/admin",
+        process.env.REACT_APP_URL + ":4000/admin",
         {
           withCredentials: true,
           headers: {
@@ -50,7 +50,7 @@ const Search = () => {
     e.preventDefault();
     await axios
       .post(
-        "http://192.168.1.31:4000/search",
+        process.env.REACT_APP_URL + ":4000/search",
         {
           Nid: Nid,
         },

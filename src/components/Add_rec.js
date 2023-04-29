@@ -20,7 +20,7 @@ const Add_rec = () => {
     console.log("load")
     axios
       .get(
-        "http://192.168.1.31:4000/main",
+        process.env.REACT_APP_URL + ":4000/main",
         {
           withCredentials: true,
           headers: {
@@ -60,7 +60,7 @@ const Add_rec = () => {
     e.preventDefault();
     await axios
       .post(
-        "http://192.168.1.31:4000/addRecord",
+        process.env.REACT_APP_URL + ":4000/addRecord",
         {
           Fname: Fname,
           Lname: Lname,

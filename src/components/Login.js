@@ -1,7 +1,7 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import axios from "axios";
-import Navbar from "./Navbar";
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -10,14 +10,13 @@ function Login() {
   const navigate = useNavigate();
   const onLogin = async (e) => {
     e.preventDefault();
-
+    console.log()
     var status = false;
-    var code;
+
     var token;
-    const data = { email, password }; // get from form data 
     await axios
       .post(
-        "http://192.168.1.31:4000/login",
+        process.env.REACT_APP_URL + ":4000/login",
         {
           email: email,
           password: password,
@@ -71,7 +70,7 @@ function Login() {
           </div>
 
           <div class=" mb-9">
-            <img class="rounded-xl mt-9" src={require("./imgs/loginIMG.jpg")} />
+            <img alt="img" class="rounded-xl mt-9" src={require("./imgs/loginIMG.jpg")} />
           </div>
 
           <h2 class="text-xl animate-bounce font-mono font-normal mb-4 text-center text-white">

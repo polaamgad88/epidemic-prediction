@@ -23,7 +23,7 @@ const Edit_doc = () => {
     e.preventDefault();
     await axios
       .post(
-        "http://192.168.1.31:4000/editDoctor",
+        process.env.REACT_APP_URL + ":4000/editDoctor",
         {
           Fname: Fname,
           Lname: Lname,
@@ -71,7 +71,7 @@ const Edit_doc = () => {
     var code;
     axios
       .get(
-        "http://192.168.1.31:4000/loadDoctorData" + params.Nid,
+        process.env.REACT_APP_URL + ":4000/loadDoctorData" + params.Nid,
         {
           withCredentials: true,
           headers: {

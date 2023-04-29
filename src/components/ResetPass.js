@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import axios from "axios";
 const ResetPass = () => {
@@ -7,14 +7,11 @@ const ResetPass = () => {
 
   const navigate = useNavigate();
   const changePassword = async (e) => {
-
     e.preventDefault();
-    var status = false;
-    var code;
     if (newPassword === ConfirmPassword) {
       await axios
         .post(
-          "http://192.168.1.31:4000/changePassword",
+          process.env.REACT_APP_URL + ":4000/changePassword",
           {
             newPassword: newPassword,
           },
@@ -29,8 +26,6 @@ const ResetPass = () => {
         )
         .then(
           (responseJson) => {
-            status = responseJson.data.success
-            code = responseJson.data.code
             localStorage.removeItem('Rtoken')
             navigate("/login")
             console.log("changed")
