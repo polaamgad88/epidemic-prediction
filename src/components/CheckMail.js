@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate , useParams  } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import axios from "axios";
 
@@ -54,6 +54,35 @@ const CheckMail = () => {
 
     }
   };
+  const onReset = async (e) => {
+    e.preventDefault();
+    await axios
+      .post(
+        process.env.REACT_APP_URL + ":4000/ResetPassword",
+        {
+          email: params.email,
+        },
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+          }
+        }
+      )
+      .then(
+        (responseJson) => {
+          localStorage.setItem('Rtoken', responseJson.data.Rtoken)
+          console.log(responseJson)
+          navigate(`/CheckMail/${params.email}`);
+          console.log("sent")
+        })
+      .catch(
+        (error) => {
+          console.log(error);
+          console.log("email not found ")
+        });
+  };
   return (
     <div class=" ">
 
@@ -62,7 +91,7 @@ const CheckMail = () => {
 
           <div class="w-full p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-gray-800 dark:border-gray-700 sm:p-8">
             <h2 class="mb-2 text-2xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              We sent a code to your email 
+              We sent a code to your email
 
             </h2>
 
@@ -81,8 +110,8 @@ const CheckMail = () => {
                   onChange={(e) => setNumber(e.target.value)} placeholder="6 digit-code" required="" />
               </div>
 
-              <a href="/forgetpassword">
-                <p href="/forgetpassword" className=" text-right  text-sm text-white hover:text-[#FF6A3D] hover:underline">Resend code</p>
+              <a href="">
+                <p href="" onClick={onReset} className=" text-right  text-sm text-white hover:text-[#FF6A3D] hover:underline">Resend code</p>
               </a>
 
 

@@ -6,6 +6,10 @@ const ForgetpPass = () => {
   const navigate = useNavigate();
   const onReset = async (e) => {
     e.preventDefault();
+    
+    console.log(process.env.REACT_APP_URL + ":4000/ResetPassword");
+    console.log(process.env);
+    
     await axios
       .post(
         process.env.REACT_APP_URL + ":4000/ResetPassword",
