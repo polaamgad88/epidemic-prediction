@@ -31,8 +31,10 @@ const Edit_doc = () => {
           address: address,
           gender: gender,
           Hosbital: Hosbital,
+          specialization: specialization,
+          email: email,
           city: city,
-          Nid: Nid,
+          Nid: params.Nid,
           observer: observer,
           doctor: doctor,
           researcher: researcher,
@@ -54,8 +56,14 @@ const Edit_doc = () => {
       .catch(
         (error) => {
           console.log(error);
-          console.log("unauthorized")
-          navigate("/unauthorized")
+          if (error.response.status === 401) {
+            console.log("unauthorized")
+            navigate("/unauthorized")
+          }
+          else if (error.response.status === 404)
+            console.log("not found")
+          else
+            console.log("server error")
         });
   }
   useEffect(() => {
@@ -87,27 +95,36 @@ const Edit_doc = () => {
             Setaddress(data.address)
             setEmail(data.email)
             setSpecialization(data.specialization)
-            Setbirth(data.birth_date)
-            //TODO: checkboxs set 
+            Setbirth(data.birth_date.split('T')[0])
+            SetObserver(data.is_observer === 0 ? false : true)
+            SetResearcher(data.is_researcher === 0 ? false : true)
+            SetDoctor(data.is_doctor === 0 ? false : true)
+            setgender(data.gender)
             console.log("access gained")
           }
           else {
-            if (code === 401) {
-              console.log("no access to open this page")
-              navigate("/unauthorized")
-            }
-            else {
-              console.log("server error")
-              navigate("/Login")
-            }
+            throw new Error()
           }
         })
       .catch(
         (error) => {
-          console.log("unauthorized")
-          navigate("/unauthorized")
+          code = error.response.data.code
+          console.log(code)
+          if (code === 401) {
+            console.log("no access to open this page")
+            navigate("/unauthorized")
+          }
+          else if (code === 404) {
+            console.log("not found")
+            navigate("/search")
+          }
+          else if (code >= 500) {
+            console.log("server error")
+          }
+          else
+            navigate("/unauthorized")
         });
-  })
+  }, [navigate, params.Nid])
   if (!checked) return (
     <div className="h-screen flex justify-center items-center bg-blue-600">
       <div className="p-10 bg-blue-800 rounded-lg shadow-xl">
@@ -162,7 +179,7 @@ const Edit_doc = () => {
                   National id
                 </label>
                 <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 
-      leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="text" placeholder="ex. 3010888888204" id="d_id"
+      leading-tight focus:outline-none focus:bg-white focus:border-gray-500" disabled={true} type="text" placeholder="ex. 3010888888204" id="d_id"
                   onChange={(e) => SetNid(e.target.value)}
                   value={Nid} />
               </div>
@@ -191,7 +208,7 @@ const Edit_doc = () => {
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                   Email
                 </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 
+                <input class="disabled appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 
     leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" type="text"
                   placeholder="ex. test@example.com." onChange={(e) => setEmail(e.target.value)}
                   value={email} />
@@ -227,12 +244,12 @@ const Edit_doc = () => {
                 </label>
                 <div class="relative">
                   <div class="flex items-center mb-4">
-                    <input type="radio" value="male" onChange={(e) => setgender(e.target.value)} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
+                    <input type="radio" value="male" checked={gender === 'male'} onChange={(e) => setgender(e.target.value)} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-black-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                     <label for="default-radio-1" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Male</label>
                   </div>
                   <div class="flex items-center">
-                    <input type="radio" value="Female" onChange={(e) => setgender(e.target.value)} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
+                    <input type="radio" value="Female" checked={gender === 'Female'} onChange={(e) => setgender(e.target.value)} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                     <label for="default-radio-2" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Female</label>
                   </div>
@@ -245,17 +262,17 @@ const Edit_doc = () => {
                 </label>
                 <div class="relative">
                   <div class="flex items-center ">
-                    <input type="checkbox" value="researcher" onChange={(e) => SetResearcher((researcher ? false : true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
+                    <input type="checkbox" value="researcher" checked={researcher} onChange={(e) => SetResearcher((researcher ? false : true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-black-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                     <label for="default-radio-1" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Researcher</label>
                   </div>
                   <div class="flex items-center">
-                    <input type="checkbox" value="doctor" onChange={(e) => SetDoctor((doctor ? false : true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
+                    <input type="checkbox" value="doctor" checked={doctor} onChange={(e) => SetDoctor((doctor ? false : true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                     <label for="default-radio-2" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Doctor</label>
                   </div>
                   <div class="flex items-center">
-                    <input type="checkbox" value="observer" onChange={(e) => SetObserver((observer ? false : true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
+                    <input type="checkbox" value="observer" checked={observer} onChange={(e) => SetObserver((observer ? false : true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                     <label for="default-radio-3" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Observer</label>
                   </div>
