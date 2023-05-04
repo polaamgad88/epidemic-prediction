@@ -166,8 +166,8 @@ const Add_rec = () => {
               <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
               Governorate
               </label>
-              <select id="district" name="governorates" class="form-select block  mt-1 h-10 w-full bg-gray-200 rounded-md text-gray-500"  onChange={(e) => Setcity(e.target.value)}
-              value={city}  >
+              <select id="governorates" name="governorates" class="form-select block  mt-1 h-10 w-full bg-gray-200 rounded-md text-gray-500"  onChange={(e) => Setcity(e.target.value)}
+                >
                 <option value="">Select a governorate</option>
                 <option value="Alexandria">Alexandria</option>
                 <option value="Cairo">Cairo</option>
@@ -185,7 +185,7 @@ const Add_rec = () => {
             District
             </label>
             <select id="district" name="district" class="form-select block w-full mt-1 h-10 bg-gray-200 rounded-md text-gray-500"  onChange={(e) => Setcity(e.target.value)}
-            value={city}  >
+              >
               <option value="">Select a district</option>
               <option value="Al Azbakeyah">Al Azbakeyah</option>
               <option value="Tebin">Tebin</option>
@@ -250,8 +250,8 @@ and value, onchange to be edited..
             </label>
             <input class="appearance-none block w-full bg-gray-200 text-gray-700 border
              border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white
-              focus:border-gray-500" type="number" placeholder="ex. 3" onChange={(e) => SetLname(e.target.value)}
-              id='lastname'
+              focus:border-gray-500" type="number" placeholder="ex. 3" 
+              id='sym_days'
                />
           </div>
         </div>
