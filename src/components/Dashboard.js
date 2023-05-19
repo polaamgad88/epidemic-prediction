@@ -1,7 +1,56 @@
 import React, { useState, useEffect } from "react";
+import { Line, Bar } from 'react-chartjs-2';
 import { useNavigate } from 'react-router-dom'
 import Navbar from "./Navbar";
 import axios from "axios";
+import Chart from "chart.js/auto"; // is a must do not remove 
+const data = {
+   labels: ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'septemper', 'october', 'november', 'december'], // from database 
+   datasets: [
+      {
+         label: '2016/2017',
+         data: [24, 23, 55, 54, 68, 64, 67, 69, 43, 58, 36, 54], // from database 
+         fill: false,
+         backgroundColor: 'rgb(10, 200, 132)',
+         borderColor: 'rgba(10, 200, 132, 0.2)',
+      },
+      {
+         label: '2018/2019',
+         data: [90, 74, 73, 97, 92, 80, 77, 100, 77, 85, 37, 54], // from database 
+         fill: false,
+         backgroundColor: 'rgb(200, 54, 10)',
+         borderColor: 'rgba(200, 54, 10, 0.2)',
+      },
+   ],
+};
+
+const options = {
+   responsive: true,
+   interaction: {
+      mode: 'index',
+      intersect: false,
+   },
+   stacked: false,
+   plugins: {
+      title: {
+         display: true,
+         text: 'line Distribution of meningitis cases according to number in month'
+      }
+   },
+   scales: {
+      yAxes: [
+         {
+            type: 'linear',
+            display: true,
+            position: 'left',
+            gridLines: {
+               drawOnChartArea: false,
+            },
+         },
+      ],
+   },
+};
+//create seperated data for both hist and line chart
 const Dashboard = () => {
    const navigate = useNavigate();
    const [checked, setChecked] = useState(false);
@@ -47,7 +96,7 @@ const Dashboard = () => {
                console.log("unauthorized" + error)
                navigate("/unauthorized")
             });
-   },[navigate])
+   }, [navigate])
    if (!checked) return (
       <div className="h-screen flex justify-center items-center bg-blue-600">
          <div className="p-10 bg-blue-800 rounded-lg shadow-xl">
@@ -80,25 +129,12 @@ const Dashboard = () => {
                   <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
                </div>
             </div>
-            <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
-               <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
+            <div class="flex items-center justify-center h-60 mb-4 rounded bg-gray-50 dark:bg-gray-800">
+               <Line data={data} options={options} />
             </div>
-            <div class="grid grid-cols-2 gap-4 mb-4">
-               <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                  <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-               </div>
-               <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                  <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-               </div>
-               <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                  <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-               </div>
-               <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                  <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-               </div>
+            <div class="flex items-center justify-center h-60 mb-4 rounded bg-gray-50 dark:bg-gray-800">
+               <Bar data={data} options={options} /> 
             </div>
-
-
          </div>
       </div>
    );
