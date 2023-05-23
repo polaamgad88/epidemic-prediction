@@ -1,59 +1,189 @@
 import React, { useState, useEffect } from "react";
-import { Line, Bar } from 'react-chartjs-2';
+import { Line, Bar, Pie } from 'react-chartjs-2';
 import { useNavigate } from 'react-router-dom'
 import Navbar from "./Navbar";
 import axios from "axios";
 import Chart from "chart.js/auto"; // is a must do not remove 
-const data = {
-   labels: ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'septemper', 'october', 'november', 'december'], // from database 
-   datasets: [
-      {
-         label: '2016/2017',
-         data: [24, 23, 55, 54, 68, 64, 67, 69, 43, 58, 36, 54], // from database 
-         fill: false,
-         backgroundColor: 'rgb(10, 200, 132)',
-         borderColor: 'rgba(10, 200, 132, 0.2)',
-      },
-      {
-         label: '2018/2019',
-         data: [90, 74, 73, 97, 92, 80, 77, 100, 77, 85, 37, 54], // from database 
-         fill: false,
-         backgroundColor: 'rgb(200, 54, 10)',
-         borderColor: 'rgba(200, 54, 10, 0.2)',
-      },
-   ],
-};
 
-const options = {
-   responsive: true,
-   interaction: {
-      mode: 'index',
-      intersect: false,
-   },
-   stacked: false,
-   plugins: {
-      title: {
-         display: true,
-         text: 'line Distribution of meningitis cases according to number in month'
-      }
-   },
-   scales: {
-      yAxes: [
-         {
-            type: 'linear',
-            display: true,
-            position: 'left',
-            gridLines: {
-               drawOnChartArea: false,
-            },
-         },
-      ],
-   },
-};
-//create seperated data for both hist and line chart
 const Dashboard = () => {
    const navigate = useNavigate();
    const [checked, setChecked] = useState(false);
+   const [dataBarChart, setDataBarChart] = useState({
+      labels: [],
+      datasets: []
+   })
+   const [dataLineChart, setDataLineChart] = useState({
+      labels: [],
+      datasets: []
+   })
+   const [genderChartData, setGenderChartData] = useState({
+      labels: [],
+      datasets: []
+   })
+   const [AgeChartData, setAgeChartData] = useState({
+      labels: [],
+      datasets: []
+   })
+   const handleStaticData = () => {
+      var status = false;
+      var code;
+      axios
+         .get(
+            process.env.REACT_APP_URL + ":4000/staticData",
+            {
+               withCredentials: true,
+               headers: {
+                  "Content-Type": "application/json",
+                  "Accept": "application/json",
+                  "Authorization": 'Bearer ' + localStorage.getItem('Atoken')
+               }
+            }
+         )
+         .then(
+            (responseJson) => {
+               status = responseJson.data.success
+               code = responseJson.data.code
+               if (status) {
+                  console.log("access gained")
+                  setGenderChartData({
+                     labels: ['male', 'female'],
+                     datasets: [
+                        {
+                           fill: false,
+                           lineTension: 0.1,
+                           backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)'],
+                           borderColor: 'rgba(75, 192, 192, 1)',
+                           borderDashOffset: 0.0,
+                           borderJoinStyle: 'miter',
+                           data: responseJson.data.gender
+                        },
+                     ]
+                  });
+                  setAgeChartData({
+                     labels: ['<5 yrs', '(6-15) yrs', '(16-24) yrs', '(25-64) yrs', '>65 yrs'],
+                     datasets: [
+                        {
+                           fill: false,
+                           lineTension: 0.1,
+                           backgroundColor:
+                              [
+                                 'rgba(255, 99, 132, 0.6)',
+                                 'rgba(54, 162, 235, 0.6)',
+                                 'rgba(255, 206, 86, 0.6)',
+                                 'rgba(75, 192, 192, 0.6)',
+                                 'rgba(153, 102, 255, 0.6)'
+                              ],
+                           borderColor: 'rgba(75, 192, 192, 1)',
+                           borderDashOffset: 0.0,
+
+                           data: responseJson.data.age
+                        },
+                     ]
+                  });
+               }
+               else {
+                  if (code === 401) {
+                     console.log("no access to open this page")
+                     console.log("unauthorized")
+                     navigate("/unauthorized")
+                  }
+                  else {
+                     console.log("server error")
+                  }
+               }
+            })
+         .catch(
+            (error) => {
+               console.log("unauthorized " + error)
+               navigate("/unauthorized")
+            });
+
+   }
+   const handleDynamicData = () => {
+      var status = false;
+      var code;
+      axios
+         .get(
+            process.env.REACT_APP_URL + ":4000/dynamicData",
+            {
+               withCredentials: true,
+               headers: {
+                  "Content-Type": "application/json",
+                  "Accept": "application/json",
+                  "Authorization": 'Bearer ' + localStorage.getItem('Atoken')
+               }
+            }
+         )
+         .then(
+            (responseJson) => {
+               status = responseJson.data.success
+               code = responseJson.data.code
+               var dateMonth = responseJson.data.dateMonth
+               var dateMonth2 = responseJson.data.dateMonth2
+               var dataMonth = responseJson.data.dataMonth
+               var dataMonth2 = responseJson.data.dataMonth2
+
+               var dateWeeks = responseJson.data.dateWeeks
+               var dateWeeks2 = responseJson.data.dateWeeks2
+               var dataWeeks = responseJson.data.dataWeeks
+               var dataWeeks2 = responseJson.data.dataWeeks2
+               console.log(responseJson)
+               if (status) {
+
+                  console.log("access gained")
+                  setDataLineChart({
+                     labels: ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'septemper', 'october', 'november', 'december'], // from database 
+                     datasets: [{
+                        label: dateMonth,
+                        data: dataMonth, // from database 
+                        fill: false,
+                        backgroundColor: 'rgb(10, 200, 132)',
+                        borderColor: 'rgba(10, 200, 132, 0.2)',
+                     },
+                     {
+                        label: dateMonth2,
+                        data: dataMonth2, // from database 
+                        fill: false,
+                        backgroundColor: 'rgb(200, 54, 10)',
+                        borderColor: 'rgba(200, 54, 10, 0.2)',
+                     },]
+                  });
+                  setDataBarChart({
+                     labels: Array.from({ length: 52 }, (_, i) => i + 1), // from database 
+                     datasets: [{
+                        label: dateWeeks,
+                        data: dataWeeks,
+                        fill: false,
+                        backgroundColor: 'rgb(10, 200, 132)',
+                        borderColor: 'rgba(10, 200, 132, 0.2)',
+                     },
+                     {
+                        label: dateWeeks2,
+                        data: dataWeeks2,
+                        fill: false,
+                        backgroundColor: 'rgb(200, 54, 10)',
+                        borderColor: 'rgba(200, 54, 10, 0.2)',
+                     },]
+                  })
+               }
+               else {
+                  if (code === 401) {
+                     console.log("no access to open this page")
+                     console.log("unauthorized")
+                     navigate("/unauthorized")
+                  }
+                  else {
+                     console.log("server error")
+                  }
+               }
+            })
+         .catch(
+            (error) => {
+               console.log("unauthorized " + error)
+               navigate("/unauthorized")
+            });
+
+   }
    useEffect(() => {
       var status = false;
       var code;
@@ -73,11 +203,10 @@ const Dashboard = () => {
             (responseJson) => {
                status = responseJson.data.success
                code = responseJson.data.code
-               var researcher = responseJson.data.researcher
-               var observer = responseJson.data.observer
-               if (status && (researcher || observer)) {
+               if (status) {
                   setChecked(true)
                   console.log("access gained")
+                  handleStaticData();
                }
                else {
                   if (code === 401) {
@@ -97,6 +226,8 @@ const Dashboard = () => {
                navigate("/unauthorized")
             });
    }, [navigate])
+
+
    if (!checked) return (
       <div className="h-screen flex justify-center items-center bg-blue-600">
          <div className="p-10 bg-blue-800 rounded-lg shadow-xl">
@@ -114,26 +245,101 @@ const Dashboard = () => {
          <Navbar />
 
          <h2 class="text-3xl font-bold leading-tighter
-    tracking-tighter text-white flex justify-center items-center mb-8 mt-8">Dashboard</h2>
-
+    tracking-tighter text-white flex justify-center items-center mb-8 mt-8" >Dashboard</h2>
 
          <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg bg-blue-500 dark:border-gray-700">
-            <div class="grid grid-cols-3 gap-4 mb-4">
-               <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-                  <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
+            <div class="grid grid-cols-2 gap-4 mb-4">
+               <div class="flex items-center justify-center h-96 rounded bg-gray-50 dark:bg-gray-800">
+                  <Pie data={AgeChartData} options={{
+                     plugins: {
+                        legend: {
+                           display: true,
+                           labels: {
+                              boxWidth: 15,
+                              boxHeight: 15,
+                              padding: 5
+                           }
+                        },
+                        title: {
+                           display: true,
+                           text: 'age Distribution of meningitis'
+                        },
+
+                     },
+
+                  }} />
                </div>
-               <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-                  <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-               </div>
-               <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-                  <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
+               <div class="flex items-center justify-center h-96 rounded bg-gray-50 dark:bg-gray-800">
+                  <Pie data={genderChartData} options={{
+                     plugins: {
+                        legend: {
+                           display: true,
+                        },
+                        title: {
+                           display: true,
+                           text: 'gender Distribution of meningitis'
+                        }
+                     },
+                  }} />
                </div>
             </div>
-            <div class="flex items-center justify-center h-60 mb-4 rounded bg-gray-50 dark:bg-gray-800">
-               <Line data={data} options={options} />
+            <button onClick={handleDynamicData}>TEST</button>
+            <div class="h-96 flex items-center justify-center mb-4 rounded bg-gray-50 dark:bg-gray-800">
+               <Line data={dataLineChart} options={{
+                  responsive: true,
+                  interaction: {
+                     mode: 'index',
+                     intersect: false,
+                  },
+                  stacked: false,
+                  plugins: {
+                     title: {
+                        display: true,
+                        text: 'line Distribution of meningitis cases according to number in month'
+                     }
+                  },
+                  scales: {
+                     yAxes: [
+                        {
+                           type: 'linear',
+                           display: true,
+                           position: 'left',
+                           gridLines: {
+                              drawOnChartArea: false,
+                           },
+                        },
+                     ],
+                  },
+               }} />
+
             </div>
-            <div class="flex items-center justify-center h-60 mb-4 rounded bg-gray-50 dark:bg-gray-800">
-               <Bar data={data} options={options} /> 
+            <div class="h-96 flex items-center justify-center mb-4 rounded bg-gray-50 dark:bg-gray-800">
+               <Bar data={dataBarChart} options={{
+                  responsive: true,
+                  interaction: {
+                     mode: 'index',
+                     intersect: false,
+                  },
+                  stacked: false,
+                  plugins: {
+                     title: {
+                        display: true,
+                        text: 'Distribution of meningitis according to epidemiological weeks'
+                     }
+                  },
+                  scales: {
+                     yAxes: [
+                        {
+                           type: 'linear',
+                           display: true,
+                           position: 'left',
+                           gridLines: {
+                              drawOnChartArea: false,
+                           },
+                        },
+                     ],
+                  },
+               }} />
             </div>
          </div>
       </div>
