@@ -1,5 +1,5 @@
 [ ] 1- create error message for each page 
-[ ] 2- dashboard data line chart and histo 
+[x] 2- dashboard data line chart and histo 
 [ ] 3- scatter plot for clinical symptoms and gauge chart #cases vs threshold  pie chart male female  , age distripution , current number of cases 
 [x] 4- connect all endpoints 
 [x] 5- move Add Doctor profile option to main and make it admin previlige 

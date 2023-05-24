@@ -3,11 +3,13 @@ import { Line, Bar, Pie } from 'react-chartjs-2';
 import { useNavigate } from 'react-router-dom'
 import Navbar from "./Navbar";
 import axios from "axios";
+import "../App.css";
 import Chart from "chart.js/auto"; // is a must do not remove 
 
 const Dashboard = () => {
    const navigate = useNavigate();
    const [checked, setChecked] = useState(false);
+   const [numebrOfCases, setNumebrOfCases] = useState(0);
    const [dataBarChart, setDataBarChart] = useState({
       labels: [],
       datasets: []
@@ -80,6 +82,7 @@ const Dashboard = () => {
                         },
                      ]
                   });
+                  setNumebrOfCases(responseJson.data.numebrOfCases)
                }
                else {
                   if (code === 401) {
@@ -241,11 +244,19 @@ const Dashboard = () => {
    );
 
    return (
-      <div class="h-screen bg-blue-500">
+      <div class="h-screen bg-blue-500 center">
          <Navbar />
-
          <h2 class="text-3xl font-bold leading-tighter
     tracking-tighter text-white flex justify-center items-center mb-8 mt-8" >Dashboard</h2>
+
+         <div class="card">
+            <div class="title">
+               <p class="title-text">total number of cases</p>
+            </div>
+            <div class="data">
+               <p>{numebrOfCases}</p>
+            </div>
+         </div>
 
          <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg bg-blue-500 dark:border-gray-700">
             <div class="grid grid-cols-2 gap-4 mb-4">
