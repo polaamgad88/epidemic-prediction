@@ -46,12 +46,12 @@ function Navbar() {
         <ul class="flex items-center space-x-12">
           {isLoggedIn ? (
             <>
-              <li class="font-mono text-sm font-semibold text-slate-800 hover:text-white transition-all ">
-                <a href="/Main">
+              <li class="font-mono text-sm font-semibold text-slate-800 hover:text-white  ">
+                <a href="/Admin">
                   <button
                     class="hover:animate-pulse"
                     type="button">
-                    Home
+                    Admin page
                   </button>
                 </a>
               </li>

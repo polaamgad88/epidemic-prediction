@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from 'react-router-dom'
-import Navbar from "./Navbar";
+import Navbar from "./Navbar_Admin";
 import axios from "axios";
 const Edit_doc = () => {
   const params = useParams();
