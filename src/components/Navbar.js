@@ -46,7 +46,7 @@ function Navbar() {
         <ul class="flex items-center space-x-12">
           {isLoggedIn ? (
             <>
-              <li class="font-mono text-sm font-semibold text-slate-800 hover:text-white transition-all ">
+              <li class="font-mono text-sm font-semibold text-slate-800 hover:animate-pulse transition-all ">
                 <a href="/Main">
                   <button
                     class="hover:animate-pulse"
@@ -55,16 +55,8 @@ function Navbar() {
                   </button>
                 </a>
               </li>
-              <li class="font-mono text-sm font-semibold text-slate-800 hover:text-white transition-all ">
-                <a href="/Myprofile">
-                  <button
-                    class="hover:animate-pulse"
-                    type="button">
-                    Myprofile
-                  </button>
-                </a>
-              </li>
-              <li class="font-mono text-sm font-semibold text-slate-800 hover:text-white ">
+          
+              <li class="font-mono text-sm font-semibold text-slate-800 hover:animate-pulse  ">
                 <button
                   class="hover:animate-pulse"
                   type="button"
@@ -73,18 +65,20 @@ function Navbar() {
                 </button>
               </li>
               
-          <li class="font-mono text-sm font-semibold text-slate-800 hover:text-white ">
+          <li class="font-mono text-sm font-semibold text-slate-800  hover:animate-pulse ">
+            <a href="/Myprofile">
           <button class="hover:animate-pulse"
           type="button">       
           <span class="text-2xl">👨‍⚕️</span>
 
            
           </button>
+          </a>
         </li> 
               
             </>
           ) : (
-            <li class="font-mono text-sm font-semibold text-slate-800 hover:text-white ">
+            <li class="font-mono text-sm font-semibold text-slate-800 ">
               <a href="/Login">
                 <button
                   class="bg-blue-500 text-black px-3 py-1 rounded-md hover:animate-pulse"
