@@ -12,13 +12,15 @@ const Add_rec = () => {
   const [gender, setgender] = useState('');
   const [diagnosis, Setdiagnosis] = useState('');
   const [symp, setsymp] = useState('');
-  const [city, Setcity] = useState('');
+  const [Governorate, SetGovernorate] = useState('');
+  const [District, SetDistrict] = useState('');
   const navigate = useNavigate();
   const [checked, setChecked] = useState(false);
+  const [districtOptions, setdistrictOptions] = useState([]);
+  const [governorateOptions, setgovernorateOptions] = useState([]);
   useEffect(() => {
     var status = false;
     var code;
-    console.log("load")
     axios
       .get(
         process.env.REACT_APP_URL + ":4000/main",
@@ -56,7 +58,29 @@ const Add_rec = () => {
           console.log("unauthorized" + error)
           navigate("/unauthorized")
         });
+    axios
+      .get(
+        process.env.REACT_APP_URL + ":4000/getGovernorates",
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": 'Bearer ' + localStorage.getItem('Atoken')
+          }
+        }
+      )
+      .then(
+        (responseJson) => {
+          setgovernorateOptions(responseJson.data.governorateOptions.map(pair => pair['governorate_name_en']))
+        })
+      .catch(
+        (error) => {
+          console.log("unauthorized " + error)
+          navigate("/unauthorized")
+        });
   }, [navigate])
+
   const onChangehandler = async (e) => {
     e.preventDefault();
     await axios
@@ -69,7 +93,8 @@ const Add_rec = () => {
           address: address,
           gender: gender,
           diagnosis: diagnosis,
-          city: city,
+          Governorate: Governorate,
+          District: District,
           Nid: Nid,
           symp: symp,
         },
@@ -91,6 +116,36 @@ const Add_rec = () => {
           console.log(error);
           navigate("/unauthorized")
         });
+  }
+  function handleGovernorateSelectChange(e) {
+    const value = e.target.value;
+    SetGovernorate(value);
+    SetDistrict('')
+    axios
+      .get(
+        process.env.REACT_APP_URL + ":4000/getDistricts" + value,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": 'Bearer ' + localStorage.getItem('Atoken')
+          }
+        }
+      )
+      .then(
+        (responseJson) => {
+          setdistrictOptions(responseJson.data.districtOptions.map(pair => pair['district']))
+        })
+      .catch(
+        (error) => {
+          console.log("unauthorized " + error)
+          navigate("/unauthorized")
+        });
+  }
+  function handleDistrictSelectChange(e) {
+    const value = e.target.value;
+    SetDistrict(value);
   }
   if (!checked) return (
     <div className="h-screen flex justify-center items-center bg-blue-600">
@@ -167,13 +222,10 @@ const Add_rec = () => {
               <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
                 Governorate
               </label>
-              <select id="governorates" name="governorates" class="form-select block  mt-1 h-10 w-full bg-gray-200 rounded-md text-gray-500" onChange={(e) => Setcity(e.target.value)}
+              <select id="governorates" name="governorates" class="form-select block  mt-1 h-10 w-full bg-gray-200 rounded-md text-gray-500" onChange={handleGovernorateSelectChange}
               >
                 <option value="">Select a governorate</option>
-                <option value="Alexandria">Alexandria</option>
-                <option value="Cairo">Cairo</option>
-                <option value="Luxor">Luxor</option>
-                <option value="Sharm El Sheikh">Sharm El Sheikh</option>
+                {governorateOptions.map((option) => (<option value={option}>{option}</option>))}
               </select>
 
             </div>
@@ -185,12 +237,10 @@ const Add_rec = () => {
               <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
                 District
               </label>
-              <select id="district" name="district" class="form-select block w-full mt-1 h-10 bg-gray-200 rounded-md text-gray-500" onChange={(e) => Setcity(e.target.value)}
+              <select id="district" name="district" class="form-select block w-full mt-1 h-10 bg-gray-200 rounded-md text-gray-500" onChange={handleDistrictSelectChange}
               >
                 <option value="">Select a district</option>
-                <option value="Al Azbakeyah">Al Azbakeyah</option>
-                <option value="Tebin">Tebin</option>
-                <option value="Ataba">Ataba</option>
+                {districtOptions.map((option) => (<option value={option}>{option}</option>))}
 
               </select>
 
