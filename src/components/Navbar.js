@@ -38,9 +38,9 @@ function Navbar() {
   };
 
   return (
-    <nav class="flex justify-between px-10 py-2 items-center bg-blue-500" >
+    <nav class="flex justify-between px-10 py-2 items-center bg-white rounded-sm" >
       <a href="/">
-        <img class="w-14 h-14" src={require('./imgs/logo.png')} alt="logo" />
+        <img class="w-8 h-8" src={require('./imgs/logo.png')} alt="logo" />
       </a>
       <div class="flex items-center">
         <ul class="flex items-center space-x-12">
@@ -52,6 +52,15 @@ function Navbar() {
                     class="hover:animate-pulse"
                     type="button">
                     Home
+                  </button>
+                </a>
+              </li>
+              <li class="font-mono text-sm font-semibold text-slate-800 hover:text-white transition-all ">
+                <a href="/Myprofile">
+                  <button
+                    class="hover:animate-pulse"
+                    type="button">
+                    Myprofile
                   </button>
                 </a>
               </li>
@@ -78,7 +87,7 @@ function Navbar() {
             <li class="font-mono text-sm font-semibold text-slate-800 hover:text-white ">
               <a href="/Login">
                 <button
-                  class="hover:animate-pulse"
+                  class="bg-blue-500 text-black px-3 py-1 rounded-md hover:animate-pulse"
                   type="button">
                   Login
                 </button>
