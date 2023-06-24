@@ -59,6 +59,10 @@ const Add_doc = () => {
           navigate("/unauthorized")
         });
   }, [navigate])
+
+
+  
+
   const onChangehandler = async (e) => {
     e.preventDefault();
     await axios
@@ -91,6 +95,17 @@ const Add_doc = () => {
       .then(
         (responseJson) => {
           console.log(responseJson)
+          SetNid('');
+          SetFname('');
+          Setbirth('');
+          SetObserver(null);
+          SetLname('');
+          Setaddress('');
+          setSpecialization('');
+          Setcity('');
+          setEmail('');
+          setgender('');
+
         })
       .catch(
         (error) => {
@@ -293,6 +308,10 @@ const Add_doc = () => {
             )}
 
 
+            <div >
+            <p className="font-semibold  text-red-600 p-4">⚠️One or more fields have an error. Please check and try again.</p>
+            </div>
+
             <div class="ml-48 mx-3 mb-28 mt-14">
               <div class="w-full ">
                 <a href="/Admin">
@@ -301,8 +320,6 @@ const Add_doc = () => {
       font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-12 dark:bg-green-600
        dark:hover:bg-green-700 dark:focus:ring-green-800">Submit</button>
                 </a>
-
-
               </div>
             </div>
 

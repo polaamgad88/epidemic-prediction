@@ -49,7 +49,7 @@ function Login() {
           if (error.response.status === 429)
             navigate("/toomanyrequests")
           else {
-            setErrorMessage("wrong password")
+            setErrorMessage("Nope. Try again.")
             console.log("wrong password")
           }
         });
@@ -136,7 +136,12 @@ function Login() {
               >
                 Log in
               </button>
+
+
             </div>
+
+           
+
           </form>
         </div>
       </div>

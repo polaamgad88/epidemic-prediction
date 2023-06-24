@@ -260,161 +260,104 @@ and value, onchange to be edited..
 
           {/* 
 
+          
+            <div class="flex items-center mb-6">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2" for="grid-state">
+              Irritability
+            </label>
+          </div>
+
+
+         
 Here's code for symptoms it , on change here is set to setgender -NOT CORRECT Onchange- 
 and to be edited..
 ----->
 
 */}
-          <div class="flex justify-between mb-10 mt-8">
-            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
-                fever
-              </label>
-              <div class="relative">
-                <div class="flex items-center mb-4">
-                  <input id="default-radio-1" type="radio" value="y1" onChange={(e) => setgender(e.target.value)} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
-focus:ring-black-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                  <label for="default-radio-1" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Yes</label>
-                </div>
-                <div class="flex items-center">
-                  <input type="radio" value="no1" onChange={(e) => setgender(e.target.value)} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
-focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                  <label class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">No</label>
-                </div>
+<div class="flex flex-wrap -mx-3 mb-10 mt-8">
+  <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+    <div class="flex items-center py-2">
+      <input type="checkbox" value="no1" onChange={(e) => setgender(e.target.value)} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2 p-0.5" for="grid-state">
+        Irritability
+      </label>
+    </div>
+  </div>
 
-              </div>  </div>
-            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
-                vomiting
-              </label>
-              <div class="relative">
-                <div class="flex items-center mb-4">
-                  <input id="default-radio-1" type="radio" value="male" onChange={(e) => setgender(e.target.value)} name="default-radio2" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
-focus:ring-black-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                  <label for="default-radio-1" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Yes</label>
-                </div>
-                <div class="flex items-center">
-                  <input type="radio" value="Female" onChange={(e) => setgender(e.target.value)} name="default-radio2" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
-focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                  <label class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">No</label>
-                </div>
+  <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 py-2">
+    <div class="flex items-center">
+      <input type="checkbox" value="no2" onChange={(e) => setgender(e.target.value)} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2 p-0.5" for="grid-state">
+        Vomiting
+      </label>
+    </div>
+  </div>
 
-              </div>  </div>
-            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
-                headache
-              </label>
-              <div class="relative">
-                <div class="flex items-center mb-4">
-                  <input id="default-radio-1" type="radio" value="male" onChange={(e) => setgender(e.target.value)} name="default-radio3" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
-focus:ring-black-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                  <label for="default-radio-1" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Yes</label>
-                </div>
-                <div class="flex items-center">
-                  <input type="radio" value="Female" onChange={(e) => setgender(e.target.value)} name="default-radio3" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
-focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                  <label class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">No</label>
-                </div>
+  <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 py-2">
+    <div class="flex items-center">
+      <input type="checkbox" value="no3" onChange={(e) => setgender(e.target.value)} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2 p-0.5" for="grid-state">
+        Headache
+      </label>
+    </div>
+  </div>
 
-              </div>  </div>
-            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
-                siezure
-              </label>
-              <div class="relative">
-                <div class="flex items-center mb-4">
-                  <input id="default-radio-1" type="radio" value="male" onChange={(e) => setgender(e.target.value)} name="default-radio4" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
-focus:ring-black-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                  <label for="default-radio-1" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Yes</label>
-                </div>
-                <div class="flex items-center">
-                  <input type="radio" value="Female" onChange={(e) => setgender(e.target.value)} name="default-radio4" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
-focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                  <label class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">No</label>
-                </div></div> </div></div>
-          <div class="flex justify-between mb-10">
-            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
-                Bulging Fontanel
-              </label>
-              <div class="relative">
-                <div class="flex items-center mb-4">
-                  <input id="default-radio-1" type="radio" value="male" onChange={(e) => setgender(e.target.value)} name="default-radio5" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
-focus:ring-black-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                  <label for="default-radio-1" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Yes</label>
-                </div>
-                <div class="flex items-center">
-                  <input type="radio" value="Female" onChange={(e) => setgender(e.target.value)} name="default-radio5" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
-focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                  <label class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">No</label>
-                </div>
+  <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 py-2">
+    <div class="flex items-center">
+      <input type="checkbox" value="no4" onChange={(e) => setgender(e.target.value)} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2 p-0.5" for="grid-state">
+      SIEZURE
+      </label>
+    </div>
+  </div>
 
-              </div>  </div>
-            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
-                Alterd Consciousness
-              </label>
-              <div class="relative">
-                <div class="flex items-center mb-4">
-                  <input id="default-radio-1" type="radio" value="male" onChange={(e) => setgender(e.target.value)} name="default-radio6" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
-focus:ring-black-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                  <label for="default-radio-1" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Yes</label>
-                </div>
-                <div class="flex items-center">
-                  <input type="radio" value="Female" onChange={(e) => setgender(e.target.value)} name="default-radio6" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
-focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                  <label class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">No </label>
-                </div>
+  <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 py-2">
+  <div class="flex items-center">
+    <input type="checkbox" value="no4" onChange={(e) => setgender(e.target.value)} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2 p-0.5" for="grid-state">
+    BULGING FONTANEL
 
-              </div>  </div>
-            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-6" for="grid-state">
-                Neck Rigidity
-              </label>
-              <div class="relative">
-                <div class="flex items-center mb-4">
-                  <input id="default-radio-1" type="radio" value="male" onChange={(e) => setgender(e.target.value)} name="default-radio7" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
-focus:ring-black-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                  <label for="default-radio-1" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Yes</label>
-                </div>
-                <div class="flex items-center">
-                  <input type="radio" value="Female" onChange={(e) => setgender(e.target.value)} name="default-radio7" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
-focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                  <label class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">No</label>
-                </div>
-
-              </div>  </div>
-
-            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-6" for="grid-state">
-                Irritability
-              </label>
-              <div class="relative">
-                <div class="flex items-center mb-4">
-                  <input id="default-radio-1" type="radio" value="male" onChange={(e) => setgender(e.target.value)} name="default-radio8" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
-focus:ring-black-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                  <label for="default-radio-1" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Yes</label>
-                </div>
-                <div class="flex items-center">
-                  <input type="radio" value="Female" onChange={(e) => setgender(e.target.value)} name="default-radio8" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
-focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                  <label class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">No</label>
-                </div></div> </div></div>
+    </label>
+  </div>
+</div>
 
 
 
+<div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 py-2">
+  <div class="flex items-center">
+    <input type="checkbox" value="no4" onChange={(e) => setgender(e.target.value)} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2 p-0.5" for="grid-state">
+    ALTERD CONSCIOUSNESS
+
+    </label>
+  </div>
+</div>
 
 
+<div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 py-2">
+  <div class="flex items-center">
+    <input type="checkbox" value="no4" onChange={(e) => setgender(e.target.value)} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2 p-0.5" for="grid-state">
+    NECK RIGIDITY
+
+    </label>
+  </div>
+</div>
 
 
+  
+</div>
+
+          
 
           <div class="flex flex-wrap -mx-3 mb-12 ">
             <div class="w-full px-3">
               <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                 Notes
               </label>
-              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border h-full border-gray-200 rounded py-3 px-4 mb-3 
-  leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="diag" type="text"
+              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border h-full border-gray-200
+               rounded py-3 px-4 mb-3 
+                leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="diag" type="text"
                 placeholder="ex. Any notes you wanna add " onChange={(e) => Setdiagnosis(e.target.value)}
                 value={diagnosis} />
             </div>
@@ -429,6 +372,10 @@ focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:rin
       font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-12 dark:bg-green-600
        dark:hover:bg-green-700 dark:focus:ring-green-800">Submit</button>
             </div>
+          </div>
+
+          <div >
+          <p className="font-semibold  text-red-600 p-4">⚠️One or more fields have an error. Please check and try again.</p>
           </div>
 
         </form>
