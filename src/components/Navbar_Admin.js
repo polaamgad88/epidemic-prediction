@@ -64,15 +64,6 @@ function Navbar() {
                 </button>
               </li>
               
-          <li class="font-mono text-sm font-semibold text-slate-800 hover:text-white ">
-          <button class="hover:animate-pulse"
-          type="button">       
-          <span class="text-2xl">👨‍⚕️</span>
-
-           
-          </button>
-        </li> 
-              
             </>
           ) : (
             <li class="font-mono text-sm font-semibold text-slate-800 hover:text-white ">
