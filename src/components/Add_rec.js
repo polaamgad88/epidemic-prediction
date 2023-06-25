@@ -11,9 +11,19 @@ const Add_rec = () => {
   const [address, Setaddress] = useState('');
   const [gender, setgender] = useState('');
   const [diagnosis, Setdiagnosis] = useState('');
-  const [symp, setsymp] = useState('');
+  const [notes, SetNotes] = useState('');
+  const [symp, setsymp] = useState(0);
+  const [Irritability, setIrritability] = useState(false);
+  const [Vomiting, setVomiting] = useState(false);
+  const [Headache, setHeadache] = useState(false);
+  const [SIEZURE, setSIEZURE] = useState(false);
+  const [BULGING_FONTANEL, setBULGING_FONTANEL] = useState(false);
+  const [ALTERD_CONSCIOUSNESS, setALTERD_CONSCIOUSNESS] = useState(false);
+  const [NECK_RIGIDITY, setNECK_RIGIDITY] = useState(false);
+  const [fever, setFever] = useState(false);
   const [Governorate, SetGovernorate] = useState('');
   const [District, SetDistrict] = useState('');
+  const [occupation, SetOccupation] = useState('');
   const navigate = useNavigate();
   const [checked, setChecked] = useState(false);
   const [districtOptions, setdistrictOptions] = useState([]);
@@ -93,8 +103,18 @@ const Add_rec = () => {
           address: address,
           gender: gender,
           diagnosis: diagnosis,
+          notes: notes,
+          Irritability: Irritability,
+          ALTERD_CONSCIOUSNESS: ALTERD_CONSCIOUSNESS,
+          BULGING_FONTANEL: BULGING_FONTANEL,
+          SIEZURE: SIEZURE,
+          fever: fever,
+          Headache: Headache,
+          Vomiting: Vomiting,
+          NECK_RIGIDITY: NECK_RIGIDITY,
           Governorate: Governorate,
           District: District,
+          occupation: occupation,
           Nid: Nid,
           symp: symp,
         },
@@ -302,7 +322,7 @@ and value, onchange to be edited..
               <input class="appearance-none block w-full bg-gray-200 text-gray-700 border
              border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white
               focus:border-gray-500" type="number" placeholder="ex. 3" min="0"
-                id='sym_days'
+                id='sym_days' onChange={(e) => setsymp(e.target.value)}
               />
             </div>
           </div>
@@ -324,81 +344,108 @@ and to be edited..
 ----->
 
 */}
-<div class="flex flex-wrap -mx-3 mb-10 mt-8">
-  <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-    <div class="flex items-center py-2">
-      <input type="checkbox" value="no1" onChange={(e) => setgender(e.target.value)} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2 p-0.5" for="grid-state">
-        Irritability
-      </label>
-    </div>
-  </div>
+          <div class="flex flex-wrap -mx-3 mb-10 mt-8">
+            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+              <div class="flex items-center py-2">
+                <input type="checkbox" value="no1" onChange={(e) => setIrritability((Irritability ? false : true))} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2 p-0.5" for="grid-state">
+                  Irritability
+                </label>
+              </div>
+            </div>
 
-  <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 py-2">
-    <div class="flex items-center">
-      <input type="checkbox" value="no2" onChange={(e) => setgender(e.target.value)} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2 p-0.5" for="grid-state">
-        Vomiting
-      </label>
-    </div>
-  </div>
+            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 py-2">
+              <div class="flex items-center">
+                <input type="checkbox" value="no2" onChange={(e) => setVomiting((Vomiting ? false : true))} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2 p-0.5" for="grid-state">
+                  Vomiting
+                </label>
+              </div>
+            </div>
 
-  <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 py-2">
-    <div class="flex items-center">
-      <input type="checkbox" value="no3" onChange={(e) => setgender(e.target.value)} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2 p-0.5" for="grid-state">
-        Headache
-      </label>
-    </div>
-  </div>
+            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 py-2">
+              <div class="flex items-center">
+                <input type="checkbox" value="no3" onChange={(e) => setHeadache((Headache ? false : true))} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2 p-0.5" for="grid-state">
+                  Headache
+                </label>
+              </div>
+            </div>
 
-  <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 py-2">
-    <div class="flex items-center">
-      <input type="checkbox" value="no4" onChange={(e) => setgender(e.target.value)} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2 p-0.5" for="grid-state">
-      SIEZURE
-      </label>
-    </div>
-  </div>
+            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 py-2">
+              <div class="flex items-center">
+                <input type="checkbox" value="no4" onChange={(e) => setSIEZURE((SIEZURE ? false : true))} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2 p-0.5" for="grid-state">
+                  SIEZURE
+                </label>
+              </div>
+            </div>
 
-  <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 py-2">
-  <div class="flex items-center">
-    <input type="checkbox" value="no4" onChange={(e) => setgender(e.target.value)} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2 p-0.5" for="grid-state">
-    BULGING FONTANEL
+            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 py-2">
+              <div class="flex items-center">
+                <input type="checkbox" value="no4" onChange={(e) => setBULGING_FONTANEL((BULGING_FONTANEL ? false : true))} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2 p-0.5" for="grid-state">
+                  BULGING FONTANEL
 
-    </label>
-  </div>
-</div>
+                </label>
+              </div>
+            </div>
+
+            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 py-2">
+              <div class="flex items-center">
+                <input type="checkbox" value="no4" onChange={(e) => setNECK_RIGIDITY((NECK_RIGIDITY ? false : true))} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2 p-0.5" for="grid-state">
+                  NECK RIGIDITY
+
+                </label>
+              </div>
+            </div>
+
+            <div class="w-full md:w-1/2 px-2 mb-6 md:mb-0 py-2">
+              <div class="flex items-center">
+                <input type="checkbox" value="no4" onChange={(e) => setALTERD_CONSCIOUSNESS((ALTERD_CONSCIOUSNESS ? false : true))} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2 p-0.5" for="grid-state">
+                  ALTERD CONSCIOUSNESS
+
+                </label>
+              </div>
+            </div>
+            <div class="w-full md:w-1/2 px-2 mb-6 md:mb-0 py-2">
+              <div class="flex items-center">
+                <input type="checkbox" value="no4" onChange={(e) => setFever((fever ? false : true))} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2 p-0.5" for="grid-state">
+                  fever
+
+                </label>
+              </div>
+            </div>
 
 
 
-<div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 py-2">
-  <div class="flex items-center">
-    <input type="checkbox" value="no4" onChange={(e) => setgender(e.target.value)} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2 p-0.5" for="grid-state">
-    ALTERD CONSCIOUSNESS
-
-    </label>
-  </div>
-</div>
 
 
-<div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 py-2">
-  <div class="flex items-center">
-    <input type="checkbox" value="no4" onChange={(e) => setgender(e.target.value)} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2 p-0.5" for="grid-state">
-    NECK RIGIDITY
 
-    </label>
-  </div>
-</div>
-
-
-  
-</div>
-
-          
+          </div>
+          <div class="flex flex-wrap -mx-3 mb-12">
+            <div class="w-full px-3">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-diagnosis">
+                occupation
+              </label>
+              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="ex. teacher" id='occupation'
+                onChange={(e) => SetOccupation(e.target.value)}
+                value={occupation} />
+            </div>
+          </div>
+          <div class="flex flex-wrap -mx-3 mb-12">
+            <div class="w-full px-3">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-diagnosis">
+                diagnosis
+              </label>
+              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="ex. miningites" id='diagnosis'
+                onChange={(e) => Setdiagnosis(e.target.value)}
+                value={diagnosis} />
+            </div>
+          </div>
 
           <div class="flex flex-wrap -mx-3 mb-12 ">
             <div class="w-full px-3">
@@ -408,8 +455,8 @@ and to be edited..
               <input class="appearance-none block w-full bg-gray-200 text-gray-700 border h-full border-gray-200
                rounded py-3 px-4 mb-3 
                 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="diag" type="text"
-                placeholder="ex. Any notes you wanna add " onChange={(e) => Setdiagnosis(e.target.value)}
-                value={diagnosis} />
+                placeholder="ex. Any notes you wanna add " onChange={(e) => SetNotes(e.target.value)}
+                value={notes} />
             </div>
           </div>
 
@@ -425,7 +472,7 @@ and to be edited..
           </div>
 
           <div >
-          <p className="font-semibold  text-red-600 p-4">⚠️One or more fields have an error. Please check and try again.</p>
+            <p className="font-semibold  text-red-600 p-4">⚠️One or more fields have an error. Please check and try again.</p>
           </div>
 
         </form>
