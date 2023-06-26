@@ -55,7 +55,7 @@ function Login() {
         });
   };
   return (
-    <div class="sm:flex sm:justify-center  min-h-screen  items-center  bg-gradient-to-t from-blue-500 to-cyan-900">
+    <div class="sm:flex sm:justify-center  min-h-screen  items-center  bg-gradient-to-r from-blue-300 to-white">
       <div class="max-w-md h-max w-96 mx-auto inline-block mr-0 ">
         <div class="bg-slate-900 shadow-md rounded-3xl px-8 pt-6 pb-8 mb-4 ">
           <div class="">

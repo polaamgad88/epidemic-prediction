@@ -37,7 +37,7 @@ const Myprofile = () => {
 
   }
   return (
-    <div class="bg-blue-500 h-screen">
+    <div class="bg-gradient-to-r from-blue-300 to-white h-screen">
       <Navbar />
       <div class="ml-9 flex items-center justify-center   mb-4 mt-0">
         <div class="">
@@ -47,9 +47,9 @@ const Myprofile = () => {
       </div>
 
 
-      <div class="bg-blue-500 md:flex md:justify-center mt-6">
+      <div class="bg-gradient-to-r from-blue-300 to-white md:flex md:justify-center mt-6">
         <div class=" ">
-          <form class="w-full max-w-lg bg-blue-500">
+          <form class="w-full max-w-lg bg-gradient-to-r from-blue-300 to-white">
             <div class="flex flex-wrap -mx-3 mb-2">
               <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">

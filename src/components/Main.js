@@ -68,10 +68,10 @@ const Main = () => {
     </div>
   );
   return (
-    <div class="h-screen bg-blue-500">
+    <div class="h-screen bg-gradient-to-r from-blue-300 to-white">
       <Navbar />
 
-      <body class="mt-28 bg-blue-500 ">
+      <body class="mt-28 bg-gradient-to-r from-blue-300 to-white ">
         <div class="md:flex md:justify-center p-10  grid grid-cols-1 sm:grid-cols-1 
         md:grid-cols-3  lg:grid-cols-3 xl:grid-cols-3 gap-16 justify-center">
 

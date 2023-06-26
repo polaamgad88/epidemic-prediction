@@ -61,9 +61,9 @@ const Alerts = () => {
     </div>
   );
   return (
-    <div class="bg-blue-500">
+    <div class="bg-gradient-to-r from-blue-300 to-white">
       <Navbar />
-      <body class="h-screen bg-blue-500">
+      <body class="h-screen bg-gradient-to-r from-blue-300 to-white">
         <div class="ml-9 mt-6">
           <div class="flex justify-between mb-2">
             <h2 class=" text-white text-4xl font-bold">Alerts</h2>

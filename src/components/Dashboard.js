@@ -244,7 +244,7 @@ const Dashboard = () => {
    );
 
    return (
-      <div class="h-screen bg-blue-500 center">
+      <div class="h-screen bg-gradient-to-r from-blue-300 to-whites center">
          <Navbar />
          <h2 class="text-3xl font-bold leading-tighter
     tracking-tighter text-white flex justify-center items-center mb-8 mt-8" >Dashboard</h2>
@@ -258,7 +258,7 @@ const Dashboard = () => {
             </div>
          </div>
 
-         <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg bg-blue-500 dark:border-gray-700">
+         <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg bg-gradient-to-r from-blue-300 to-white dark:border-gray-700">
             <div class="grid grid-cols-2 gap-4 mb-4">
                <div class="flex items-center justify-center h-96 rounded bg-gray-50 dark:bg-gray-800">
                   <Pie data={AgeChartData} options={{
@@ -294,6 +294,7 @@ const Dashboard = () => {
                   }} />
                </div>
             </div>
+            
             <button onClick={handleDynamicData}>TEST</button>
             <div class="h-96 flex items-center justify-center mb-4 rounded bg-gray-50 dark:bg-gray-800">
                <Line data={dataLineChart} options={{

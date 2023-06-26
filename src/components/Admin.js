@@ -59,9 +59,9 @@ const Admin = () => {
     </div>
   );
   return (
-    <div class="h-screen bg-blue-500">
+    <div class="h-screen bg-gradient-to-r from-blue-300 to-white">
 
-      <body class=" bg-blue-500 ">
+      <body class=" bg-gradient-to-r from-blue-300 to-white ">
 
         <div class="p-10 ml-44 mr-16  grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-28">
 

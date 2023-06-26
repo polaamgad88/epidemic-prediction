@@ -160,7 +160,7 @@ const Add_rec = () => {
   );
 
   return (
-    <div class="bg-blue-500 h-screen">
+    <div class="bg-gradient-to-r from-blue-300 to-white h-screen">
       <Navbar />
       <div class="ml-9 flex items-center justify-center  mb-4 mt-0">
         <div class="">
@@ -169,8 +169,8 @@ const Add_rec = () => {
         </div>
       </div>
 
-      <div class="bg-blue-500 md:flex md:justify-center px-12">
-        <form class="w-full max-w-lg bg-blue-500">
+      <div class="bg-gradient-to-r from-blue-300 to-white md:flex md:justify-center px-12">
+        <form class="w-full max-w-lg bg-gradient-to-r from-blue-300 to-white">
 
 
           <div class="flex flex-wrap -mx-3 mb-2">
