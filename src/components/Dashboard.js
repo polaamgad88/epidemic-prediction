@@ -10,6 +10,8 @@ const Dashboard = () => {
    const navigate = useNavigate();
    const [checked, setChecked] = useState(false);
    const [numebrOfCases, setNumebrOfCases] = useState(0);
+   const [year1, SetYear1] = useState();
+   const [year2, SetYear2] = useState();
    const [dataBarChart, setDataBarChart] = useState({
       labels: [],
       datasets: []
@@ -294,25 +296,25 @@ const Dashboard = () => {
                   }} />
                </div>
             </div>
-            <div class="flex flex-wrap -mx-3 mb-2">
-              <div class="w-full md:w-1/2 max-w-md px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-year">
-                  First year
-                </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"  type="text" placeholder="2019" 
-                  value={year1} />
-              </div>
-              <div class="w-full md:w-1/2 px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-second-year">
-                  Second year
-                </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="text" placeholder="2020" 
-
-                  value={year2} />
-              </div>
+            <div class="flex flex-wrap justify-center items-center -mx-3 mb-2">
+               <div class="w-full md:w-1/2 max-w-md px-3 mb-6 md:mb-0">
+                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-year">
+                     First year
+                  </label>
+                  <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded mb-3  py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="ex. 2019" onChange={(e) => SetYear1(e.target.value)}
+                     value={year1} />
+               </div>
+               <button class="bg-blue-500 text-black px-3 py-1 rounded-md hover:animate-pulse" onClick={handleDynamicData}>compare</button>
+               <div class="w-full md:w-1/2 max-w-md px-3 mb-6 md:mb-0">
+                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-second-year">
+                     Second year
+                  </label>
+                  <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded mb-3  py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="ex. 2020" onChange={(e) => SetYear2(e.target.value)}
+                     value={year2} />
+               </div>
             </div>
-            
-            <button onClick={handleDynamicData}>TEST</button>
+
+
             <div class="h-96 flex items-center justify-center mb-4 rounded bg-gray-50 dark:bg-gray-800">
                <Line data={dataLineChart} options={{
                   responsive: true,

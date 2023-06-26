@@ -5,6 +5,7 @@ import axios from "axios";
 const Alerts = () => {
   const navigate = useNavigate();
   const [checked, setChecked] = useState(false)
+  const [alerts, setAlerts] = useState([])
   useEffect(() => {
     var status = false;
     var code;
@@ -25,11 +26,12 @@ const Alerts = () => {
           status = responseJson.data.success
           code = responseJson.data.code
           console.log(responseJson)
+          setAlerts(responseJson.data.alerts)
           var observer = responseJson.data.observer
           if (status && observer) {
             setChecked(true)
             console.log("access gained")
-            
+
           }
           else {
             if (code === 401) {
@@ -48,7 +50,7 @@ const Alerts = () => {
           console.log("unauthorized" + error)
           navigate("/unauthorized")
         });
-  },[navigate])
+  }, [navigate])
   if (!checked) return (
     <div className="h-screen flex justify-center items-center bg-blue-600">
       <div className="p-10 bg-blue-800 rounded-lg shadow-xl">
@@ -63,7 +65,7 @@ const Alerts = () => {
   return (
     <div class="bg-gradient-to-r from-blue-300 to-white">
       <Navbar />
-      <body class="h-screen bg-gradient-to-r from-blue-300 to-white">
+      <body class=" bg-gradient-to-r from-blue-300 to-white">
         <div class="ml-9 mt-6">
           <div class="flex justify-between mb-2">
             <h2 class=" text-white text-4xl font-bold">Alerts</h2>
@@ -98,14 +100,16 @@ const Alerts = () => {
                           ALERT NUMBER
                         </th>
                         <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                          ADDRESS
+                          governorate
                         </th>
                         <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                           ALERT DATE
                         </th>
                         <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                          OUTBREAK PREDICTED <br />
-                          DATE
+                          OUTBREAK DATE
+                        </th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                          disease
                         </th>
                         <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                           STATUS
@@ -114,143 +118,37 @@ const Alerts = () => {
                     </thead>
 
                     <tbody>
-                      <tr>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <div class="flex items-center">
-                            <div class="ml-3">
-                              <p class="text-gray-900 whitespace-no-wrap">
-                                &#x25FE; 001
-                              </p>
+                      {alerts.map(data => (
+                        <tr key={data.alert_id} onClick={console.log("test")}>
+                          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <div className="flex items-center">
+                              <div className="ml-3">
+                                <p className="text-gray-900 whitespace-no-wrap">
+                                  &#x25FE; {data.alert_id}
+                                </p>
+                              </div>
                             </div>
-                          </div>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <p class="text-gray-900 whitespace-no-wrap">
-                            Beni Suef
-                          </p>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <p class="text-gray-900 whitespace-no-wrap">
-                            19/2/21
-                          </p>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <p class="text-gray-900 whitespace-no-wrap">
-                            29/2/21
-                          </p>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                            <span
-                              aria-hidden
-                              class="absolute inset-0 bg-green-200 opacity-50 rounded-xl"
-                            ></span>
-                            <span class="relative">Read</span>
-                          </span>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <div class="flex items-center">
-                            <div class="ml-3">
-                              <p class="text-gray-900 whitespace-no-wrap">
-                                &#x25FE; 002
-                              </p>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <p class="text-gray-900 whitespace-no-wrap">Minya</p>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <p class="text-gray-900 whitespace-no-wrap">7/5/16</p>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <p class="text-gray-900 whitespace-no-wrap">
-                            14/5/16
-                          </p>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
-                            <span
-                              aria-hidden
-                              class="absolute inset-0 bg-red-200 opacity-50 rounded-xl"
-                            ></span>
-                            <span class="relative">Unread</span>
-                          </span>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <div class="flex items-center">
-                            <div class="ml-3">
-                              <p class="text-gray-900 whitespace-no-wrap">
-                                &#x25FE; 003
-                              </p>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <p class="text-gray-900 whitespace-no-wrap">Giza</p>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <p class="text-gray-900 whitespace-no-wrap">
-                            2/11/12
-                          </p>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <p class="text-gray-900 whitespace-no-wrap">
-                            22/11/12
-                          </p>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
-                            <span
-                              aria-hidden
-                              class="absolute inset-0 bg-red-200 opacity-50 rounded-xl"
-                            ></span>
-                            <span class="relative">Unread</span>
-                          </span>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <div class="flex items-center">
-                            <div class="ml-3">
-                              <p class="text-gray-900 whitespace-no-wrap">
-                                &#x25FE; 004
-                              </p>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <p class="text-gray-900 whitespace-no-wrap">
-                            Kafr El Sheikh
-                          </p>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <p class="text-gray-900 whitespace-no-wrap">
-                            2/11/12
-                          </p>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <p class="text-gray-900 whitespace-no-wrap">
-                            22/11/12
-                          </p>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                            <span
-                              aria-hidden
-                              class="absolute inset-0 bg-green-200 opacity-50 rounded-xl"
-                            ></span>
-                            <span class="relative">Read</span>
-                          </span>
-                        </td>
-                      </tr>
+                          </td>
+                          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p className="text-gray-900 whitespace-no-wrap">{data.governorate}</p>
+                          </td>
+                          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p className="text-gray-900 whitespace-no-wrap">{data.prediction_date.split("T")[0]}</p>
+                          </td>
+                          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p className="text-gray-900 whitespace-no-wrap">{data.outbreak_date.split("T")[0]}</p>
+                          </td>
+                          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p className="text-gray-900 whitespace-no-wrap">{data.disease}</p>
+                          </td>
+                          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <span className={(data.is_read == 0 ? 'relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight' : 'relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight')}>
+                              <span aria-hidden className={(data.is_read == 0 ? 'absolute inset-0 bg-red-200 opacity-50 rounded-xl' : 'absolute inset-0 bg-green-200 opacity-50 rounded-xl')}></span>
+                              <span className="relative">{(data.is_read == 0 ? 'unread' : 'read')}</span>
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
