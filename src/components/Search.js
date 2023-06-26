@@ -104,7 +104,7 @@ const Search = () => {
         </div>
       </div>
       <div class="bg-gradient-to-r from-blue-300 to-white md:flex md:justify-center mt-6">
-        <form class="w-full max-w-lg mx-auto bg-gradient-to-r from-blue-300 to-white" onSubmit={onChangehandler}>
+        <form class="w-full max-w-lg mx-auto bg-transparent" onSubmit={onChangehandler}>
 
           <div class="w-full px-3">
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">

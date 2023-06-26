@@ -190,7 +190,7 @@ const Add_rec = () => {
       </div>
 
       <div class="bg-gradient-to-r from-blue-300 to-white md:flex md:justify-center px-12">
-        <form class="w-full max-w-lg bg-gradient-to-r from-blue-300 to-white">
+        <form class="w-full max-w-lg bg-transparent ">
 
 
           <div class="flex flex-wrap -mx-3 mb-2">
