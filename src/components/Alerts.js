@@ -68,7 +68,7 @@ const Alerts = () => {
       <body class=" bg-gradient-to-r from-blue-300 to-white">
         <div class="ml-9 mt-6">
           <div class="flex justify-between mb-2">
-            <h2 class=" text-white text-4xl font-bold">Alerts</h2>
+            <h2 class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-4xl font-bold">Alerts</h2>
 
             <button
               class=" border-2 border-opacity-10  border-white

@@ -141,7 +141,7 @@ const Edit_doc = () => {
       <Navbar />
       <div class="ml-9 flex items-center justify-center   mb-4 mt-0">
         <div class="">
-          <h2 class=" text-white text-4xl font-bold ">Edit account</h2>
+          <h2 class=" bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-4xl font-bold ">Edit account</h2>
           <hr class="h-px my-2 bg-gray-200 border-0 opacity-20 white:bg-gray-700" />
         </div>
       </div>

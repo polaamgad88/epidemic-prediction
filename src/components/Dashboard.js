@@ -249,7 +249,7 @@ const Dashboard = () => {
       <div class="h-screen bg-gradient-to-r from-blue-300 to-whites center">
          <Navbar />
          <h2 class="text-3xl font-bold leading-tighter
-    tracking-tighter text-white flex justify-center items-center mb-8 mt-8" >Dashboard</h2>
+    tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 flex justify-center items-center mb-8 mt-8" >Dashboard</h2>
 
          <div class="card">
             <div class="title">
