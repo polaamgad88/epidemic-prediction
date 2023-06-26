@@ -334,6 +334,10 @@ const Edit_doc = () => {
               </div>
             </div>
 
+            <div >
+            <p className="font-semibold  text-red-600 p-4">⚠️One or more fields have an error. Please check and try again.</p>
+            </div>
+
           </form>
 
         </div>
