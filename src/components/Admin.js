@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import axios from "axios";
-
+import Navbar from "./Navbar_Admin";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -60,6 +60,7 @@ const Admin = () => {
   );
   return (
     <div class="h-screen bg-gradient-to-r from-blue-300 to-white">
+      <Navbar/>
 
       <body class=" bg-gradient-to-r from-blue-300 to-white ">
 
