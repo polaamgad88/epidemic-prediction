@@ -9,7 +9,7 @@ const HeroMain = () => {
         <div className="text-center pb-12 md:pb-16 mt-10 ">
           <h1 className="text-blue-600 text-2xl md:text-6xl font-extrabold leading-tighter
              tracking-tighter mb-1" data-aos="zoom-y-out">Advanced Medicine,<br />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-blue-400 to-blue-600
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600
               ">Trusted Care.</span></h1>
 
           <div className="max-w-3xl mx-auto">
