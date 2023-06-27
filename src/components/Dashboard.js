@@ -107,9 +107,11 @@ const Dashboard = () => {
    const handleDynamicData = () => {
       var status = false;
       var code;
+      if (year1 < 1000 || year2 < 1000 || year1 == undefined || year2 == undefined)
+         return;
       axios
          .get(
-            process.env.REACT_APP_URL + ":4000/dynamicData",
+            process.env.REACT_APP_URL + ":4000/dynamicData/" + year1 + "/" + year2 + "",
             {
                withCredentials: true,
                headers: {

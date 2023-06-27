@@ -51,6 +51,51 @@ const Alerts = () => {
           navigate("/unauthorized")
         });
   }, [navigate])
+  const handleReadForAlerts = (number, is_read) => {
+    console.log(number)
+    console.log(is_read)
+    var status = false;
+    var code;
+    if (is_read)
+      return;
+    axios
+      .get(
+        process.env.REACT_APP_URL + ":4000/alert/" + number,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": 'Bearer ' + localStorage.getItem('Atoken')
+          }
+        }
+      )
+      .then(
+        (responseJson) => {
+          status = responseJson.data.success
+          code = responseJson.data.code
+          console.log(responseJson)
+          if (status) {
+            console.log("read")
+          }
+          else {
+            if (code === 401) {
+              console.log("no access to read this alert")
+              console.log("unauthorized")
+              navigate("/unauthorized")
+            }
+            else {
+              console.log("server error")
+            }
+          }
+        })
+      .catch(
+        (error) => {
+          console.log("unauthorized " + error)
+          navigate("/unauthorized")
+        });
+
+  }
   if (!checked) return (
     <div className="h-screen flex justify-center items-center bg-blue-600">
       <div className="p-10 bg-blue-800 rounded-lg shadow-xl">
@@ -119,7 +164,7 @@ const Alerts = () => {
 
                     <tbody>
                       {alerts.map(data => (
-                        <tr key={data.alert_id} onClick={console.log("test")}>
+                        <tr key={data.alert_id} onClick={handleReadForAlerts(data.alert_id , (data.is_read == 0 ? false : true))}>
                           <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <div className="flex items-center">
                               <div className="ml-3">
