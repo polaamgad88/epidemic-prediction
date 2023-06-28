@@ -115,23 +115,10 @@ const Alerts = () => {
           <div class="flex justify-between mb-2">
             <h2 class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-4xl font-bold">Alerts</h2>
 
-            <button
-              class=" border-2 border-opacity-10  border-white
-     text-white text-xs font-medium py-2 px-4 
-     rounded inline-flex items-center"
-            >
-              <span class="opacity-60 hover:opacity-100">
-                {" "}
-                Download PDF Report &#x1F4C4;
-              </span>
-            </button>
+
           </div>
 
-          <div class="flex justify-between mb-2">
-            <h4 class="text-sm font-normal text-slate-300">
-              Manage alerts and prevent outbreak
-            </h4>
-          </div>
+
           <hr class="h-px my-2 bg-gray-200 border-0 opacity-20 white:bg-gray-700" />
 
           <div class="bg-transparent p-8 rounded-md ">
@@ -157,6 +144,9 @@ const Alerts = () => {
                           disease
                         </th>
                         <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                          expected cases
+                        </th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                           STATUS
                         </th>
                       </tr>
@@ -164,7 +154,7 @@ const Alerts = () => {
 
                     <tbody>
                       {alerts.map(data => (
-                        <tr key={data.alert_id} onClick={handleReadForAlerts(data.alert_id , (data.is_read == 0 ? false : true))}>
+                        <tr key={data.alert_id} onClick={handleReadForAlerts(data.alert_id, (data.is_read == 0 ? false : true))}>
                           <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <div className="flex items-center">
                               <div className="ml-3">
@@ -185,6 +175,9 @@ const Alerts = () => {
                           </td>
                           <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <p className="text-gray-900 whitespace-no-wrap">{data.disease}</p>
+                          </td>
+                          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p className="text-gray-900 whitespace-no-wrap">{data.cases_number}</p>
                           </td>
                           <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <span className={(data.is_read == 0 ? 'relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight' : 'relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight')}>

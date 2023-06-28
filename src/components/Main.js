@@ -84,7 +84,7 @@ const Main = () => {
                 <img class="w-64 h-64flex items-center justify-center rounded-full transition-transform duration-500 transform hover:scale-75"
                   src={require("./imgs/AddRec.jpg")} alt="logo" />
                 <p class=" hover:text-neutral-900 hover:font-extrabold font-sans text-lg font-bold
-                text-white mt-3 mb-3 py-2 px-10   rounded-lg focus:outline-none focus:shadow-outline">
+                text-black mt-3 mb-3 py-2 px-10   rounded-lg focus:outline-none focus:shadow-outline">
                   Add Record</p></button></a>
           </div>
 
@@ -100,7 +100,7 @@ const Main = () => {
                   alt="logo" />
 
                 <p class="mt-5  hover:text-neutral-900 hover:font-extrabold font-sans text-lg font-bold  text-center 
-                text-white  inline-block  rounded-lg focus:outline-none focus:shadow-outline">
+                text-black  inline-block  rounded-lg focus:outline-none focus:shadow-outline">
                   View Dashboard
                 </p></button></a>
           </div>
@@ -115,7 +115,7 @@ const Main = () => {
                   class="w-64 h-64flex items-center justify-center rounded-full transition-transform duration-500 transform hover:scale-75"
                   src={require("./imgs/warnin.jpg")} alt="logo" />
                 <p class="mt-3 mb-3 text-center inline-block  hover:text-neutral-900 hover:font-extrabold font-sans text-lg font-bold 
-                   text-white py-2 px-10  w-52 rounded-lg focus:outline-none focus:shadow-outline">
+                   text-black py-2 px-10  w-52 rounded-lg focus:outline-none focus:shadow-outline">
                   View Alerts </p></button></a>
           </div>
 

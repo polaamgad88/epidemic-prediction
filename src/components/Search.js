@@ -6,6 +6,8 @@ const Search = () => {
   const navigate = useNavigate();
   const [checked, setChecked] = useState(false);
   const [Nid, SetNid] = useState('');
+  const [error_msg, SetError_msg] = useState('');
+
   useEffect(() => {
     var status = false;
     var code;
@@ -73,8 +75,10 @@ const Search = () => {
       .catch(
         (error) => {
           console.log(error.response.status);
-          if (error.response.status === 404)
+          if (error.response.status === 404) {
             console.log("not found")
+            SetError_msg("user not found")
+          }
           else {
             console.log("unauthorized")
             navigate("/unauthorized")
@@ -108,12 +112,15 @@ const Search = () => {
 
           <div class="w-full px-3">
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-              Search by ID
+              Search by National ID
             </label>
             <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 
        focus:outline-none focus:bg-white focus:border-gray-500"  type="text" placeholder="ex. 3010888888204" id="d_id " onChange={(e) => SetNid(e.target.value)}
               value={Nid}
             />
+          </div>
+          <div >
+            <p className="font-semibold  text-red-600 p-4">{error_msg}</p>
           </div>
           <div class="ml-48 mx-3 mb-28 mt-14">
             <div class="w-full ">

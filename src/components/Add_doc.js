@@ -12,12 +12,16 @@ const Add_doc = () => {
   const [address, Setaddress] = useState('');
   const [gender, setgender] = useState('');
   const [Hosbital, Sethosbital] = useState('');
-  const [city, Setcity] = useState('');
+  const [Governorate, SetGovernorate] = useState('');
+  const [District, SetDistrict] = useState('');
+  const [error_msg, SetError_msg] = useState('');
   const navigate = useNavigate();
   const [observer, SetObserver] = useState(false);
   const [doctor, SetDoctor] = useState(false);
   const [researcher, SetResearcher] = useState(false);
   const [checked, setChecked] = useState(false);
+  const [districtOptions, setdistrictOptions] = useState([]);
+  const [governorateOptions, setgovernorateOptions] = useState([]);
   useEffect(() => {
 
     var status = false;
@@ -58,11 +62,28 @@ const Add_doc = () => {
           console.log("unauthorized" + error)
           navigate("/unauthorized")
         });
+    axios
+      .get(
+        process.env.REACT_APP_URL + ":4000/getGovernorates",
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": 'Bearer ' + localStorage.getItem('Atoken')
+          }
+        }
+      )
+      .then(
+        (responseJson) => {
+          setgovernorateOptions(responseJson.data.governorateOptions.map(pair => pair['governorate_name_en']))
+        })
+      .catch(
+        (error) => {
+          console.log("unauthorized " + error)
+          navigate("/unauthorized")
+        });
   }, [navigate])
-
-
-
-
   const onChangehandler = async (e) => {
     e.preventDefault();
     await axios
@@ -77,7 +98,8 @@ const Add_doc = () => {
           address: address,
           gender: gender,
           Hosbital: Hosbital,
-          city: city,
+          Governorate: Governorate,
+          District: District,
           Nid: Nid,
           observer: observer,
           doctor: doctor,
@@ -95,6 +117,7 @@ const Add_doc = () => {
       .then(
         (responseJson) => {
           console.log(responseJson)
+
           SetNid('');
           SetFname('');
           Setbirth('');
@@ -102,7 +125,8 @@ const Add_doc = () => {
           SetLname('');
           Setaddress('');
           setSpecialization('');
-          Setcity('');
+          SetGovernorate('');
+          SetDistrict('');
           setEmail('');
           setgender('');
 
@@ -112,14 +136,44 @@ const Add_doc = () => {
           console.log(error);
         });
   }
+  function handleGovernorateSelectChange(e) {
+    const value = e.target.value;
+    SetGovernorate(value);
+    SetDistrict('')
+    axios
+      .get(
+        process.env.REACT_APP_URL + ":4000/getDistricts" + value,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": 'Bearer ' + localStorage.getItem('Atoken')
+          }
+        }
+      )
+      .then(
+        (responseJson) => {
+          setdistrictOptions(responseJson.data.districtOptions.map(pair => pair['district']))
+        })
+      .catch(
+        (error) => {
+          console.log("unauthorized " + error)
+          navigate("/unauthorized")
+        });
+  }
+  function handleDistrictSelectChange(e) {
+    const value = e.target.value;
+    SetDistrict(value);
+  }
   if (!checked) return (
     <div className="h-screen flex justify-center items-center bg-blue-600">
       <div className="p-10 bg-blue-800 rounded-lg shadow-xl">
-        <svg className="animate-spin h-12 w-12 text-gray-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <svg className="animate-spin h-12 w-12 text-black-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647zm10 0l3 2.647A7.962 7.962 0 0120 "></path>
         </svg>
-        <h2 className="mt-4 text-lg font-medium text-gray-400 text-center">Loading...</h2>
+        <h2 className="mt-4 text-lg font-medium text-black-400 text-center">Loading...</h2>
       </div>
     </div>
   );
@@ -140,17 +194,17 @@ const Add_doc = () => {
           <form class="w-full max-w-lg bg-transparent " onSubmit={onChangehandler}>
             <div class="flex flex-wrap -mx-3 mb-2">
               <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                <label class="block uppercase tracking-wide text-black-700 text-xs font-bold mb-2" for="grid-first-name">
                   First Name
                 </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="D_Fname" type="text" placeholder="Jane" onChange={(e) => SetFname(e.target.value)}
+                <input class="appearance-none block w-full bg-gray-200 text-black-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="D_Fname" type="text" placeholder="Jane" onChange={(e) => SetFname(e.target.value)}
                   value={Fname} />
               </div>
               <div class="w-full md:w-1/2 px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                <label class="block uppercase tracking-wide text-black-700 text-xs font-bold mb-2" for="grid-last-name">
                   Last Name
                 </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="D_Lname" type="text" placeholder="Doe" onChange={(e) => SetLname(e.target.value)}
+                <input class="appearance-none block w-full bg-gray-200 text-black-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="D_Lname" type="text" placeholder="Doe" onChange={(e) => SetLname(e.target.value)}
 
                   value={Lname} />
               </div>
@@ -161,10 +215,10 @@ const Add_doc = () => {
 
             <div class="flex flex-wrap -mx-3 mb-2">
               <div class="w-full px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                <label class="block uppercase tracking-wide text-black-700 text-xs font-bold mb-2" for="grid-password">
                   National id
                 </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 
+                <input class="appearance-none block w-full bg-gray-200 text-black-700 border border-gray-200 rounded py-3 px-4 mb-3 
       leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="text" placeholder="ex. 3010888888204" id="d_id"
                   onChange={(e) => SetNid(e.target.value)}
                   value={Nid} />
@@ -177,90 +231,99 @@ const Add_doc = () => {
 
             <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                <label class="block uppercase tracking-wide text-black-700 text-xs font-bold mb-2" for="grid-password">
                   Current Address
                 </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 
+                <input class="appearance-none block w-full bg-gray-200 text-black-700 border border-gray-200 rounded py-3 px-4 mb-3 
     leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="address" type="text"
                   placeholder="ex. 67 Muharram Bey St." onChange={(e) => Setaddress(e.target.value)}
                   value={address} />
               </div>
             </div>
+            <div class="flex flex-wrap -mx-3 mb-2">
 
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-black-700 text-xs font-bold mb-2" for="grid-first-name">
+                  Governorate
+                </label>
+                <select id="governorates" name="governorates" class="form-select block  mt-1 h-10 w-full bg-gray-200 rounded-md text-black-500" onChange={handleGovernorateSelectChange}
+                >
+                  <option value="">Select a governorate</option>
+                  {governorateOptions.map((option) => (<option value={option}>{option}</option>))}
+                </select>
+              </div>
+              <div class="w-full md:w-1/2 px-3">
+                <label class="block uppercase tracking-wide text-black-700 text-xs font-bold mb-2" for="grid-last-name">
+                  district
+                </label>
+                <select id="district" name="district" class="form-select block w-full mt-1 h-10 bg-gray-200 rounded-md text-black-500" onChange={handleDistrictSelectChange}
+                >
+                  <option value="">Select a district</option>
+                  {districtOptions.map((option) => (<option value={option}>{option}</option>))}
+
+                </select>
+              </div>
+            </div>
             <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                <label class="block uppercase tracking-wide text-black-700 text-xs font-bold mb-2" for="grid-password">
                   Email
                 </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 
+                <input class="appearance-none block w-full bg-gray-200 text-black-700 border border-gray-200 rounded py-3 px-4 mb-3 
     leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" type="text"
                   placeholder="ex. test@example.com." onChange={(e) => setEmail(e.target.value)}
                   value={email} />
               </div>
             </div>
-
             <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                <label class="block uppercase tracking-wide text-black-700 text-xs font-bold mb-2" for="grid-password">
                   specialization
                 </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 
+                <input class="appearance-none block w-full bg-gray-200 text-black-700 border border-gray-200 rounded py-3 px-4 mb-3 
     leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="specialization" type="text"
                   placeholder="ex. GIT" onChange={(e) => setSpecialization(e.target.value)}
                   value={specialization} />
               </div>
             </div>
-
-
-
-            <div class="flex flex-wrap -mx-3 mb-2">
-              <div class="w-full md:w-1/3 px-3 mb-2 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
-                  City
-                </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight 
-      focus:outline-none focus:bg-white
-       focus:border-gray-500" id="grid-city" type="text" placeholder="ex. Alexandria" onChange={(e) => Setcity(e.target.value)}
-                  value={city} />
-              </div>
-
+            <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                <label class="block uppercase tracking-wide text-black-700 text-xs font-bold mb-2" for="grid-state">
                   Gender
                 </label>
                 <div class="relative">
                   <div class="flex items-center mb-4">
                     <input type="radio" value="male" onChange={(e) => setgender(e.target.value)} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-black-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                    <label for="default-radio-1" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Male</label>
+                    <label for="default-radio-1" class="ml-1 text-sm font-medium text-black-900 dark:text-black-300">Male</label>
                   </div>
                   <div class="flex items-center">
                     <input type="radio" value="Female" onChange={(e) => setgender(e.target.value)} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                    <label for="default-radio-2" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Female</label>
+                    <label for="default-radio-2" class="ml-1 text-sm font-medium text-black-900 dark:text-black-300">Female</label>
                   </div>
 
                 </div>
               </div>
               <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                <label class="block uppercase tracking-wide text-black-700 text-xs font-bold mb-2" for="grid-state">
                   Type
                 </label>
                 <div class="relative">
                   <div class="flex items-center ">
                     <input type="checkbox" value="researcher" onChange={(e) => SetResearcher((researcher ? false : true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-black-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                    <label for="default-radio-1" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Researcher</label>
+                    <label for="default-radio-1" class="ml-1 text-sm font-medium text-black-900 dark:text-black-300">Researcher</label>
                   </div>
                   <div class="flex items-center">
                     <input type="checkbox" value="doctor" onChange={(e) => SetDoctor((doctor ? false : true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                    <label for="default-radio-2" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Doctor</label>
+                    <label for="default-radio-2" class="ml-1 text-sm font-medium text-black-900 dark:text-black-300">Doctor</label>
                   </div>
                   <div class="flex items-center">
                     <input type="checkbox" value="observer" onChange={(e) => SetObserver((observer ? false : true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                    <label for="default-radio-3" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Observer</label>
+                    <label for="default-radio-3" class="ml-1 text-sm font-medium text-black-900 dark:text-black-300">Observer</label>
                   </div>
 
 
@@ -268,10 +331,10 @@ const Add_doc = () => {
 
               </div>
               <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip">
+                <label class="block uppercase tracking-wide text-black-700 text-xs font-bold mb-2" for="grid-zip">
                   Birth date
                 </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 
+                <input class="appearance-none block w-full bg-gray-200 text-black-700 border border-gray-200 
       rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="Did" type="date" placeholder="ex. 28/8/1995" onChange={(e) => Setbirth(e.target.value)}
                   value={birth} />
@@ -285,11 +348,11 @@ const Add_doc = () => {
 
 
                   <div class="w-1/2 h-7">
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip">
+                    <label class="block uppercase tracking-wide text-black-700 text-xs font-bold mb-2" for="grid-zip">
                       Hosbital
                     </label>
                     <select onChange={(e) => Sethosbital(e.target.value)}
-                      value={Hosbital} id="hosbital" class="bg-gray-300  w-96 text-gray-900 text-md rounded-none">
+                      value={Hosbital} id="hosbital" class="bg-gray-300  w-96 text-black-900 text-md rounded-none">
                       <option >   </option>
                       <option >Kasr El Aini Teaching Hospita</option>
                       <option >El Safa Hospital        </option>
@@ -309,7 +372,7 @@ const Add_doc = () => {
 
 
             <div >
-              <p className="font-semibold  text-red-600 p-4">⚠️One or more fields have an error. Please check and try again.</p>
+              <p className="font-semibold  text-red-600 p-4">{error_msg}</p>
             </div>
 
             <div class="ml-48 mx-3 mb-28 mt-14">
