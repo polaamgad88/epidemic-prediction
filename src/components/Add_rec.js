@@ -131,6 +131,29 @@ const Add_rec = () => {
       .then(
         (responseJson) => {
           console.log(responseJson)
+          SetNid('');
+          SetFname('');
+          Setbirth('');
+          setgender(null);
+          SetLname('');
+          Setaddress('');
+          setALTERD_CONSCIOUSNESS(null);
+          setBULGING_FONTANEL(null);
+          setFever(null);
+          setHeadache(null);
+          setIrritability(null);
+          setNECK_RIGIDITY(null);
+          setSIEZURE(null);
+          setVomiting(null);
+          setgovernorateOptions('');
+          
+          setdistrictOptions('');
+          SetOccupation('');
+          SetNotes('');
+          setsymp('');
+
+         
+        
         })
       .catch(
         (error) => {

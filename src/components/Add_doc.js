@@ -122,13 +122,16 @@ const Add_doc = () => {
           SetFname('');
           Setbirth('');
           SetObserver(null);
+          SetDoctor(null);
+          SetResearcher(null);
+          setgender(null)
           SetLname('');
           Setaddress('');
           setSpecialization('');
           SetGovernorate('');
           SetDistrict('');
           setEmail('');
-          setgender('');
+         
 
         })
       .catch(

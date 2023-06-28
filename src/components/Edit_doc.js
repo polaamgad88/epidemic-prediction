@@ -56,6 +56,19 @@ const Edit_doc = () => {
       .then(
         (responseJson) => {
           console.log(responseJson)
+          SetNid('');
+          SetFname('');
+          Setbirth('');
+          SetObserver(null);
+          SetDoctor(null);
+          SetResearcher(null);
+          setgender(null)
+          SetLname('');
+          Setaddress('');
+          setSpecialization('');
+          SetGovernorate('');
+          SetDistrict('');
+          setEmail('');
           console.log("edited")
         })
       .catch(
@@ -144,6 +157,7 @@ const Edit_doc = () => {
       .then(
         (responseJson) => {
           setgovernorateOptions(responseJson.data.governorateOptions.map(pair => pair['governorate_name_en']))
+      
         })
       .catch(
         (error) => {
