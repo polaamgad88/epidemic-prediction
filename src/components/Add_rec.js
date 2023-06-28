@@ -4,6 +4,11 @@ import Navbar from "./Navbar";
 import axios from "axios";
 const Add_rec = () => {
   // add fixition to radio change to chckboxes and connect to backend 
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
   const [Nid, SetNid] = useState('');
   const [Fname, SetFname] = useState('');
   const [Lname, SetLname] = useState('');
@@ -94,49 +99,59 @@ const Add_rec = () => {
 
   const onChangehandler = async (e) => {
     e.preventDefault();
-    await axios
-      .post(
-        process.env.REACT_APP_URL + ":4000/addRecord",
-        {
-          Fname: Fname,
-          Lname: Lname,
-          birth: birth,
-          address: address,
-          gender: gender,
-          diagnosis: diagnosis,
-          notes: notes,
-          Irritability: Irritability,
-          ALTERD_CONSCIOUSNESS: ALTERD_CONSCIOUSNESS,
-          BULGING_FONTANEL: BULGING_FONTANEL,
-          SIEZURE: SIEZURE,
-          fever: fever,
-          Headache: Headache,
-          Vomiting: Vomiting,
-          NECK_RIGIDITY: NECK_RIGIDITY,
-          Governorate: Governorate,
-          District: District,
-          occupation: occupation,
-          Nid: Nid,
-          symp: symp,
-        },
-        {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            "Authorization": 'Bearer ' + localStorage.getItem('Atoken')
+    if (Nid === '' || Fname === '' || Lname === '' || birth === '' || address === '' || gender === '' || diagnosis === '' || District === '' || Governorate === '' || occupation === '') {
+      SetError_msg('⚠️One or more fields have an error.Please check and try again.')
+      return;
+    }
+    const currentDate = new Date();
+    const selectedDateObj = new Date(birth);
+    if (selectedDateObj > currentDate)
+      SetError_msg('⚠️Selected date is after the current date')
+    else {
+      await axios
+        .post(
+          process.env.REACT_APP_URL + ":4000/addRecord",
+          {
+            Fname: Fname,
+            Lname: Lname,
+            birth: birth,
+            address: address,
+            gender: gender,
+            diagnosis: diagnosis,
+            notes: notes,
+            Irritability: Irritability,
+            ALTERD_CONSCIOUSNESS: ALTERD_CONSCIOUSNESS,
+            BULGING_FONTANEL: BULGING_FONTANEL,
+            SIEZURE: SIEZURE,
+            fever: fever,
+            Headache: Headache,
+            Vomiting: Vomiting,
+            NECK_RIGIDITY: NECK_RIGIDITY,
+            Governorate: Governorate,
+            District: District,
+            occupation: occupation,
+            Nid: Nid,
+            symp: symp,
+          },
+          {
+            withCredentials: true,
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json",
+              "Authorization": 'Bearer ' + localStorage.getItem('Atoken')
+            }
           }
-        }
-      )
-      .then(
-        (responseJson) => {
-          console.log(responseJson)
-        })
-      .catch(
-        (error) => {
-          console.log(error);
-          navigate("/unauthorized")
-        });
+        )
+        .then(
+          (responseJson) => {
+            console.log(responseJson)
+          })
+        .catch(
+          (error) => {
+            console.log(error);
+            navigate("/unauthorized")
+          });
+    }
   }
   function handleGovernorateSelectChange(e) {
     const value = e.target.value;
@@ -320,7 +335,7 @@ and value, onchange to be edited..
               <label class="block uppercase tracking-wide text-black-700 text-xs font-bold mb-2" for="grid-last-name">
                 Symptoms duration (in days)
               </label>
-              <input class="appearance-none block w-full bg-gray-200 text-black-700 border
+              <input value={symp} class="appearance-none block w-full bg-gray-200 text-black-700 border
              border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white
               focus:border-gray-500" type="number" placeholder="ex. 3" min="0"
                 id='sym_days' onChange={(e) => setsymp(e.target.value)}

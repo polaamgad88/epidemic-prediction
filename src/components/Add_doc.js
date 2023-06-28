@@ -86,55 +86,69 @@ const Add_doc = () => {
   }, [navigate])
   const onChangehandler = async (e) => {
     e.preventDefault();
-    await axios
-      .post(
-        process.env.REACT_APP_URL + ":4000/addDoctor",
-        {
-          Fname: Fname,
-          Lname: Lname,
-          birth: birth,
-          email: email,
-          specialization: specialization,
-          address: address,
-          gender: gender,
-          Hosbital: Hosbital,
-          Governorate: Governorate,
-          District: District,
-          Nid: Nid,
-          observer: observer,
-          doctor: doctor,
-          researcher: researcher,
-        },
-        {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            "Authorization": 'Bearer ' + localStorage.getItem('Atoken')
+    if (Nid === '' || Fname === '' || Lname === '' || birth === '' || address === '' ||
+      email === '' || specialization === '' || gender === '' || District === '' || Governorate === '' || !(researcher || doctor || observer)) {
+      console.log("here")
+      SetError_msg('⚠️One or more fields have an error.Please check and try again.')
+      return;
+    }
+    if (doctor && Hosbital === '') {
+      SetError_msg('⚠️One or more fields have an error.Please check and try again.')
+      return;
+    }
+    const currentDate = new Date();
+    const selectedDateObj = new Date(birth);
+    if (selectedDateObj > currentDate)
+      SetError_msg('⚠️Selected date is after the current date')
+    else {
+
+      await axios
+        .post(
+          process.env.REACT_APP_URL + ":4000/addDoctor",
+          {
+            Fname: Fname,
+            Lname: Lname,
+            birth: birth,
+            email: email,
+            specialization: specialization,
+            address: address,
+            gender: gender,
+            Hosbital: Hosbital,
+            Governorate: Governorate,
+            District: District,
+            Nid: Nid,
+            observer: observer,
+            doctor: doctor,
+            researcher: researcher,
+          },
+          {
+            withCredentials: true,
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json",
+              "Authorization": 'Bearer ' + localStorage.getItem('Atoken')
+            }
           }
-        }
-      )
-      .then(
-        (responseJson) => {
-          console.log(responseJson)
-
-          SetNid('');
-          SetFname('');
-          Setbirth('');
-          SetObserver(null);
-          SetLname('');
-          Setaddress('');
-          setSpecialization('');
-          SetGovernorate('');
-          SetDistrict('');
-          setEmail('');
-          setgender('');
-
-        })
-      .catch(
-        (error) => {
-          console.log(error);
-        });
+        )
+        .then(
+          (responseJson) => {
+            console.log(responseJson)
+            SetNid('');
+            SetFname('');
+            Setbirth('');
+            SetObserver(false);
+            SetDoctor(false);
+            SetResearcher(false);
+            SetLname('');
+            Setaddress('');
+            setSpecialization('');
+            setEmail('');
+          })
+        .catch(
+          (error) => {
+            console.log(error);
+          });
+    }
   }
   function handleGovernorateSelectChange(e) {
     const value = e.target.value;
