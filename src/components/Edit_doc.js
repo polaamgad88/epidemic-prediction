@@ -72,6 +72,7 @@ const Edit_doc = () => {
           (responseJson) => {
             console.log(responseJson)
             console.log("edited")
+            navigate("/search")
           })
         .catch(
           (error) => {
@@ -116,6 +117,8 @@ const Edit_doc = () => {
             SetNid(data.national_id)
             Setaddress(data.address)
             setEmail(data.email)
+            //SetGovernorate(data.Governorate)
+            //SetDistrict(data.District)
             setSpecialization(data.specialization)
             Setbirth(data.birth_date.split('T')[0])
             SetObserver(data.is_observer === 0 ? false : true)
@@ -161,7 +164,7 @@ const Edit_doc = () => {
       .then(
         (responseJson) => {
           setgovernorateOptions(responseJson.data.governorateOptions.map(pair => pair['governorate_name_en']))
-      
+
         })
       .catch(
         (error) => {
@@ -384,14 +387,14 @@ const Edit_doc = () => {
                 <div class="w-full px-3">
 
 
-                  <div class="w-1/2 h-7">
-                    <label class="block uppercase tracking-wide text-black-700 text-xs font-bold mb-2" for="grid-zip">
+                  <div class=" h-7">
+                    <label class="block uppercase tracking-wide text-black-700 text-xs font-bold " for="grid-zip">
                       Hosbital
                     </label>
                     <select onChange={(e) => Sethosbital(e.target.value)}
-                      value={Hosbital} id="hosbital" class="bg-gray-300  w-96 text-black-900 text-md rounded-none">
+                      value={Hosbital} id="hosbital" class="form-select block w-full mt-1 h-10 bg-gray-200 rounded-md text-black-500">
                       <option >   </option>
-                      <option >Kasr El Aini Teaching Hospita</option>
+                      <option >Kasr El Aini Teaching Hospital</option>
                       <option >El Safa Hospital        </option>
                       <option >Cleopatra Hospital</option>
                       <option >Dar El Fouad Hospital (Nasr City, Cairo)</option>

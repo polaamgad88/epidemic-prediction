@@ -135,14 +135,18 @@ const Add_doc = () => {
             console.log(responseJson)
             SetNid('');
             SetFname('');
+            SetLname('');
+            Setaddress('');
+            SetGovernorate('');
+            SetDistrict('')
+            setdistrictOptions([]);
+            setEmail('');
+            setSpecialization('');
             Setbirth('');
             SetObserver(false);
             SetDoctor(false);
             SetResearcher(false);
-            SetLname('');
-            Setaddress('');
-            setSpecialization('');
-            setEmail('');
+            setgender('')
           })
         .catch(
           (error) => {
@@ -260,7 +264,7 @@ const Add_doc = () => {
                 <label class="block uppercase tracking-wide text-black-700 text-xs font-bold mb-2" for="grid-first-name">
                   Governorate
                 </label>
-                <select id="governorates" name="governorates" class="form-select block  mt-1 h-10 w-full bg-gray-200 rounded-md text-black-500" onChange={handleGovernorateSelectChange}
+                <select id="governorates" value={Governorate} name="governorates" class="form-select block  mt-1 h-10 w-full bg-gray-200 rounded-md text-black-500" onChange={handleGovernorateSelectChange}
                 >
                   <option value="">Select a governorate</option>
                   {governorateOptions.map((option) => (<option value={option}>{option}</option>))}
@@ -270,7 +274,7 @@ const Add_doc = () => {
                 <label class="block uppercase tracking-wide text-black-700 text-xs font-bold mb-2" for="grid-last-name">
                   district
                 </label>
-                <select id="district" name="district" class="form-select block w-full mt-1 h-10 bg-gray-200 rounded-md text-black-500" onChange={handleDistrictSelectChange}
+                <select id="district" value={District} name="district" class="form-select block w-full mt-1 h-10 bg-gray-200 rounded-md text-black-500" onChange={handleDistrictSelectChange}
                 >
                   <option value="">Select a district</option>
                   {districtOptions.map((option) => (<option value={option}>{option}</option>))}
@@ -307,12 +311,12 @@ const Add_doc = () => {
                 </label>
                 <div class="relative">
                   <div class="flex items-center mb-4">
-                    <input type="radio" value="male" onChange={(e) => setgender(e.target.value)} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
+                    <input type="radio" checked={gender === 'male'} value="male" onChange={(e) => setgender(e.target.value)} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-black-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                     <label for="default-radio-1" class="ml-1 text-sm font-medium text-black-900 dark:text-black-300">Male</label>
                   </div>
                   <div class="flex items-center">
-                    <input type="radio" value="Female" onChange={(e) => setgender(e.target.value)} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
+                    <input type="radio" checked={gender === 'Female'} value="Female" onChange={(e) => setgender(e.target.value)} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                     <label for="default-radio-2" class="ml-1 text-sm font-medium text-black-900 dark:text-black-300">Female</label>
                   </div>
@@ -325,17 +329,17 @@ const Add_doc = () => {
                 </label>
                 <div class="relative">
                   <div class="flex items-center ">
-                    <input type="checkbox" value="researcher" onChange={(e) => SetResearcher((researcher ? false : true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
+                    <input type="checkbox" checked={researcher} value="researcher" onChange={(e) => SetResearcher((researcher ? false : true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-black-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                     <label for="default-radio-1" class="ml-1 text-sm font-medium text-black-900 dark:text-black-300">Researcher</label>
                   </div>
                   <div class="flex items-center">
-                    <input type="checkbox" value="doctor" onChange={(e) => SetDoctor((doctor ? false : true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
+                    <input type="checkbox" checked={doctor} value="doctor" onChange={(e) => SetDoctor((doctor ? false : true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                     <label for="default-radio-2" class="ml-1 text-sm font-medium text-black-900 dark:text-black-300">Doctor</label>
                   </div>
                   <div class="flex items-center">
-                    <input type="checkbox" value="observer" onChange={(e) => SetObserver((observer ? false : true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
+                    <input type="checkbox" checked={observer} value="observer" onChange={(e) => SetObserver((observer ? false : true))} name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300
        focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                     <label for="default-radio-3" class="ml-1 text-sm font-medium text-black-900 dark:text-black-300">Observer</label>
                   </div>

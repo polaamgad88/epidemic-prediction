@@ -52,8 +52,6 @@ const Alerts = () => {
         });
   }, [navigate])
   const handleReadForAlerts = (number, is_read) => {
-    console.log(number)
-    console.log(is_read)
     var status = false;
     var code;
     if (is_read)
