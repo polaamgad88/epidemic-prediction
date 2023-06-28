@@ -117,14 +117,16 @@ const Edit_doc = () => {
             SetNid(data.national_id)
             Setaddress(data.address)
             setEmail(data.email)
-            //SetGovernorate(data.Governorate)
-            //SetDistrict(data.District)
+            SetGovernorate(data.Governorate)
+            handleGovernorateLoaded(data.Governorate)
+            SetDistrict(data.District)
             setSpecialization(data.specialization)
             Setbirth(data.birth_date.split('T')[0])
             SetObserver(data.is_observer === 0 ? false : true)
             SetResearcher(data.is_researcher === 0 ? false : true)
             SetDoctor(data.is_doctor === 0 ? false : true)
             setgender(data.gender)
+            Sethosbital(data.hospital)
             console.log("access gained")
           }
           else {
@@ -164,7 +166,6 @@ const Edit_doc = () => {
       .then(
         (responseJson) => {
           setgovernorateOptions(responseJson.data.governorateOptions.map(pair => pair['governorate_name_en']))
-
         })
       .catch(
         (error) => {
@@ -173,6 +174,7 @@ const Edit_doc = () => {
         });
   }, [navigate, params.Nid])
   function handleGovernorateSelectChange(e) {
+    console.log("here")
     const value = e.target.value;
     SetGovernorate(value);
     SetDistrict('')
@@ -201,6 +203,33 @@ const Edit_doc = () => {
   function handleDistrictSelectChange(e) {
     const value = e.target.value;
     SetDistrict(value);
+  }
+  function handleGovernorateLoaded(Governorate) {
+    console.log("here")
+    const value = Governorate;
+    SetGovernorate(value);
+    SetDistrict('')
+    axios
+      .get(
+        process.env.REACT_APP_URL + ":4000/getDistricts" + value,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": 'Bearer ' + localStorage.getItem('Atoken')
+          }
+        }
+      )
+      .then(
+        (responseJson) => {
+          setdistrictOptions(responseJson.data.districtOptions.map(pair => pair['district']))
+        })
+      .catch(
+        (error) => {
+          console.log("unauthorized " + error)
+          navigate("/unauthorized")
+        });
   }
   if (!checked) return (
     <div className="h-screen flex justify-center items-center bg-blue-600">
@@ -283,8 +312,9 @@ const Edit_doc = () => {
                 <label class="block uppercase tracking-wide text-black-700 text-xs font-bold mb-2" for="grid-first-name">
                   Governorate
                 </label>
-                <select id="governorates" name="governorates" class="form-select block  mt-1 h-10 w-full bg-gray-200 rounded-md text-black-500" onChange={handleGovernorateSelectChange}
-                >
+                <select value={Governorate} id="governorates" name="governorates"
+                  class="form-select block  mt-1 h-10 w-full bg-gray-200 rounded-md text-black-500"
+                  onChange={handleGovernorateSelectChange}>
                   <option value="">Select a governorate</option>
                   {governorateOptions.map((option) => (<option value={option}>{option}</option>))}
                 </select>
@@ -293,7 +323,7 @@ const Edit_doc = () => {
                 <label class="block uppercase tracking-wide text-black-700 text-xs font-bold mb-2" for="grid-last-name">
                   district
                 </label>
-                <select id="district" name="district" class="form-select block w-full mt-1 h-10 bg-gray-200 rounded-md text-black-500" onChange={handleDistrictSelectChange}
+                <select value={District} id="district" name="district" class="form-select block w-full mt-1 h-10 bg-gray-200 rounded-md text-black-500" onChange={handleDistrictSelectChange}
                 >
                   <option value="">Select a district</option>
                   {districtOptions.map((option) => (<option value={option}>{option}</option>))}
@@ -391,8 +421,7 @@ const Edit_doc = () => {
                     <label class="block uppercase tracking-wide text-black-700 text-xs font-bold " for="grid-zip">
                       Hosbital
                     </label>
-                    <select onChange={(e) => Sethosbital(e.target.value)}
-                      value={Hosbital} id="hosbital" class="form-select block w-full mt-1 h-10 bg-gray-200 rounded-md text-black-500">
+                    <select value={Hosbital} onChange={(e) => Sethosbital(e.target.value)} id="hosbital" class="form-select block w-full mt-1 h-10 bg-gray-200 rounded-md text-black-500">
                       <option >   </option>
                       <option >Kasr El Aini Teaching Hospital</option>
                       <option >El Safa Hospital        </option>

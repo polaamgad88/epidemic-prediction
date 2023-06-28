@@ -3,12 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import Navbar from "./Navbar";
 import axios from "axios";
 const Add_rec = () => {
-  // add fixition to radio change to chckboxes and connect to backend 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
   const [Nid, SetNid] = useState('');
   const [Fname, SetFname] = useState('');
   const [Lname, SetLname] = useState('');
@@ -208,7 +202,7 @@ const Add_rec = () => {
     SetDistrict(value);
   }
   if (!checked) return (
-    <div className="h-screen flex justify-center items-center bg-blue-600">
+    <div className=" flex justify-center items-center bg-blue-600">
       <div className="p-10 bg-blue-800 rounded-lg shadow-xl">
         <svg className="animate-spin h-12 w-12 text-black-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -220,7 +214,7 @@ const Add_rec = () => {
   );
 
   return (
-    <div class="bg-gradient-to-r from-blue-300 to-white h-screen">
+    <div class="bg-gradient-to-r from-blue-300 to-white ">
       <Navbar />
       <div class="ml-9 flex items-center justify-center  mb-4 mt-0">
         <div class="">

@@ -14,7 +14,6 @@ const Myprofile = () => {
   const [address, Setaddress] = useState('');
   const [gender, setgender] = useState('');
   const [Hosbital, Sethosbital] = useState('');
-  const [city, Setcity] = useState('');
   const [observer, SetObserver] = useState(false);
   const [doctor, SetDoctor] = useState(false);
   const [researcher, SetResearcher] = useState(false);
@@ -50,12 +49,16 @@ const Myprofile = () => {
             SetNid(data.national_id)
             Setaddress(data.address)
             setEmail(data.email)
+            SetGovernorate(data.Governorate)
+            handleGovernorateLoaded(data.Governorate)
+            SetDistrict(data.District)
             setSpecialization(data.specialization)
             Setbirth(data.birth_date.split('T')[0])
             SetObserver(data.is_observer === 0 ? false : true)
             SetResearcher(data.is_researcher === 0 ? false : true)
             SetDoctor(data.is_doctor === 0 ? false : true)
             setgender(data.gender)
+            Sethosbital(data.hospital)
             console.log("access gained")
           }
           else {
@@ -132,8 +135,35 @@ const Myprofile = () => {
     const value = e.target.value;
     SetDistrict(value);
   }
+  function handleGovernorateLoaded(Governorate) {
+    console.log("here")
+    const value = Governorate;
+    SetGovernorate(value);
+    SetDistrict('')
+    axios
+      .get(
+        process.env.REACT_APP_URL + ":4000/getDistricts" + value,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": 'Bearer ' + localStorage.getItem('Atoken')
+          }
+        }
+      )
+      .then(
+        (responseJson) => {
+          setdistrictOptions(responseJson.data.districtOptions.map(pair => pair['district']))
+        })
+      .catch(
+        (error) => {
+          console.log("unauthorized " + error)
+          navigate("/unauthorized")
+        });
+  }
   if (!checked) return (
-    <div className="h-screen flex justify-center items-center bg-blue-600">
+    <div className="flex justify-center items-center bg-blue-600">
       <div className="p-10 bg-blue-800 rounded-lg shadow-xl">
         <svg className="animate-spin h-12 w-12 text-black-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -144,12 +174,12 @@ const Myprofile = () => {
     </div>
   );
   return (
-    <div class="bg-gradient-to-r from-blue-300 to-white h-screen">
+    <div class="bg-gradient-to-r from-blue-300 to-white">
       <Navbar />
-      <div class="ml-9 flex items-center justify-center   mb-4 mt-0">
+      <div class="h-full ml-9 flex items-center justify-center mb-4 mt-0">
         <div class="">
           <h2 class=" bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-4xl font-bold ">Your Profile</h2>
-          <hr class="h-px my-2 bg-gray-200 border-0 opacity-20 white:bg-gray-700" />
+          <hr class="my-2 bg-gray-200 border-0 opacity-20 white:bg-gray-700" />
         </div>
       </div>
 
@@ -258,15 +288,6 @@ const Myprofile = () => {
             </div>
 
             <div class="flex flex-wrap -mx-3 mb-2">
-              <div class="w-full md:w-1/3 px-3 mb-2 md:mb-0">
-                <label class="block uppercase tracking-wide text-black-700 text-xs font-bold mb-2" for="grid-city">
-                  City
-                </label>
-                <input disabled class="appearance-none block w-full bg-gray-200 text-black-700 border border-gray-200 rounded py-3 px-4 leading-tight 
-      focus:outline-none focus:bg-white
-       focus:border-gray-500" id="grid-city" type="text" placeholder="ex. Alexandria" onChange={(e) => Setcity(e.target.value)}
-                  value={city} />
-              </div>
 
               <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-black-700 text-xs font-bold mb-2" for="grid-state">
@@ -327,14 +348,14 @@ const Myprofile = () => {
                 <div class="w-full px-3">
 
 
-                  <div class="w-1/2 h-7">
-                    <label class="block uppercase tracking-wide text-black-700 text-xs font-bold mb-2" for="grid-zip">
+                  <div class="h-7">
+                    <label class="block uppercase tracking-wide text-black-700 text-xs font-bold " for="grid-zip">
                       Hosbital
                     </label>
                     <select disabled onChange={(e) => Sethosbital(e.target.value)}
-                      value={Hosbital} id="hosbital" class="bg-gray-300  w-96 text-black-900 text-md rounded-none">
+                      value={Hosbital} id="hosbital" class="form-select block w-full mt-1 h-10 bg-gray-200 rounded-md text-black-500">
                       <option >   </option>
-                      <option >Kasr El Aini Teaching Hospita</option>
+                      <option >Kasr El Aini Teaching Hospital</option>
                       <option >El Safa Hospital        </option>
                       <option >Cleopatra Hospital</option>
                       <option >Dar El Fouad Hospital (Nasr City, Cairo)</option>
@@ -349,7 +370,7 @@ const Myprofile = () => {
             ) : (
               <></>
             )}
-
+            <div class="ml-48 mx-3 mb-28 mt-14"></div>
           </form>
 
         </div>

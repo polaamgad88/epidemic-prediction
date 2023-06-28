@@ -185,7 +185,7 @@ const Add_doc = () => {
     SetDistrict(value);
   }
   if (!checked) return (
-    <div className="h-screen flex justify-center items-center bg-blue-600">
+    <div className=" flex justify-center items-center bg-blue-600">
       <div className="p-10 bg-blue-800 rounded-lg shadow-xl">
         <svg className="animate-spin h-12 w-12 text-black-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -197,7 +197,7 @@ const Add_doc = () => {
   );
 
   return (
-    <div class="bg-gradient-to-r from-blue-300 to-white h-screen">
+    <div class="bg-gradient-to-r from-blue-300 to-white ">
       <Navbar />
       <div class="ml-9 flex items-center justify-center   mb-4 mt-0">
         <div class="">
@@ -365,14 +365,14 @@ const Add_doc = () => {
                 <div class="w-full px-3">
 
 
-                  <div class="w-1/2 h-7">
-                    <label class="block uppercase tracking-wide text-black-700 text-xs font-bold mb-2" for="grid-zip">
+                  <div class="h-7">
+                    <label class="block uppercase tracking-wide text-black-700 text-xs font-bold " for="grid-zip">
                       Hosbital
                     </label>
                     <select onChange={(e) => Sethosbital(e.target.value)}
-                      value={Hosbital} id="hosbital" class="bg-gray-300  w-96 text-black-900 text-md rounded-none">
+                      value={Hosbital} id="hosbital" class="form-select block w-full mt-1 h-10 bg-gray-200 rounded-md text-black-500">
                       <option >   </option>
-                      <option >Kasr El Aini Teaching Hospita</option>
+                      <option >Kasr El Aini Teaching Hospital</option>
                       <option >El Safa Hospital        </option>
                       <option >Cleopatra Hospital</option>
                       <option >Dar El Fouad Hospital (Nasr City, Cairo)</option>
