@@ -106,7 +106,7 @@ const Alerts = () => {
     </div>
   );
   return (
-    <div class="bg-gradient-to-r from-blue-300 to-white">
+    <div class="min-h-screen bg-gradient-to-r from-blue-300 to-white">
       <Navbar />
       <body class=" bg-gradient-to-r from-blue-300 to-white">
         <div class="ml-9 mt-6">
