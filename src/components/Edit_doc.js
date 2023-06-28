@@ -25,68 +25,72 @@ const Edit_doc = () => {
   const [governorateOptions, setgovernorateOptions] = useState([]);
   const onChangehandler = async (e) => {
     e.preventDefault();
-    await axios
-      .post(
-        process.env.REACT_APP_URL + ":4000/editDoctor",
-        {
-          Fname: Fname,
-          Lname: Lname,
-          birth: birth,
-          address: address,
-          gender: gender,
-          Hosbital: Hosbital,
-          specialization: specialization,
-          email: email,
-          Governorate: Governorate,
-          District: District,
-          Nid: params.Nid,
-          observer: observer,
-          doctor: doctor,
-          researcher: researcher,
-        },
-        {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            "Authorization": 'Bearer ' + localStorage.getItem('Atoken')
+    if (Nid === '' || Fname === '' || Lname === '' || birth === '' || address === '' ||
+      email === '' || specialization === '' || gender === '' || District === '' || Governorate === '' || !(researcher || doctor || observer)) {
+      console.log("here")
+      SetError_msg('⚠️One or more fields have an error.Please check and try again.')
+      return;
+    }
+    if (doctor && Hosbital === '') {
+      SetError_msg('⚠️One or more fields have an error.Please check and try again.')
+      return;
+    }
+    const currentDate = new Date();
+    const selectedDateObj = new Date(birth);
+    if (selectedDateObj > currentDate)
+      SetError_msg('⚠️Selected date is after the current date')
+    else {
+      await axios
+        .post(
+          process.env.REACT_APP_URL + ":4000/editDoctor",
+          {
+            Fname: Fname,
+            Lname: Lname,
+            birth: birth,
+            address: address,
+            gender: gender,
+            Hosbital: Hosbital,
+            specialization: specialization,
+            email: email,
+            Governorate: Governorate,
+            District: District,
+            Nid: params.Nid,
+            observer: observer,
+            doctor: doctor,
+            researcher: researcher,
+          },
+          {
+            withCredentials: true,
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json",
+              "Authorization": 'Bearer ' + localStorage.getItem('Atoken')
+            }
           }
-        }
-      )
-      .then(
-        (responseJson) => {
-          console.log(responseJson)
-          SetNid('');
-          SetFname('');
-          Setbirth('');
-          SetObserver(null);
-          SetDoctor(null);
-          SetResearcher(null);
-          setgender(null)
-          SetLname('');
-          Setaddress('');
-          setSpecialization('');
-          SetGovernorate('');
-          SetDistrict('');
-          setEmail('');
-          console.log("edited")
-        })
-      .catch(
-        (error) => {
-          console.log(error);
-          if (error.response.status === 401) {
-            console.log("unauthorized")
-            navigate("/unauthorized")
-          }
-          else if (error.response.status === 404)
-            console.log("not found")
-          else
-            console.log("server error")
-        });
+        )
+        .then(
+          (responseJson) => {
+            console.log(responseJson)
+            console.log("edited")
+          })
+        .catch(
+          (error) => {
+            console.log(error);
+            if (error.response.status === 401) {
+              console.log("unauthorized")
+              navigate("/unauthorized")
+            }
+            else if (error.response.status === 404)
+              console.log("not found")
+            else
+              console.log("server error")
+          });
+    }
   }
   useEffect(() => {
     var status = false;
     var code;
+
     axios
       .get(
         process.env.REACT_APP_URL + ":4000/loadDoctorData" + params.Nid,
