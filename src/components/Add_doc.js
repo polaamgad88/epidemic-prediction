@@ -147,6 +147,7 @@ const Add_doc = () => {
             SetDoctor(false);
             SetResearcher(false);
             setgender('')
+            SetError_msg('')
           })
         .catch(
           (error) => {
@@ -185,7 +186,7 @@ const Add_doc = () => {
     SetDistrict(value);
   }
   if (!checked) return (
-    <div className=" flex justify-center items-center bg-blue-600">
+    <div className="min-h-screen flex justify-center items-center bg-blue-600">
       <div className="p-10 bg-blue-800 rounded-lg shadow-xl">
         <svg className="animate-spin h-12 w-12 text-black-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
