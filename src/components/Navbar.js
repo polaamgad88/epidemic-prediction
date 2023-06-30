@@ -39,23 +39,14 @@ function Navbar() {
 
   return (
     <nav class="flex justify-between px-10 py-2 items-center bg-blue-100 rounded-sm" >
-      <a href="/">
+      <a href="/main">
         <img class="w-8 h-8" src={require('./imgs/logo.png')} alt="logo" />
       </a>
       <div class="flex items-center bg-blue-100">
         <ul class="flex items-center space-x-12">
           {isLoggedIn ? (
             <>
-              <li class="font-mono text-sm font-semibold text-slate-800 hover:animate-pulse transition-all ">
-                <a href="/Main">
-                  <button
-                    class="hover:animate-pulse"
-                    type="button">
-                    Home
-                  </button>
-                </a>
-              </li>
-          
+
               <li class="font-mono text-sm font-semibold text-slate-800 hover:animate-pulse  ">
                 <button
                   class="hover:animate-pulse"
@@ -64,18 +55,18 @@ function Navbar() {
                   Logout
                 </button>
               </li>
-              
-          <li class="font-mono text-sm font-semibold text-slate-800  hover:animate-pulse ">
-            <a href="/Myprofile">
-          <button class="hover:animate-pulse"
-          type="button">       
-          <span class="text-2xl">👨‍⚕️</span>
 
-           
-          </button>
-          </a>
-        </li> 
-              
+              <li class="font-mono text-sm font-semibold text-slate-800  hover:animate-pulse ">
+                <a href="/Myprofile">
+                  <button class="hover:animate-pulse"
+                    type="button">
+                    <span class="text-2xl">👨‍⚕️</span>
+
+
+                  </button>
+                </a>
+              </li>
+
             </>
           ) : (
             <li class="font-mono text-sm font-semibold text-slate-800 ">
