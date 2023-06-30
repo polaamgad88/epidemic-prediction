@@ -176,6 +176,11 @@ const Edit_doc = () => {
   function handleGovernorateSelectChange(e) {
     console.log("here")
     const value = e.target.value;
+    if (value === '' || value === undefined) {
+      SetGovernorate('')
+      SetDistrict('')
+      return;
+    }
     SetGovernorate(value);
     SetDistrict('')
     axios
@@ -245,7 +250,7 @@ const Edit_doc = () => {
   return (
     <div class="bg-blue-200 h-screen">
       <Navbar />
-      <div class="ml-9 flex items-center justify-center   mb-4 mt-0">
+      <div class="flex items-center justify-center   mb-4 mt-0">
         <div class="">
           <h2 class=" bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-4xl font-bold ">Edit account</h2>
           <hr class="h-px my-2 bg-gray-200 border-0 opacity-20 white:bg-gray-700" />
@@ -441,7 +446,7 @@ const Edit_doc = () => {
 
 
 
-            <div >
+            <div class="mt-4">
               <p className="font-semibold  text-red-600 p-4">{error_msg}</p>
             </div>
             <div class="ml-48 mx-3 mb-28 mt-14">

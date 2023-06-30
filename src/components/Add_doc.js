@@ -157,6 +157,11 @@ const Add_doc = () => {
   }
   function handleGovernorateSelectChange(e) {
     const value = e.target.value;
+    if (value === '' || value === undefined){
+      SetGovernorate('')
+      SetDistrict('')
+      return;
+    }
     SetGovernorate(value);
     SetDistrict('')
     axios
@@ -200,7 +205,7 @@ const Add_doc = () => {
   return (
     <div class="bg-blue-200 ">
       <Navbar />
-      <div class="ml-9 flex items-center justify-center   mb-4 mt-0">
+      <div class="flex items-center justify-center   mb-4 mt-0">
         <div class="">
           <h2 class=" bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-4xl font-bold  mt-6">New Doctor account</h2>
           <hr class="h-px my-2 bg-gray-200 border-0 opacity-20 white:bg-gray-700" />

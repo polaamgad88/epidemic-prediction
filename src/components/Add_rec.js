@@ -173,6 +173,11 @@ const Add_rec = () => {
   }
   function handleGovernorateSelectChange(e) {
     const value = e.target.value;
+    if (value === '' || value === undefined) {
+      SetGovernorate('')
+      SetDistrict('')
+      return;
+    }
     SetGovernorate(value);
     SetDistrict('')
     axios
@@ -216,7 +221,7 @@ const Add_rec = () => {
   return (
     <div class="bg-blue-200">
       <Navbar />
-      <div class="ml-9 flex items-center justify-center  mb-12 mt-4">
+      <div class="flex items-center justify-center  mb-12 mt-4">
         <div class="">
           <h2 class="bg-clip-text text-neutral-800 text-4xl font-bold font-sans">Add record</h2>
           <hr class="h-px my-2 bg-gray-200 border-0 opacity-20 white:bg-gray-700" />
@@ -436,18 +441,18 @@ and to be edited..
             </div>
 
 
-            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 py-2">
+            <div class="w-full md:w-2/3 px-3 mb-6 md:mb-0 py-2">
               <div class="flex items-center">
-                <input type="checkbox" checked={NECK_RIGIDITY} value="no4"  onChange={(e) => setALTERD_CONSCIOUSNESS((ALTERD_CONSCIOUSNESS ? false : true))} name="default-radio1"class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <input type="checkbox" checked={ALTERD_CONSCIOUSNESS} value="no4" onChange={(e) => setALTERD_CONSCIOUSNESS((ALTERD_CONSCIOUSNESS ? false : true))} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                 <label class="block uppercase tracking-wide text-black-700 text-xs font-bold ml-2 p-0.5" for="grid-state">
-                ALTERD CONSCIOUSNESS
+                  ALTERD CONSCIOUSNESS
 
                 </label>
               </div>
             </div>
 
 
-            <div class="w-full md:w-1/2 px-2 mb-6 md:mb-0 py-2">
+            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 py-2">
               <div class="flex items-center">
                 <input type="checkbox" checked={fever} value="no4" onChange={(e) => setFever((fever ? false : true))} name="default-radio1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                 <label class="block uppercase tracking-wide text-black-700 text-xs font-bold ml-2 p-0.5" for="grid-state">

@@ -251,19 +251,19 @@ const Dashboard = () => {
       <div class="h-screen bg-blue-200 center">
          <Navbar />
          <h2 class="text-3xl font-bold leading-tighter
-    tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 flex justify-center items-center mb-8 mt-8" >Dashboard</h2>
+    tracking-tighter bg-clip-text flex justify-center items-center mb-8 mt-8" >Dashboard</h2>
 
 
-    <div class="bg-blue-200 rounded-full overflow-hidden shadow-md w-64 mt-12 mb-12">
-    <div class="p-4">
-      <div class="text-center">
-        <p class="text-lg font-semibold text-blue-900">Total Number of Cases</p>
-      </div>
-      <div class="mt-4 text-center">
-        <p class="text-2xl font-extrabold text-blue-900">{numebrOfCases}</p>
-      </div>
-    </div>
-  </div>
+         <div class="bg-blue-100 rounded-full overflow-hidden shadow-md w-64 mt-12 mb-12">
+            <div class="p-4">
+               <div class="text-center">
+                  <p class="text-lg font-semibold text-blue-900">Total Number of Cases</p>
+               </div>
+               <div class="mt-4 text-center">
+                  <p class="text-2xl font-extrabold text-blue-900">{numebrOfCases}</p>
+               </div>
+            </div>
+         </div>
 
          <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg bg-blue-200 dark:border-gray-700">
             <div class="grid grid-cols-2 gap-4 mb-4">
@@ -309,7 +309,7 @@ const Dashboard = () => {
                   <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded mb-3  py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="ex. 2019" onChange={(e) => SetYear1(e.target.value)}
                      value={year1} />
                </div>
-               <button class="bg-blue-500 text-black px-3 py-1 rounded-md hover:animate-pulse" onClick={handleDynamicData}>Compare</button>
+               <button class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" onClick={handleDynamicData}>Compare</button>
                <div class="w-full md:w-1/2 max-w-md px-3 mb-6 md:mb-0">
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-second-year">
                      Second year

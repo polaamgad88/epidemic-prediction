@@ -39,8 +39,9 @@ function Navbar() {
 
   return (
     <nav class="flex justify-between px-10 py-2 items-center bg-blue-100 rounded-sm" >
-      <a href="/admin">
+      <a href="/admin" class="flex justify-between px-10 py-2 items-center bg-blue-100 rounded-sm">
         <img class="w-8 h-8" src={require('./imgs/logo.png')} alt="logo" />
+        <span class="ml-2 text-xl font-bold text-black py-4">Epidetect</span>
       </a>
       <div class="flex items-center">
         <ul class="flex items-center space-x-12">
@@ -54,11 +55,12 @@ function Navbar() {
                   Logout
                 </button>
               </li>
-              
+
             </>
           ) : (
-            <li class="font-mono text-sm font-semibold text-slate-800 hover:text-white ">
-              <a href="/Login">
+            
+            <li class="font-mono text-sm font-semibold text-slate-800 hover:animate-pulse ">
+            <a href="/Login">
                 <button
                   class="hover:animate-pulse"
                   type="button">

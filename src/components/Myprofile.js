@@ -43,7 +43,6 @@ const Myprofile = () => {
           var data = responseJson.data.data
           console.log(responseJson)
           if (status) {
-            setChecked(true)
             SetFname(data.first_name)
             SetLname(data.last_name)
             SetNid(data.national_id)
@@ -60,6 +59,7 @@ const Myprofile = () => {
             setgender(data.gender)
             Sethosbital(data.hospital)
             console.log("access gained")
+            setChecked(true)
           }
           else {
             throw new Error()
@@ -176,9 +176,9 @@ const Myprofile = () => {
   return (
     <div class="bg-blue-200  mb-16 ">
       <Navbar />
-      <div class="h-full ml-9 flex items-center justify-center mb-4 mt-0 ">
+      <div class="h-full flex items-center justify-center mb-4 mt-0 ">
        
-          <h2 class="  text-4xl font-bold  text-neutral-700">Your Profile</h2>
+          <h2 class="  text-4xl font-bold  text-neutral-700">My Profile</h2>
       </div>
 
 

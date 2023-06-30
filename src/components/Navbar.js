@@ -39,9 +39,11 @@ function Navbar() {
 
   return (
     <nav class="flex justify-between px-10 py-2 items-center bg-blue-100 rounded-sm" >
-      <a href="/main">
+      <a href="/main" class="flex justify-between px-10 py-2 items-center bg-blue-100 rounded-sm">
         <img class="w-8 h-8" src={require('./imgs/logo.png')} alt="logo" />
+        <span class="ml-2 text-xl font-bold text-black py-4">Epidetect</span>
       </a>
+
       <div class="flex items-center bg-blue-100">
         <ul class="flex items-center space-x-12">
           {isLoggedIn ? (
@@ -69,10 +71,10 @@ function Navbar() {
 
             </>
           ) : (
-            <li class="font-mono text-sm font-semibold text-slate-800 ">
+            <li class="font-mono text-sm font-semibold text-slate-800 hover:animate-pulse  ">
               <a href="/Login">
                 <button
-                  class="bg-blue-500 text-black px-3 py-1 rounded-md hover:animate-pulse"
+                  class="hover:animate-pulse"
                   type="button">
                   Login
                 </button>
