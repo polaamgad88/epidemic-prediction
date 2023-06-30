@@ -49,13 +49,13 @@ function Login() {
           if (error.response.status === 429)
             navigate("/toomanyrequests")
           else {
-            setErrorMessage("Nope. Try again.")
+            setErrorMessage("⚠️ Nope, Try again.")
             console.log("wrong password")
           }
         });
   };
   return (
-    <div class="sm:flex sm:justify-center  min-h-screen  items-center  bg-gradient-to-r from-blue-300 to-white">
+    <div class="sm:flex sm:justify-center  min-h-screen  items-center  bg-blue-200">
       <div class="max-w-md h-max w-96 mx-auto inline-block mr-0 ">
         <div class="bg-slate-900 shadow-md rounded-3xl px-8 pt-6 pb-8 mb-4 ">
           <div class="">
@@ -129,7 +129,7 @@ function Login() {
             <div class="flex items-center justify-center">
 
               <button
-                class="bg-blue-500 hover:bg-blue-700 text-white mt-16 mb-3
+                class="bg-blue-500 hover:bg-blue-700 text-white mt-24 mb-3
               font-bold py-2 px-4 w-52 rounded-lg focus:outline-none focus:shadow-outline"
                 type="submit"
                 value="Submit"

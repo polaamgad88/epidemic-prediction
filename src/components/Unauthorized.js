@@ -5,7 +5,7 @@ const Unauthorized = () => {
   return (
     <div class=" ">
       <Navbar />
-      <div class="h-screen w-full flex flex-col justify-center items-center bg-gradient-to-r from-blue-300 to-white">
+      <div class="h-screen w-full flex flex-col justify-center items-center bg-blue-200">
         <h1 class="text-12xl font-extrabold text-white tracking-widest">401</h1>
         <div class="bg-[#FF6A3D] px-2 text-xl rounded rotate-12 absolute">
           Unauthorized Access

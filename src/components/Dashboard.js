@@ -236,8 +236,8 @@ const Dashboard = () => {
 
 
    if (!checked) return (
-      <div className="h-screen flex justify-center items-center bg-blue-600">
-         <div className="p-10 bg-blue-500 rounded-lg shadow-xl">
+      <div className="h-screen flex justify-center items-center bg-blue-200">
+         <div className="p-10 bg-blue-200 rounded-lg shadow-xl">
             <svg className="animate-spin h-12 w-12 text-gray-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647zm10 0l3 2.647A7.962 7.962 0 0120 "></path>
@@ -248,21 +248,24 @@ const Dashboard = () => {
    );
 
    return (
-      <div class="h-screen bg-gradient-to-r from-blue-300 to-whites center">
+      <div class="h-screen bg-blue-200 center">
          <Navbar />
          <h2 class="text-3xl font-bold leading-tighter
     tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 flex justify-center items-center mb-8 mt-8" >Dashboard</h2>
 
-         <div class="card">
-            <div class="title">
-               <p class="title-text">total number of cases</p>
-            </div>
-            <div class="data">
-               <p>{numebrOfCases}</p>
-            </div>
-         </div>
 
-         <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg bg-gradient-to-r from-blue-300 to-white dark:border-gray-700">
+    <div class="bg-blue-200 rounded-full overflow-hidden shadow-md w-64 mt-12 mb-12">
+    <div class="p-4">
+      <div class="text-center">
+        <p class="text-lg font-semibold text-blue-900">Total Number of Cases</p>
+      </div>
+      <div class="mt-4 text-center">
+        <p class="text-2xl font-extrabold text-blue-900">{numebrOfCases}</p>
+      </div>
+    </div>
+  </div>
+
+         <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg bg-blue-200 dark:border-gray-700">
             <div class="grid grid-cols-2 gap-4 mb-4">
                <div class="flex items-center justify-center h-96 rounded bg-gray-50 dark:bg-gray-800">
                   <Pie data={AgeChartData} options={{
@@ -306,7 +309,7 @@ const Dashboard = () => {
                   <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded mb-3  py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="ex. 2019" onChange={(e) => SetYear1(e.target.value)}
                      value={year1} />
                </div>
-               <button class="bg-blue-500 text-black px-3 py-1 rounded-md hover:animate-pulse" onClick={handleDynamicData}>compare</button>
+               <button class="bg-blue-500 text-black px-3 py-1 rounded-md hover:animate-pulse" onClick={handleDynamicData}>Compare</button>
                <div class="w-full md:w-1/2 max-w-md px-3 mb-6 md:mb-0">
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-second-year">
                      Second year
