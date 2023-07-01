@@ -111,7 +111,7 @@ const Alerts = () => {
       <body class=" bg-blue-200">
         <div class="ml-9 mt-6">
           <div class="flex justify-between mb-2">
-            <h2 class="bg-clip-text text-transparent bg-neutral-800 text-4xl font-bold">Alerts</h2>
+            <h2 class="bg-clip-text text-transparent bg-neutral-800 text-4xl font-bold hidden">Alerts</h2>
 
 
           </div>

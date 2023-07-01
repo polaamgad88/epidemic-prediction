@@ -57,7 +57,7 @@ function Login() {
   return (
     <div class="sm:flex sm:justify-center  min-h-screen  items-center  bg-blue-200">
       <div class="max-w-md h-max w-96 mx-auto inline-block mr-0 ">
-        <div class="bg-slate-900 shadow-md rounded-3xl px-8 pt-6 pb-8 mb-4 ">
+        <div class="bg-slate-800 shadow-md rounded-3xl px-8 pt-6 pb-8 mb-4 ">
           <div class="">
             <nav class="flex  bg-blue-500 rounded-3xl p-2  py-2 ">
               <div class="w-12 h-12">
@@ -73,7 +73,7 @@ function Login() {
             <img alt="img" class="rounded-xl mt-9" src={require("./imgs/loginIMG.jpg")} />
           </div>
 
-          <h2 class="text-xl animate-bounce font-mono font-normal mb-4 text-center text-white">
+          <h2 class="text-xl animate-pulse font-mono font-normal mb-4 text-center text-white">
             {" "}
             &#x1F44B; Welcome Back <br /> Doctor!
           </h2>
@@ -90,7 +90,7 @@ function Login() {
           <h2 class="text-3xl font-bold mb-6 mt-14 text-center text-blue-500">
             Login
           </h2>
-          <h2 class="text-xs font-normal mb-6 text-center text-gray-400">
+          <h2 class="text-xs font-normal mb-6 text-center text-gray-400 hidden">
             Welcome Back dear user, <br />
           </h2>
           {errorMessage && <h2 class="text-l font-normal mb-6 mt-14 text-center text-red-500">
@@ -100,7 +100,7 @@ function Login() {
           >
             <div class="mb-8">
               <input
-                class="h-9 shadow-md rounded w-full py-2 px-3
+                class="h-9 shadow-md rounded w-full py-2 px-3 mt-10
              text-gray-900  border border-slate-100 hover:border-blue-500 "
                 id="username"
                 type="text"
@@ -130,7 +130,7 @@ function Login() {
 
               <button
                 class="bg-blue-500 hover:bg-blue-700 text-white mt-24 mb-3
-              font-bold py-2 px-4 w-52 rounded-lg focus:outline-none focus:shadow-outline"
+              font-bold py-2 px-4 w-full rounded-lg focus:outline-none focus:shadow-outline"
                 type="submit"
                 value="Submit"
               >

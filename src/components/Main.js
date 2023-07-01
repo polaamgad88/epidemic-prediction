@@ -72,7 +72,7 @@ const Main = () => {
     <div class="h-screen bg-blue-200 ">
     <Navbar />
 
-      <body class="mt-28 bg-blue-200">
+      <body class="mt-28 ">
         <div class="md:flex md:justify-center p-10  grid grid-cols-1 sm:grid-cols-1 
         md:grid-cols-3  lg:grid-cols-3 xl:grid-cols-3 gap-16 justify-center">
 

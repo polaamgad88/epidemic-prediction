@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 
 const HeroMain = () => {
   return (
-    <div className="bg-gradient-to-r from-blue-300 to-white">
+    <div className="bg-gradient-to-b from-blue-100 to-blue-300">
       <Navbar />
       <body className="h-screen">
         <div className="text-center pb-12 md:pb-16 mt-10 ">
@@ -13,8 +13,8 @@ const HeroMain = () => {
               ">Trusted Care.</span></h1>
 
           <div className="max-w-3xl mx-auto">
-            <p className="text-xs text-center text-blue-500 mb-0" data-aos="zoom-y-out"
-              data-aos-delay="150">Help us to save more lives....</p>
+            <p className="text-xs text-center text-blue-500 opacity-70 mb-0 mt-4 " data-aos="zoom-y-out"
+              data-aos-delay="150">Help us to save more lives ..</p>
           </div>
         </div>
 
@@ -22,7 +22,7 @@ const HeroMain = () => {
           <div className="flex flex-col justify-center">
             <img class="w-64 h-64flex items-center justify-center border-4
             border-blue-400 rounded-lg 
-          transition-transform duration-500 transform hover:scale-125
+          transition-transform duration-500 transform hover:scale-150
           " src={require('./imgs/Land.jpg')}
               alt="logo" />
 
@@ -30,13 +30,13 @@ const HeroMain = () => {
         </div>
 
 
-        <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center">
+        <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center mt-10">
           <div>
             <button type='button'
-              className='flex break-inside bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
+              className='flex break-inside bg-blue-300 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
               <div className='flex items-center justify-between flex-1'>
                 <a href="/Login">
-                  <span id="b1" className='text-sm font-medium text-white'>Get Started &rarr;
+                  <span id="b1" className='text-sm font-medium text-slate-800 hover:text-white'>Get Started &rarr;
                   </span>
                 </a>
               </div>

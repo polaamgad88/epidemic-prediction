@@ -219,7 +219,7 @@ const Add_rec = () => {
   );
 
   return (
-    <div class="bg-blue-200">
+    <div class="bg-blue-200 ">
       <Navbar />
       <div class="flex items-center justify-center  mb-12 mt-4">
         <div class="">
@@ -228,7 +228,7 @@ const Add_rec = () => {
         </div>
       </div>
 
-      <div class="bg-blue-200 md:flex md:justify-center px-12">
+      <div class=" md:flex md:justify-center px-12">
         <form class="w-full max-w-lg bg-transparent ">
 
 

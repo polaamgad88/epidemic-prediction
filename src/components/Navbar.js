@@ -36,13 +36,15 @@ function Navbar() {
           console.log(error)
         });
   };
+  
 
   return (
-    <nav class="flex justify-between px-10 py-2 items-center bg-blue-100 rounded-sm" >
-      <a href="/main" class="flex justify-between px-10 py-2 items-center bg-blue-100 rounded-sm">
-        <img class="w-8 h-8" src={require('./imgs/logo.png')} alt="logo" />
-        <span class="ml-2 text-xl font-bold text-black py-4">Epidetect</span>
-      </a>
+    <nav class="flex justify-between px-10 py-2 items-center bg-blue-100 rounded-sm " >
+      
+    <a href="/main" class="flex items-center bg-blue-100">
+     <img src={require('./imgs/FLogo.png')} class="h-8 mr-3" alt="Logo" />
+     
+    </a>
 
       <div class="flex items-center bg-blue-100">
         <ul class="flex items-center space-x-12">
