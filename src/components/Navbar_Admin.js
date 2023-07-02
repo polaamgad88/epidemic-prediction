@@ -29,25 +29,29 @@ function Navbar() {
         (responseJson) => {
           console.log(responseJson)
           setIsLoggedIn(false);
-          navigate("/")
+          navigate("/login")
         })
       .catch(
         (error) => {
           console.log(error)
         });
   };
+  
 
   return (
-    <nav class="flex justify-between px-10 py-2 items-center bg-blue-100 rounded-sm" >
-      <a href="/admin" class="flex justify-between px-10 py-2 items-center bg-blue-100 rounded-sm">
-        <img class="w-8 h-8" src={require('./imgs/logo.png')} alt="logo" />
-        <span class="ml-2 text-xl font-bold text-black py-4">Epidetect</span>
-      </a>
-      <div class="flex items-center">
+    <nav class="flex justify-between px-10 py-2 items-center bg-blue-100 rounded-sm " >
+      
+    <a href="/admin" class="flex items-center bg-blue-100">
+     <img src={require('./imgs/FLogo.png')} class="h-8 mr-3" alt="Logo" />
+     
+    </a>
+
+      <div class="flex items-center bg-blue-100">
         <ul class="flex items-center space-x-12">
           {isLoggedIn ? (
             <>
-              <li class="font-mono text-sm font-semibold text-slate-800 hover:animate-pulse ">
+
+              <li class="font-mono text-sm font-semibold text-slate-800 hover:animate-pulse  ">
                 <button
                   class="hover:animate-pulse"
                   type="button"
@@ -58,9 +62,8 @@ function Navbar() {
 
             </>
           ) : (
-            
-            <li class="font-mono text-sm font-semibold text-slate-800 hover:animate-pulse ">
-            <a href="/Login">
+            <li class="font-mono text-sm font-semibold text-slate-800 hover:animate-pulse  ">
+              <a href="/Login">
                 <button
                   class="hover:animate-pulse"
                   type="button">
