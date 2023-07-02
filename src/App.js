@@ -23,6 +23,7 @@ class App extends Component {
   render() {
     return (
       <div class=" bg-gradient-to-r from-blue-300 to-white">
+      
         <Router>
           <Routes >
             <Route exact path="/" element={<Landing />} />
